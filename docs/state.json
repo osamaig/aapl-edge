@@ -1,0 +1,230 @@
+{
+ "signals": [
+  {
+   "id": "gap_down-2026-11-06",
+   "kind": "swing",
+   "setup": "gap_down",
+   "name": "Gap-down dip buy",
+   "created": "2026-11-07T06:37:03.875461-05:00",
+   "plan_date": "2026-11-06",
+   "plan_entry": 342.37,
+   "atr": 8.77,
+   "hold": 5,
+   "stop_k": 1.5,
+   "tgt_k": 2.0,
+   "mult": 0.75,
+   "status": "planned",
+   "stop": 329.21,
+   "target": 359.91
+  }
+ ],
+ "sent": [],
+ "stats": {
+  "gap_down": {
+   "name": "Gap-down dip buy",
+   "params": {
+    "name": "Gap-down dip buy",
+    "stop": 1.5,
+    "tgt": 2.0,
+    "hold": 5
+   },
+   "all": {
+    "n": 85,
+    "win": 62.4,
+    "avgR": 0.18,
+    "pf": 1.61,
+    "days": 4.1
+   },
+   "train": {
+    "n": 59,
+    "win": 59.3,
+    "avgR": 0.11,
+    "pf": 1.31,
+    "days": 4.1
+   },
+   "test": {
+    "n": 26,
+    "win": 69.2,
+    "avgR": 0.36,
+    "pf": 2.77,
+    "days": 4.1
+   },
+   "baseline": {
+    "n": 936,
+    "win": 54.0,
+    "avgR": 0.09,
+    "pf": 1.24,
+    "days": 4.0
+   },
+   "baseline_test": {
+    "n": 293,
+    "win": 52.9,
+    "avgR": 0.07,
+    "pf": 1.18,
+    "days": 4.1
+   }
+  },
+  "oversold": {
+   "name": "Oversold bounce",
+   "params": {
+    "name": "Oversold bounce",
+    "stop": 2.0,
+    "tgt": 3.0,
+    "hold": 10
+   },
+   "all": {
+    "n": 36,
+    "win": 63.9,
+    "avgR": 0.39,
+    "pf": 2.26,
+    "days": 7.6
+   },
+   "train": {
+    "n": 25,
+    "win": 56.0,
+    "avgR": 0.29,
+    "pf": 1.79,
+    "days": 7.3
+   },
+   "test": {
+    "n": 11,
+    "win": 81.8,
+    "avgR": 0.63,
+    "pf": 4.42,
+    "days": 8.4
+   },
+   "baseline": {
+    "n": 492,
+    "win": 54.7,
+    "avgR": 0.15,
+    "pf": 1.4,
+    "days": 7.7
+   },
+   "baseline_test": {
+    "n": 158,
+    "win": 53.8,
+    "avgR": 0.11,
+    "pf": 1.28,
+    "days": 7.7
+   }
+  },
+  "breakout": {
+   "name": "Volume breakout",
+   "params": {
+    "name": "Volume breakout",
+    "stop": 1.5,
+    "tgt": 3.0,
+    "hold": 10
+   },
+   "all": {
+    "n": 32,
+    "win": 50.0,
+    "avgR": 0.28,
+    "pf": 1.63,
+    "days": 6.8
+   },
+   "train": {
+    "n": 25,
+    "win": 48.0,
+    "avgR": 0.27,
+    "pf": 1.59,
+    "days": 6.3
+   },
+   "test": {
+    "n": 7,
+    "win": 57.1,
+    "avgR": 0.3,
+    "pf": 1.79,
+    "days": 8.7
+   },
+   "baseline": {
+    "n": 577,
+    "win": 48.0,
+    "avgR": 0.16,
+    "pf": 1.33,
+    "days": 6.5
+   },
+   "baseline_test": {
+    "n": 176,
+    "win": 48.3,
+    "avgR": 0.14,
+    "pf": 1.3,
+    "days": 6.9
+   }
+  },
+  "scalp_orb": {
+   "name": "Opening-range scalp (PAPER)",
+   "sessions": 60,
+   "n": 5,
+   "win": 40.0,
+   "avgR": 0.01,
+   "note": "Only ~60 sessions of free 5-minute data exist. Too small to trust: paper-trade first."
+  },
+  "meta": {
+   "built": "2026-11-07T11:35:07.030911Z",
+   "from": "2011-11-07",
+   "to": "2026-11-06",
+   "split": "2022-01-01"
+  }
+ },
+ "status": "ok",
+ "updated": "2026-11-07T06:37:03.875461-05:00",
+ "session": "closed",
+ "price": 342.37,
+ "prev_close": 344.17,
+ "chg_pct": -0.52,
+ "vix": 25.64,
+ "regime": {
+  "label": "CAUTIOUS",
+  "mult": 0.75,
+  "note": "VIX elevated: 75% size"
+ },
+ "events": [],
+ "trend": {
+  "up": true,
+  "sma50": 336.01,
+  "sma200": 298.81,
+  "above200": true
+ },
+ "ind": {
+  "rsi14": 51.5,
+  "atr": 8.77,
+  "atr_pct": 2.56,
+  "hh20": 355.38,
+  "ll20": 325.33,
+  "vratio": 0.92,
+  "bar_date": "2026-11-06"
+ },
+ "watch": [
+  {
+   "key": "oversold",
+   "name": "Oversold bounce",
+   "text": "RSI14 is 51; triggers below 30",
+   "progress": 0.4634461810827487,
+   "fired": false
+  },
+  {
+   "key": "breakout",
+   "name": "Volume breakout",
+   "text": "Price $342.37 vs 20-day high $355.38; volume 0.9x avg (needs 1.5x)",
+   "progress": 0.26782544955419985,
+   "fired": false
+  },
+  {
+   "key": "gap_down",
+   "name": "Gap-down dip buy",
+   "text": "Today's gap -1.58% (needs below -1.5%) in an uptrend",
+   "progress": 1,
+   "fired": true
+  }
+ ],
+ "risk_cfg": {
+  "capital": null,
+  "risk_pct": 0.5
+ },
+ "journal": {
+  "swing": {
+   "n": 0
+  }
+ }
+}

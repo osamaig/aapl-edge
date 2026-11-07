@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0e1116">
+<title>AAPL Edge</title>
+<style>
+:root{--bg:#0e1116;--card:#171b22;--line:#252b35;--tx:#e8ecf1;--mut:#8b95a5;--up:#3ecf8e;--dn:#f0646e;--warn:#f2b84b;--acc:#6aa6ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.4 -apple-system,system-ui,Segoe UI,Roboto,sans-serif;padding:max(14px,env(safe-area-inset-top)) 14px 40px}
+.wrap{max-width:560px;margin:0 auto}h2{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);margin:22px 2px 8px;font-weight:600}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:10px}
+.row{display:flex;justify-content:space-between;align-items:baseline;gap:10px}.mut{color:var(--mut)}.sm{font-size:12.5px}
+.price{font-size:38px;font-weight:700;letter-spacing:-.02em}.up{color:var(--up)}.dn{color:var(--dn)}
+.pill{display:inline-block;padding:3px 10px;border-radius:99px;font-size:12px;font-weight:700;border:1px solid}
+.NORMAL{color:var(--up);border-color:var(--up)}.CAUTIOUS{color:var(--warn);border-color:var(--warn)}.DEFENSIVE{color:var(--dn);border-color:var(--dn)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.tile{background:#11151b;border:1px solid var(--line);border-radius:10px;padding:9px}
+.tile b{display:block;font-size:11px;color:var(--mut);font-weight:600;margin-bottom:2px}.tile span{font-size:17px;font-weight:650}
+.lv{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0 4px}
+.lv div{background:#11151b;border-radius:10px;padding:8px;text-align:center}.lv b{display:block;font-size:11px;color:var(--mut);font-weight:600}.lv span{font-size:18px;font-weight:700}
+.bar{height:6px;border-radius:9px;background:#252b35;overflow:hidden;margin-top:7px}.bar i{display:block;height:100%;background:var(--acc)}
+.tag{font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;background:#252b35;color:var(--mut)}.tag.open{background:#173a2a;color:var(--up)}.tag.planned{background:#3a3217;color:var(--warn)}.tag.paper{background:#1c2a44;color:var(--acc)}
+.warn{border-color:#6b4f12;background:#221c0e;color:var(--warn)}.err{border-color:#6b1f26;background:#22110f;color:var(--dn)}
+table{width:100%;border-collapse:collapse;font-size:13px}td,th{padding:6px 4px;text-align:right;border-bottom:1px solid var(--line)}th{color:var(--mut);font-weight:600;font-size:11px}td:first-child,th:first-child{text-align:left}
+input{background:#11151b;border:1px solid var(--line);color:var(--tx);border-radius:8px;padding:9px;width:100%;font-size:16px}
+label{font-size:12px;color:var(--mut)}.foot{font-size:11.5px;color:var(--mut);margin-top:26px;line-height:1.5}
+</style>
+</head>
+<body><div class="wrap" id="app"><div class="card mut">Loading…</div></div>
+<script>
+const $=s=>document.querySelector(s), f=(x,d=2)=>x==null?'–':Number(x).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d}), usd=x=>'$'+f(x);
+const cfg=()=>{try{return JSON.parse(localStorage.getItem('aaplcfg'))||{}}catch(e){return{}}};
+const C={capital:100000,risk:0.5,maxpos:10,...cfg()};
+function size(entry,stop,mult){const per=entry-stop;if(per<=0)return{sh:0,risk:0,cost:0};let sh=Math.floor(C.capital*C.risk/100*(mult||1)/per);sh=Math.min(sh,Math.floor(C.capital*C.maxpos/100/entry));return{sh,risk:sh*per,cost:sh*entry}}
+const ago=t=>{const m=Math.round((Date.now()-new Date(t))/60000);return m<1?'just now':m<60?m+' min ago':m<1440?Math.round(m/60)+' h ago':Math.round(m/1440)+' d ago'};
+function sigCard(s,stats){
+  const paper=s.kind==='scalp', tag=paper?'paper':s.status, lab=paper?'PAPER':s.status.toUpperCase();
+  const entry=s.entry||s.plan_entry, z=size(entry,s.stop,s.mult), st=(stats[s.setup]||{}).all||{};
+  const rr=((s.target-entry)/(entry-s.stop)).toFixed(1);
+  return `<div class="card"><div class="row"><b>${s.name}</b><span class="tag ${tag}">${lab}</span></div>
+  <div class="lv"><div><b>${s.status==='planned'?'ENTRY (open)':'ENTRY'}</b><span>${usd(entry)}</span></div><div><b>STOP</b><span class="dn">${usd(s.stop)}</span></div><div><b>TARGET</b><span class="up">${usd(s.target)}</span></div></div>
+  <div class="sm mut">${paper?'Same-day paper trade, not validated.':`${z.sh} shares (${usd(z.cost)}), risking ${usd(z.risk)} · R:R ${rr} · sell by day ${s.hold}`}
+  ${s.status==='planned'?'<br>Final levels update at 9:35 AM from the real open price.':''}${st.win?`<br>Backtest: ${st.win}% win · ${st.avgR}R avg · ${st.n} trades`:''}</div></div>`}
+function render(S){
+  const st=S.stats||{}, up=S.chg_pct>=0, stale=(Date.now()-new Date(S.updated))/60000;
+  const active=(S.signals||[]).filter(s=>['planned','open'].includes(s.status)), done=(S.signals||[]).filter(s=>!['planned','open'].includes(s.status)).reverse().slice(0,12);
+  let h='';
+  if(S.status!=='ok')h+=`<div class="card err">Data problem: ${S.status}. Alerts may be delayed.</div>`;
+  else if(stale>45&&S.session==='open')h+=`<div class="card warn">Last scan was ${ago(S.updated)}. The scanner may be delayed.</div>`;
+  (S.events||[]).forEach(e=>h+=`<div class="card warn"><b>${e.type}</b> ${e.days===0?'today':'in '+e.days+' day(s)'} (${e.date}). Expect big moves. New entries are paused around earnings.</div>`);
+  h+=`<div class="card"><div class="row"><span class="mut">AAPL · ${S.session==='open'?'market open':'market closed'}</span><span class="pill ${S.regime.label}">${S.regime.label}</span></div>
+  <div class="row"><span class="price">${usd(S.price)}</span><span class="${up?'up':'dn'}" style="font-size:18px;font-weight:650">${up?'+':''}${f(S.chg_pct)}%</span></div>
+  <div class="sm mut">VIX ${f(S.vix,1)} · ${S.regime.note} · updated ${ago(S.updated)}</div></div>`;
+  h+='<h2>Alerts</h2>';
+  h+=active.length?active.map(s=>sigCard(s,st)).join(''):`<div class="card mut">No active alerts. The scanner is watching and will push to your phone when a setup fires.</div>`;
+  h+='<h2>Watching</h2><div class="card">'+S.watch.map(w=>`<div style="margin-bottom:12px"><div class="row"><b>${w.name}</b>${w.fired?'<span class="tag open">FIRED</span>':''}</div><div class="sm mut">${w.text}</div><div class="bar"><i style="width:${Math.round(w.progress*100)}%"></i></div></div>`).join('')+'</div>';
+  const t=S.trend,i=S.ind;
+  h+=`<h2>Key levels</h2><div class="card"><div class="grid">
+  <div class="tile"><b>TREND</b><span class="${t.up?'up':'dn'}">${t.up?'Up':t.above200?'Mixed':'Down'}</span></div>
+  <div class="tile"><b>RSI 14</b><span>${f(i.rsi14,0)}</span></div>
+  <div class="tile"><b>DAILY RANGE</b><span>${usd(i.atr)}</span></div>
+  <div class="tile"><b>50-DAY</b><span>${usd(t.sma50)}</span></div>
+  <div class="tile"><b>200-DAY</b><span>${usd(t.sma200)}</span></div>
+  <div class="tile"><b>VOLUME</b><span>${f(i.vratio,1)}x</span></div>
+  <div class="tile"><b>20D HIGH</b><span>${usd(i.hh20)}</span></div>
+  <div class="tile"><b>20D LOW</b><span>${usd(i.ll20)}</span></div>
+  <div class="tile"><b>ATR %</b><span>${f(i.atr_pct)}%</span></div></div></div>`;
+  h+='<h2>Scorecard: backtest vs live</h2><div class="card"><table><tr><th>Setup</th><th>Win%</th><th>Avg R</th><th>Trades</th></tr>';
+  ['gap_down','oversold','breakout'].forEach(k=>{const b=st[k];if(!b)return;const lv=(S.signals||[]).filter(s=>s.setup===k&&['target','stop','timeout'].includes(s.status));const w=lv.length?Math.round(lv.filter(s=>s.R>0).length/lv.length*100):null,r=lv.length?(lv.reduce((a,s)=>a+s.R,0)/lv.length).toFixed(2):null;
+    h+=`<tr><td>${b.name}<div class="sm mut">test ${b.test.win}% / ${b.test.avgR}R vs random-day ${b.baseline_test.avgR}R</div></td><td>${b.all.win}</td><td>${b.all.avgR}</td><td>${b.all.n}</td></tr><tr><td class="sm mut">↳ live alerts</td><td class="sm">${w??'–'}</td><td class="sm">${r??'–'}</td><td class="sm">${lv.length}</td></tr>`});
+  const sc=st.scalp_orb;if(sc)h+=`<tr><td>${sc.name}<div class="sm mut">${sc.note}</div></td><td>${sc.win??'–'}</td><td>${sc.avgR??'–'}</td><td>${sc.n}</td></tr>`;
+  h+='</table></div>';
+  if(done.length){h+='<h2>Journal</h2><div class="card"><table><tr><th>Date</th><th>Setup</th><th>Result</th><th>R</th></tr>'+done.map(s=>`<tr><td>${(s.exit_date||s.plan_date).slice(5)}</td><td>${s.name.replace(' (PAPER)',' ·paper')}</td><td>${s.status}</td><td class="${s.R>0?'up':s.R<0?'dn':''}">${s.R!=null?(s.R>0?'+':'')+s.R:'–'}</td></tr>`).join('')+'</table></div>'}
+  h+=`<h2>My account</h2><div class="card"><div class="row" style="gap:10px"><div style="flex:1"><label>Cash ($)</label><input id="cap" type="number" inputmode="decimal" value="${C.capital}"></div><div style="flex:1"><label>Risk per trade (%)</label><input id="rsk" type="number" step="0.1" inputmode="decimal" value="${C.risk}"></div></div>
+  <div class="sm mut" style="margin-top:8px">Stored only on this phone. Share counts above update when you change these. Max ${C.maxpos}% of cash in one position.</div></div>`;
+  h+=`<div class="foot">Backtest ${st.meta?st.meta.from+' to '+st.meta.to:''}. Tested in 2011–2021, checked on 2022–2026. Results are history, not a promise; sample sizes are small (7 to 85 trades per setup). Alerts come from free, unofficial data and can be late or wrong. Cash account: sale proceeds settle the next business day, so you cannot reuse them the same day without a good-faith violation. Not financial advice. You decide every trade.</div>`;
+  $('#app').innerHTML=h;
+  ['cap','rsk'].forEach(id=>$('#'+id).addEventListener('change',()=>{C.capital=+$('#cap').value||100000;C.risk=+$('#rsk').value||0.5;localStorage.setItem('aaplcfg',JSON.stringify(C));render(S)}));
+}
+fetch('state.json?'+Date.now()).then(r=>r.json()).then(render).catch(e=>{$('#app').innerHTML='<div class="card err">Could not load state.json. The first scan has not run yet.</div>'});
+setInterval(()=>fetch('state.json?'+Date.now()).then(r=>r.json()).then(render).catch(()=>{}),120000);
+</script></body></html>
