@@ -17,7 +17,9 @@
    "stop": 331.78,
    "target": 362.47,
    "entry": 344.93,
-   "entry_date": "2026-11-09"
+   "entry_date": "2026-11-09",
+   "tier": "probation",
+   "conf": "Medium"
   },
   {
    "id": "scalp-2026-11-09",
@@ -29,7 +31,7 @@
    "entry": 350.61,
    "stop": 344.79,
    "target": 359.33,
-   "status": "open",
+   "status": "retired",
    "entry_date": "2026-11-09",
    "hold": 1,
    "orh": 350.33,
@@ -470,7 +472,7 @@
   }
  },
  "status": "ok",
- "updated": "2026-11-09T16:31:22.835291-05:00",
+ "updated": "2026-11-09T16:36:25.934016-05:00",
  "session": "closed",
  "price": 350.69,
  "prev_close": 342.37,
