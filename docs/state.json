@@ -18,10 +18,28 @@
    "target": 362.47,
    "entry": 344.93,
    "entry_date": "2026-11-09"
+  },
+  {
+   "id": "scalp-2026-11-09",
+   "kind": "scalp",
+   "setup": "scalp_orb",
+   "name": "Opening-range scalp (PAPER)",
+   "created": "2026-11-09T10:32:48.687739-05:00",
+   "plan_date": "2026-11-09",
+   "entry": 350.61,
+   "stop": 344.79,
+   "target": 359.33,
+   "status": "open",
+   "entry_date": "2026-11-09",
+   "hold": 1,
+   "orh": 350.33,
+   "orl": 344.79,
+   "mult": 1.0
   }
  ],
  "sent": [
-  "gap_down-2026-11-06:enter"
+  "gap_down-2026-11-06:enter",
+  "scalp-2026-11-09:enter"
  ],
  "stats": {
   "gap_down": {
@@ -172,12 +190,12 @@
   }
  },
  "status": "ok",
- "updated": "2026-11-09T10:27:45.981853-05:00",
+ "updated": "2026-11-09T10:32:48.687739-05:00",
  "session": "open",
- "price": 350.31,
+ "price": 350.56,
  "prev_close": 342.37,
- "chg_pct": 2.32,
- "vix": 21.26,
+ "chg_pct": 2.39,
+ "vix": 21.18,
  "regime": {
   "label": "NORMAL",
   "mult": 1.0,
@@ -191,27 +209,27 @@
   "above200": true
  },
  "ind": {
-  "rsi14": 57.4,
-  "atr": 8.73,
-  "atr_pct": 2.49,
+  "rsi14": 57.5,
+  "atr": 8.75,
+  "atr_pct": 2.5,
   "hh20": 355.38,
   "ll20": 325.33,
-  "vratio": 0.18,
+  "vratio": 0.19,
   "bar_date": "2026-11-09"
  },
  "watch": [
   {
    "key": "oversold",
    "name": "Oversold bounce",
-   "text": "RSI14 is 57; triggers below 30",
-   "progress": 0.31599612761914175,
+   "text": "RSI14 is 58; triggers below 30",
+   "progress": 0.3119331822827439,
    "fired": false
   },
   {
    "key": "breakout",
    "name": "Volume breakout",
-   "text": "Price $350.31 vs 20-day high $355.38; volume 0.2x avg (needs 1.5x)",
-   "progress": 0.7146712108414444,
+   "text": "Price $350.56 vs 20-day high $355.38; volume 0.2x avg (needs 1.5x)",
+   "progress": 0.7287406574374855,
    "fired": false
   },
   {
