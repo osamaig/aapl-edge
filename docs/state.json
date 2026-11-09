@@ -51,7 +51,10 @@
    "entry_date": "2026-11-09",
    "day_high": 351.42,
    "dip_pct": 0.41,
-   "tier": "rapid"
+   "tier": "rapid",
+   "last": 349.36,
+   "pl_pct": -0.14,
+   "days_held": 0
   }
  ],
  "sent": [
@@ -444,12 +447,12 @@
   }
  },
  "status": "ok",
- "updated": "2026-11-09T12:32:46.385319-05:00",
+ "updated": "2026-11-09T12:37:49.770536-05:00",
  "session": "open",
- "price": 349.86,
+ "price": 349.36,
  "prev_close": 342.37,
- "chg_pct": 2.19,
- "vix": 20.34,
+ "chg_pct": 2.04,
+ "vix": 20.33,
  "regime": {
   "label": "NORMAL",
   "mult": 1.0,
@@ -458,14 +461,14 @@
  "events": [],
  "trend": {
   "up": true,
-  "sma50": 336.62,
+  "sma50": 336.61,
   "sma200": 299.31,
   "above200": true
  },
  "ind": {
-  "rsi14": 57.1,
+  "rsi14": 56.7,
   "atr": 8.79,
-  "atr_pct": 2.51,
+  "atr_pct": 2.52,
   "hh20": 355.38,
   "ll20": 325.33,
   "vratio": 0.32,
@@ -486,8 +489,8 @@
    "name": "52-week high breakout",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Price $349.86 vs 52-week high $355.38",
-   "progress": 0.7781039428456203,
+   "text": "Price $349.36 vs 52-week high $355.38",
+   "progress": 0.7580047334227029,
    "fired": false
   },
   {
@@ -496,7 +499,7 @@
    "tier": "core",
    "conf": "High",
    "text": "RSI14 is 57; triggers below 30",
-   "progress": 0.3233885201576198,
+   "progress": 0.3317232449635316,
    "fired": false
   },
   {
@@ -504,8 +507,8 @@
    "name": "Volume breakout",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Price $349.86 vs 20-day high $355.38; volume 0.3x avg (needs 1.5x)",
-   "progress": 0.6893455199838705,
+   "text": "Price $349.36 vs 20-day high $355.38; volume 0.3x avg (needs 1.5x)",
+   "progress": 0.661206626791786,
    "fired": false
   },
   {
@@ -523,7 +526,7 @@
    "tier": "probation",
    "conf": "Low",
    "text": "RSI14 is 57; triggers below 40 in an uptrend",
-   "progress": 0.4311846935434931,
+   "progress": 0.4422976599513755,
    "fired": false
   },
   {
@@ -531,7 +534,7 @@
    "name": "Drop over 3% in uptrend",
    "tier": "probation",
    "conf": "Low",
-   "text": "Today +2.19% (needs -3% or worse) in an uptrend",
+   "text": "Today +2.04% (needs -3% or worse) in an uptrend",
    "progress": 0.0,
    "fired": false
   },
@@ -540,8 +543,8 @@
    "name": "Closed at day low (IBS)",
    "tier": "probation",
    "conf": "Low",
-   "text": "Closed at 77% of today's range (needs under 10%)",
-   "progress": 0.2610482989653869,
+   "text": "Closed at 69% of today's range (needs under 10%)",
+   "progress": 0.34471611974139776,
    "fired": false
   }
  ],
@@ -693,7 +696,7 @@
    "name": "Hammer after selling",
    "desc": "Closes in top 30% of range after two down days",
    "tier": "weak",
-   "fired": true
+   "fired": false
   }
  ],
  "rules_tab": {
@@ -1119,7 +1122,10 @@
     "entry_date": "2026-11-09",
     "day_high": 351.42,
     "dip_pct": 0.41,
-    "tier": "rapid"
+    "tier": "rapid",
+    "last": 349.36,
+    "pl_pct": -0.14,
+    "days_held": 0
    }
   ],
   "closed": [],
