@@ -57,13 +57,33 @@
    "days_held": 0,
    "exit": 351.86,
    "exit_date": "2026-11-09"
+  },
+  {
+   "id": "vix_fall-2026-11-09",
+   "kind": "swing",
+   "setup": "vix_fall",
+   "name": "VIX falling from spike",
+   "tier": "probation",
+   "conf": "Low",
+   "created": "2026-11-09T16:06:15.273262-05:00",
+   "plan_date": "2026-11-09",
+   "plan_entry": 350.69,
+   "atr": 8.85,
+   "hold": 10,
+   "stop_k": 2.0,
+   "tgt_k": 3.0,
+   "mult": 0.5,
+   "status": "planned",
+   "stop": 332.99,
+   "target": 377.25
   }
  ],
  "sent": [
   "gap_down-2026-11-06:enter",
   "scalp-2026-11-09:enter",
   "rapid-2026-11-09:enter",
-  "rapid-2026-11-09:exit"
+  "rapid-2026-11-09:exit",
+  "vix_fall-2026-11-09:plan"
  ],
  "stats": {
   "gap_down": {
@@ -450,11 +470,11 @@
   }
  },
  "status": "ok",
- "updated": "2026-11-09T16:01:12.829789-05:00",
+ "updated": "2026-11-09T16:06:15.273262-05:00",
  "session": "closed",
- "price": 350.85,
+ "price": 350.69,
  "prev_close": 342.37,
- "chg_pct": 2.48,
+ "chg_pct": 2.43,
  "vix": 19.88,
  "regime": {
   "label": "NORMAL",
@@ -464,17 +484,17 @@
  "events": [],
  "trend": {
   "up": true,
-  "sma50": 336.64,
+  "sma50": 336.63,
   "sma200": 299.32,
   "above200": true
  },
  "ind": {
-  "rsi14": 57.7,
+  "rsi14": 57.6,
   "atr": 8.85,
   "atr_pct": 2.52,
   "hh20": 355.38,
   "ll20": 325.33,
-  "vratio": 0.59,
+  "vratio": 0.82,
   "bar_date": "2026-11-09"
  },
  "watch": [
@@ -492,8 +512,8 @@
    "name": "52-week high breakout",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Price $350.85 vs 52-week high $355.38",
-   "progress": 0.8179012116987016,
+   "text": "Price $350.69 vs 52-week high $355.38",
+   "progress": 0.8114693174723606,
    "fired": false
   },
   {
@@ -502,7 +522,7 @@
    "tier": "core",
    "conf": "High",
    "text": "RSI14 is 58; triggers below 30",
-   "progress": 0.30725865834260857,
+   "progress": 0.30983258752806275,
    "fired": false
   },
   {
@@ -510,8 +530,8 @@
    "name": "Volume breakout",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Price $350.85 vs 20-day high $355.38; volume 0.6x avg (needs 1.5x)",
-   "progress": 0.7450616963781842,
+   "text": "Price $350.69 vs 20-day high $355.38; volume 0.8x avg (needs 1.5x)",
+   "progress": 0.7360570444613068,
    "fired": false
   },
   {
@@ -529,7 +549,7 @@
    "tier": "probation",
    "conf": "Low",
    "text": "RSI14 is 58; triggers below 40 in an uptrend",
-   "progress": 0.4096782111234781,
+   "progress": 0.41311011670408365,
    "fired": false
   },
   {
@@ -537,7 +557,7 @@
    "name": "Drop over 3% in uptrend",
    "tier": "probation",
    "conf": "Low",
-   "text": "Today +2.48% (needs -3% or worse) in an uptrend",
+   "text": "Today +2.43% (needs -3% or worse) in an uptrend",
    "progress": 0.0,
    "fired": false
   },
@@ -546,8 +566,8 @@
    "name": "Closed at day low (IBS)",
    "tier": "probation",
    "conf": "Low",
-   "text": "Closed at 81% of today's range (needs under 10%)",
-   "progress": 0.2118507667824074,
+   "text": "Closed at 79% of today's range (needs under 10%)",
+   "progress": 0.23555501302083331,
    "fired": false
   }
  ],
