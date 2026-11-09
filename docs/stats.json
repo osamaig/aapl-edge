@@ -10,8 +10,8 @@
   "all": {
    "n": 85,
    "win": 62.4,
-   "avgR": 0.18,
-   "pf": 1.61,
+   "avgR": 0.19,
+   "pf": 1.63,
    "days": 4.1
   },
   "train": {
@@ -24,13 +24,13 @@
   "test": {
    "n": 26,
    "win": 69.2,
-   "avgR": 0.36,
-   "pf": 2.77,
+   "avgR": 0.38,
+   "pf": 2.87,
    "days": 4.1
   },
   "baseline": {
-   "n": 936,
-   "win": 54.0,
+   "n": 934,
+   "win": 54.1,
    "avgR": 0.09,
    "pf": 1.24,
    "days": 4.0
@@ -39,8 +39,8 @@
    "n": 293,
    "win": 52.9,
    "avgR": 0.07,
-   "pf": 1.18,
-   "days": 4.1
+   "pf": 1.19,
+   "days": 4.2
   }
  },
  "oversold": {
@@ -52,17 +52,17 @@
    "hold": 10
   },
   "all": {
-   "n": 36,
-   "win": 63.9,
-   "avgR": 0.39,
-   "pf": 2.26,
+   "n": 39,
+   "win": 64.1,
+   "avgR": 0.41,
+   "pf": 2.32,
    "days": 7.6
   },
   "train": {
-   "n": 25,
-   "win": 56.0,
-   "avgR": 0.29,
-   "pf": 1.79,
+   "n": 28,
+   "win": 57.1,
+   "avgR": 0.33,
+   "pf": 1.9,
    "days": 7.3
   },
   "test": {
@@ -73,17 +73,17 @@
    "days": 8.4
   },
   "baseline": {
-   "n": 492,
-   "win": 54.7,
-   "avgR": 0.15,
-   "pf": 1.4,
+   "n": 490,
+   "win": 54.9,
+   "avgR": 0.16,
+   "pf": 1.42,
    "days": 7.7
   },
   "baseline_test": {
    "n": 158,
    "win": 53.8,
    "avgR": 0.11,
-   "pf": 1.28,
+   "pf": 1.29,
    "days": 7.7
   }
  },
@@ -117,10 +117,10 @@
    "days": 8.7
   },
   "baseline": {
-   "n": 577,
-   "win": 48.0,
+   "n": 576,
+   "win": 48.1,
    "avgR": 0.16,
-   "pf": 1.33,
+   "pf": 1.34,
    "days": 6.5
   },
   "baseline_test": {
@@ -134,15 +134,15 @@
  "scalp_orb": {
   "name": "Opening-range scalp (PAPER)",
   "sessions": 60,
-  "n": 3,
-  "win": 66.7,
-  "avgR": 0.15,
+  "n": 5,
+  "win": 40.0,
+  "avgR": 0.01,
   "note": "Only ~60 sessions of free 5-minute data exist. Too small to trust: paper-trade first."
  },
  "meta": {
-  "built": "2026-11-07T13:09:34.290060Z",
-  "from": "2011-11-07",
-  "to": "2026-11-06",
+  "built": "2026-11-09T14:49:01.126414Z",
+  "from": "2011-11-09",
+  "to": "2026-11-09",
   "split": "2022-01-01"
  }
 }
