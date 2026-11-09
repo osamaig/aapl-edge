@@ -83,6 +83,11 @@ def main():
             if 0 <= n <= 2: ev.append({"type": k.upper(), "date": d, "days": n})
     earnings_soon = any(e["type"] == "EARNINGS" and e["days"] <= 1 for e in ev)
 
+    for s in state["signals"]:  # keep labels current; retire the old paper-scalp experiment
+        if s.get("kind") == "swing" and s.get("setup") in E.SETUPS:
+            s["tier"], s["conf"] = E.SETUPS[s["setup"]]["tier"], E.SETUPS[s["setup"]]["conf"]
+        if s.get("kind") == "scalp" and s.get("status") == "open":
+            s["status"] = "retired"
     open_sigs = [s for s in state["signals"] if s["kind"] == "swing" and s["status"] == "open"]
 
     # ---------- 1) resolve open swing trades

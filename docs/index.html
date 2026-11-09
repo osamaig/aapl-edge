@@ -26,6 +26,7 @@ input{background:#11151b;border:1px solid var(--line);color:var(--tx);border-rad
 label{font-size:12px;color:var(--mut)}.foot{font-size:11.5px;color:var(--mut);margin-top:26px;line-height:1.5}
 .seg{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}.seg button{background:#11151b;border:1px solid var(--line);color:var(--mut);border-radius:8px;padding:6px 10px;font-size:12.5px}.seg button.on{color:var(--tx);border-color:var(--acc);background:#1c2a44}svg text{font-size:10px;fill:#8b95a5}
 .chk{display:flex;gap:8px;align-items:flex-start;padding:7px 0;border-bottom:1px solid var(--line)}.chk input{width:auto;margin-top:3px}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}.fg div{min-width:0}select{background:#11151b;border:1px solid var(--line);color:var(--tx);border-radius:8px;padding:9px;width:100%;font-size:16px}.btn{background:#1c2a44;border:1px solid var(--acc);color:var(--tx);border-radius:8px;padding:10px 14px;font-size:14px;font-weight:600}.btn.g{background:#11151b;border-color:var(--line);color:var(--mut)}
 </style>
 </head>
 <body><div class="wrap" id="app"><div class="card mut">Loading…</div></div>
@@ -62,6 +63,37 @@ function rulesHtml(S){const T=S.rules_tab||{},R=S.rules||[],meta={};(T.rules||[]
  if(CS.length){const all=CS.every(k=>(R.find(r=>r.key===k)||{}).fired);const pair=CS.length===2?(T.combos||[]).find(c=>CS.every(k=>c.rules.includes(k))):null;
   h+=`<div class="card" style="margin:10px 0 0;border-color:${all?'var(--up)':'var(--line)'}"><b>${all?'All selected rules are firing now':'Not all selected rules fire right now'}</b>${pair?`<div class="sm mut">Together in the past: ${pair.n} trades, ${pair.win}% win, ${pair.avgR}R avg${pair.n<30?' (small sample, treat with care)':''}.</div>`:'<div class="sm mut">No backtest stored for this exact set.</div>'}</div>`}
  h+='<div class="sm mut" style="margin-top:8px">Push alerts go out for High and Medium rules. Low rules did not beat random entries, so they never alert.</div></div>';return h}
+
+const FK='aaplfills',TODAY=()=>new Date().toLocaleDateString('en-CA',{timeZone:'America/New_York'});
+let FD={type:'Rapid',bd:'',bp:'',sh:'100',sd:'',sp:'',note:''},FEDIT=null;
+const getF=()=>{try{return JSON.parse(localStorage.getItem(FK)||'[]')}catch(e){return[]}};
+const setF=a=>{try{localStorage.setItem(FK,JSON.stringify(a))}catch(e){alert('This browser could not save. Try Safari outside private mode.')}};
+const dd=(a,b)=>Math.round((new Date(b)-new Date(a))/864e5);
+function saveFill(){const bp=+FD.bp,sh=+FD.sh,sp=FD.sp===''?null:+FD.sp,bd=FD.bd||TODAY();
+ if(!(bp>0)||!(sh>0)){alert('Enter the buy price and number of shares.');return}
+ if(sp!==null&&!(sp>0)){alert('Sell price looks wrong.');return}
+ const sd=sp===null?'':(FD.sd||TODAY());const a=getF();a.push({id:Date.now(),type:FD.type,bd,bp,sh,sd,sp,note:FD.note||''});setF(a);
+ FD={type:FD.type,bd:'',bp:'',sh:FD.sh,sd:'',sp:'',note:''};FEDIT=null;render(window.__S)}
+function delFill(id){if(!confirm('Delete this entry?'))return;setF(getF().filter(x=>x.id!==id));render(window.__S)}
+function editFill(id){const x=getF().find(r=>r.id===id);if(!x)return;FD={type:x.type,bd:x.bd,bp:String(x.bp),sh:String(x.sh),sd:x.sd||'',sp:x.sp==null?'':String(x.sp),note:x.note||''};setF(getF().filter(r=>r.id!==id));render(window.__S);document.getElementById('fillsbox').scrollIntoView()}
+function exportFills(){const a=getF().sort((x,y)=>x.bd<y.bd?-1:1),rows=[['type','buy_date','buy_price','shares','sell_date','sell_price','pl_usd','note']];
+ a.forEach(x=>rows.push([x.type,x.bd,x.bp,x.sh,x.sd,x.sp==null?'':x.sp,x.sp==null?'':((x.sp-x.bp)*x.sh).toFixed(2),'"'+(x.note||'').replace(/"/g,'""')+'"']));
+ const csv=rows.map(r=>r.join(',')).join('\n');try{navigator.clipboard.writeText(csv)}catch(e){}
+ try{const b=new Blob([csv],{type:'text/csv'}),u=URL.createObjectURL(b),l=document.createElement('a');l.href=u;l.download='aapl-edge-my-fills.csv';document.body.appendChild(l);l.click();l.remove()}catch(e){}
+ alert('Copied to the clipboard and downloaded as a file.')}
+function fillsHtml(S){const a=getF().sort((x,y)=>(x.bd<y.bd)-(x.bd>y.bd)).reverse(),cl=a.filter(x=>x.sp!=null),pl=x=>(x.sp-x.bp)*x.sh,tot=cl.reduce((s,x)=>s+pl(x),0),w=cl.filter(x=>pl(x)>0).length;
+ const by=t=>{const c=cl.filter(x=>x.type===t);return c.length?`${t}: ${c.length} closed, ${usd(c.reduce((s,x)=>s+pl(x),0))}`:null};
+ const inp=(k,l,t,ex)=>`<div><label>${l}</label><input type="${t||'text'}" ${t==='number'?'inputmode="decimal" step="any"':''} value="${FD[k]}" oninput="FD.${k}=this.value" ${ex||''}></div>`;
+ let h=`<h2>My fills (my real trades)</h2><div class="card" id="fillsbox"><div class="sm mut" style="margin-bottom:8px">Private: saved only on this phone, never sent to GitHub. Leave the sell price empty while a trade is open. Use Export now and then as a backup.</div>
+ <div class="fg"><div><label>Type</label><select onchange="FD.type=this.value"><option ${FD.type==='Rapid'?'selected':''}>Rapid</option><option ${FD.type==='Swing'?'selected':''}>Swing</option><option ${FD.type==='Other'?'selected':''}>Other</option></select></div>${inp('sh','Shares','number')}
+ ${inp('bd','Buy date','date')}${inp('bp','Buy price','number')}${inp('sd','Sell date','date')}${inp('sp','Sell price','number')}</div>
+ <div style="margin-bottom:8px">${inp('note','Note (optional)','text')}</div><div class="row" style="justify-content:flex-start;gap:8px"><button class="btn" onclick="saveFill()">Save</button><button class="btn g" onclick="exportFills()">Export</button></div></div>`;
+ h+=`<div class="card"><div class="row"><b>${cl.length?`Closed: ${cl.length} · ${w} won`:'No closed trades yet'}</b><b class="${tot>=0?'up':'dn'}">${cl.length?(tot>=0?'+':'')+usd(tot):''}</b></div><div class="sm mut">${[by('Rapid'),by('Swing'),by('Other')].filter(Boolean).join(' · ')}</div></div>`;
+ a.forEach(x=>{const o=x.sp==null,p=o?0:pl(x),lab=x.type.toUpperCase();
+  h+=`<div class="card"><div class="row"><b>${lab} · ${x.sh} sh</b><span class="tag ${o?'planned':(p>=0?'open':'')}">${o?'OPEN':(p>=0?'+':'')+usd(p)+' ('+((x.sp/x.bp-1)*100).toFixed(2)+'%)'}</span></div>
+  <div class="sm mut">Bought ${usd(x.bp)} on ${x.bd}${o?' · still open, day '+dd(x.bd,TODAY()):' · sold '+usd(x.sp)+' on '+x.sd+' · held '+dd(x.bd,x.sd)+' day(s)'}${x.note?' · '+x.note:''}</div>
+  <div style="margin-top:6px"><button class="btn g" onclick="editFill(${x.id})">${o?'Close / edit':'Edit'}</button> <button class="btn g" onclick="delFill(${x.id})">Delete</button></div></div>`});
+ return h}
 function sigCard(s,stats){
   const paper=s.kind==='scalp', prob=s.tier==='probation', tag=paper?'paper':s.status, lab=paper?'PAPER':s.status.toUpperCase()+(prob?' · '+(s.conf||'MEDIUM').toUpperCase()+' CONFIDENCE':' · HIGH CONFIDENCE');
   const entry=s.entry||s.plan_entry, z=size(entry,s.stop,s.mult), st=(stats[s.setup]||{}).all||{};
@@ -70,7 +102,7 @@ function sigCard(s,stats){
   <div class="lv"><div><b>${s.status==='planned'?'ENTRY (open)':'ENTRY'}</b><span>${usd(entry)}</span></div><div><b>STOP</b><span class="dn">${usd(s.stop)}</span></div><div><b>TARGET</b><span class="up">${usd(s.target)}</span></div></div>
   <div class="sm mut">${prob?(s.conf||'Medium')+' confidence setup, so half size. Tracked to build evidence.<br>':''}${paper?'Same-day paper trade, not validated.':`${z.sh} shares (${usd(z.cost)}), risking ${usd(z.risk)} · R:R ${rr} · sell by day ${s.hold}`}
   ${s.status==='planned'?'<br>Final levels update at 9:35 AM from the real open price.':''}${st.win?`<br>Backtest: ${st.win}% win · ${st.avgR}R avg · ${st.n} trades`:''}</div></div>`}
-function render(S){window.__S=S;
+function render(S){window.__S=S;const ae=document.activeElement;if(ae&&ae.closest&&ae.closest('#fillsbox'))return;
   const st=S.stats||{}, up=S.chg_pct>=0, stale=(Date.now()-new Date(S.updated))/60000;
   const sw=(S.signals||[]).filter(s=>s.kind!=='rapid'&&s.kind!=='scalp'), active=sw.filter(s=>['planned','open'].includes(s.status)), done=sw.filter(s=>!['planned','open'].includes(s.status)).reverse().slice(0,12);
   let h='';
@@ -96,6 +128,7 @@ function render(S){window.__S=S;
   h+='<h2>Watching: medium and low confidence (half size)</h2><div class="card">'+S.watch.filter(w=>w.tier==='probation').map(wrow).join('')+'</div>';
   h+='<h2>Chart</h2><div class="card"><div id="chartbox"></div></div>';
   h+=rulesHtml(S);
+  h+=fillsHtml(S);
   const t=S.trend,i=S.ind;
   h+=`<h2>Key levels</h2><div class="card"><div class="grid">
   <div class="tile"><b>TREND</b><span class="${t.up?'up':'dn'}">${t.up?'Up':t.above200?'Mixed':'Down'}</span></div>
