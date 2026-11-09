@@ -1,34 +1,49 @@
 name: AAPL scan
 on:
-  schedule:
-    # every 5 min, Mon-Fri, 13:00-22:00 UTC (covers 9:00 AM - 5:00 PM New York in winter and summer)
-    - cron: "*/5 13-22 * * 1-5"
   workflow_dispatch: {}
+  schedule:
+    - cron: "*/30 13-22 * * 1-5"   # backup restart only; the loop below does the real work
 concurrency:
   group: aapl-scan
   cancel-in-progress: false
 permissions:
   contents: write
+  actions: write
 jobs:
   scan:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 355
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: "3.12", cache: pip }
       - run: pip install -r requirements.txt
-      - name: Refresh backtest weekly (Mondays before the open)
-        if: github.event_name == 'workflow_dispatch'
-        run: python scanner/backtest.py
-      - name: Scan
+      - name: Scan loop (every 5 min during market hours, about 5 hours per run)
         env:
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
           CAPITAL: ${{ secrets.CAPITAL }}
           RISK_PCT: ${{ secrets.RISK_PCT }}
-        run: python scanner/run.py
-      - name: Save results
         run: |
           git config user.name "aapl-edge-bot"; git config user.email "bot@users.noreply.github.com"
-          git add docs
-          git diff --cached --quiet || (git commit -m "scan $(date -u +%FT%TZ)" && git pull --rebase -q && git push -q)
+          end=$((SECONDS+18000)); i=0; prev=""
+          while [ $SECONDS -lt $end ]; do
+            hm=$(TZ=America/New_York date +%H%M); dow=$(TZ=America/New_York date +%u)
+            if [ "$dow" -le 5 ] && [ "$hm" -ge 0900 ] && [ "$hm" -le 1730 ]; then
+              python scanner/run.py || echo "scan failed, will retry"
+              sig=$(python -c "import json;s=json.load(open('docs/state.json'));print(json.dumps([s['signals'],s['sent']],sort_keys=True))" | md5sum)
+              if [ "$sig" != "$prev" ] || [ $((i % 3)) -eq 0 ]; then
+                git add docs
+                git diff --cached --quiet || (git commit -qm "scan $(date -u +%FT%TZ)" && git pull --rebase -q && git push -q) || true
+              fi
+              prev="$sig"; i=$((i+1))
+              sleep 300
+            else
+              sleep 600
+            fi
+          done
+          git add docs; git diff --cached --quiet || (git commit -qm "scan end of run" && git pull --rebase -q && git push -q) || true
+      - name: Start the next run
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run scan.yml --ref main
