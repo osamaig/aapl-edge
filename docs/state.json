@@ -470,12 +470,12 @@
   }
  },
  "status": "ok",
- "updated": "2026-11-09T16:06:15.273262-05:00",
+ "updated": "2026-11-09T16:16:18.660798-05:00",
  "session": "closed",
  "price": 350.69,
  "prev_close": 342.37,
  "chg_pct": 2.43,
- "vix": 19.88,
+ "vix": 20.07,
  "regime": {
   "label": "NORMAL",
   "mult": 1.0,
@@ -494,7 +494,7 @@
   "atr_pct": 2.52,
   "hh20": 355.38,
   "ll20": 325.33,
-  "vratio": 0.82,
+  "vratio": 0.94,
   "bar_date": "2026-11-09"
  },
  "watch": [
@@ -503,7 +503,7 @@
    "name": "Gap-down dip buy",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Today's gap +0.75% (needs below -1.5%) in an uptrend",
+   "text": "Today's gap +0.77% (needs below -1.5%) in an uptrend",
    "progress": 0.0,
    "fired": false
   },
@@ -530,7 +530,7 @@
    "name": "Volume breakout",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Price $350.69 vs 20-day high $355.38; volume 0.8x avg (needs 1.5x)",
+   "text": "Price $350.69 vs 20-day high $355.38; volume 0.9x avg (needs 1.5x)",
    "progress": 0.7360570444613068,
    "fired": false
   },
@@ -539,7 +539,7 @@
    "name": "VIX falling from spike",
    "tier": "probation",
    "conf": "Low",
-   "text": "VIX 19.9; 5-day high 28.2 (needs 25+ then a 10% fall)",
+   "text": "VIX 20.1; 5-day high 28.2 (needs 25+ then a 10% fall)",
    "progress": 1.0,
    "fired": true
   },
