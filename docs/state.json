@@ -190,12 +190,12 @@
   }
  },
  "status": "ok",
- "updated": "2026-11-09T10:42:52.067326-05:00",
+ "updated": "2026-11-09T10:57:55.964114-05:00",
  "session": "open",
- "price": 351.15,
+ "price": 350.88,
  "prev_close": 342.37,
- "chg_pct": 2.57,
- "vix": 21.04,
+ "chg_pct": 2.49,
+ "vix": 20.95,
  "regime": {
   "label": "NORMAL",
   "mult": 1.0,
@@ -209,12 +209,12 @@
   "above200": true
  },
  "ind": {
-  "rsi14": 57.9,
-  "atr": 8.78,
-  "atr_pct": 2.5,
+  "rsi14": 57.7,
+  "atr": 8.79,
+  "atr_pct": 2.51,
   "hh20": 355.38,
   "ll20": 325.33,
-  "vratio": 0.21,
+  "vratio": 0.22,
   "bar_date": "2026-11-09"
  },
  "watch": [
@@ -222,14 +222,14 @@
    "key": "oversold",
    "name": "Oversold bounce",
    "text": "RSI14 is 58; triggers below 30",
-   "progress": 0.3023868049925973,
+   "progress": 0.306857717874918,
    "fired": false
   },
   {
    "key": "breakout",
    "name": "Volume breakout",
-   "text": "Price $351.15 vs 20-day high $355.38; volume 0.2x avg (needs 1.5x)",
-   "progress": 0.7622260090345367,
+   "text": "Price $350.88 vs 20-day high $355.38; volume 0.2x avg (needs 1.5x)",
+   "progress": 0.7464682975454395,
    "fired": false
   },
   {
