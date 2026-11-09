@@ -52,8 +52,8 @@
    "day_high": 351.42,
    "dip_pct": 0.41,
    "tier": "rapid",
-   "last": 351.29,
-   "pl_pct": 0.41,
+   "last": 351.37,
+   "pl_pct": 0.43,
    "days_held": 0
   }
  ],
@@ -447,12 +447,12 @@
   }
  },
  "status": "ok",
- "updated": "2026-11-09T14:03:38.088617-05:00",
+ "updated": "2026-11-09T14:08:40.803733-05:00",
  "session": "open",
- "price": 351.29,
+ "price": 351.37,
  "prev_close": 342.37,
- "chg_pct": 2.61,
- "vix": 20.08,
+ "chg_pct": 2.63,
+ "vix": 20.13,
  "regime": {
   "label": "NORMAL",
   "mult": 1.0,
@@ -461,13 +461,13 @@
  "events": [],
  "trend": {
   "up": true,
-  "sma50": 336.64,
+  "sma50": 336.65,
   "sma200": 299.32,
   "above200": true
  },
  "ind": {
   "rsi14": 58.0,
-  "atr": 8.79,
+  "atr": 8.8,
   "atr_pct": 2.5,
   "hh20": 355.38,
   "ll20": 325.33,
@@ -489,8 +489,8 @@
    "name": "52-week high breakout",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Price $351.24 vs 52-week high $355.38",
-   "progress": 0.8335779571342143,
+   "text": "Price $351.35 vs 52-week high $355.38",
+   "progress": 0.8380004211216191,
    "fired": false
   },
   {
@@ -499,7 +499,7 @@
    "tier": "core",
    "conf": "High",
    "text": "RSI14 is 58; triggers below 30",
-   "progress": 0.30103716827393046,
+   "progress": 0.2992952840667428,
    "fired": false
   },
   {
@@ -507,8 +507,8 @@
    "name": "Volume breakout",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Price $351.24 vs 20-day high $355.38; volume 0.4x avg (needs 1.5x)",
-   "progress": 0.767009139987902,
+   "text": "Price $351.35 vs 20-day high $355.38; volume 0.4x avg (needs 1.5x)",
+   "progress": 0.7732005895702687,
    "fired": false
   },
   {
@@ -526,7 +526,7 @@
    "tier": "probation",
    "conf": "Low",
    "text": "RSI14 is 58; triggers below 40 in an uptrend",
-   "progress": 0.4013828910319072,
+   "progress": 0.3990603787556571,
    "fired": false
   },
   {
@@ -534,7 +534,7 @@
    "name": "Drop over 3% in uptrend",
    "tier": "probation",
    "conf": "Low",
-   "text": "Today +2.59% (needs -3% or worse) in an uptrend",
+   "text": "Today +2.62% (needs -3% or worse) in an uptrend",
    "progress": 0.0,
    "fired": false
   },
@@ -543,8 +543,8 @@
    "name": "Closed at day low (IBS)",
    "tier": "probation",
    "conf": "Low",
-   "text": "Closed at 97% of today's range (needs under 10%)",
-   "progress": 0.030124296555034617,
+   "text": "Closed at 98% of today's range (needs under 10%)",
+   "progress": 0.021559642777975174,
    "fired": false
   }
  ],
@@ -1123,8 +1123,8 @@
     "day_high": 351.42,
     "dip_pct": 0.41,
     "tier": "rapid",
-    "last": 351.29,
-    "pl_pct": 0.41,
+    "last": 351.37,
+    "pl_pct": 0.43,
     "days_held": 0
    }
   ],
