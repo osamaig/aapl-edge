@@ -1,0 +1,12 @@
+{
+ "n": 124,
+ "per_week": 0.85,
+ "same_day": 29,
+ "within3": 76,
+ "within10": 94,
+ "p90_drop": 3.9,
+ "worst_drop": 15.0,
+ "longest_days": 155,
+ "lots": 2,
+ "target": 2.0
+}

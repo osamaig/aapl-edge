@@ -24,6 +24,8 @@
 table{width:100%;border-collapse:collapse;font-size:13px}td,th{padding:6px 4px;text-align:right;border-bottom:1px solid var(--line)}th{color:var(--mut);font-weight:600;font-size:11px}td:first-child,th:first-child{text-align:left}
 input{background:#11151b;border:1px solid var(--line);color:var(--tx);border-radius:8px;padding:9px;width:100%;font-size:16px}
 label{font-size:12px;color:var(--mut)}.foot{font-size:11.5px;color:var(--mut);margin-top:26px;line-height:1.5}
+.seg{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}.seg button{background:#11151b;border:1px solid var(--line);color:var(--mut);border-radius:8px;padding:6px 10px;font-size:12.5px}.seg button.on{color:var(--tx);border-color:var(--acc);background:#1c2a44}svg text{font-size:10px;fill:#8b95a5}
+.chk{display:flex;gap:8px;align-items:flex-start;padding:7px 0;border-bottom:1px solid var(--line)}.chk input{width:auto;margin-top:3px}
 </style>
 </head>
 <body><div class="wrap" id="app"><div class="card mut">Loading…</div></div>
@@ -33,17 +35,44 @@ const cfg=()=>{try{return JSON.parse(localStorage.getItem('aaplcfg'))||{}}catch(
 const C={capital:100000,risk:0.5,maxpos:10,...cfg()};
 function size(entry,stop,mult){const per=entry-stop;if(per<=0)return{sh:0,risk:0,cost:0};let sh=Math.floor(C.capital*C.risk/100*(mult||1)/per);sh=Math.min(sh,Math.floor(C.capital*C.maxpos/100/entry));return{sh,risk:sh*per,cost:sh*entry}}
 const ago=t=>{const m=Math.round((Date.now()-new Date(t))/60000);return m<1?'just now':m<60?m+' min ago':m<1440?Math.round(m/60)+' h ago':Math.round(m/1440)+' d ago'};
+
+let CH=null,CM='daily',CO={sma20:1,sma50:1,sma200:0,bb:0},CS=JSON.parse(localStorage.getItem('aaplcombo')||'[]');
+function drawChart(){const b=document.getElementById('chartbox');if(!b||!CH)return;
+ const raw=CM==='daily'?CH.daily:(CH.hourly||[]);if(!raw.length){b.innerHTML='<div class="sm mut">No data yet.</div>';return}
+ const N=CM==='daily'?75:90,d=raw.slice(-N),W=520,PH=210,RH=60,G=14,L=8,R=44,n=d.length,step=(W-L-R)/n;
+ const lo=Math.min(...d.map(r=>Math.min(r[3],CO.bb&&r[9]?r[9]:1e9,CO.sma200&&r[7]?r[7]:1e9))),hi=Math.max(...d.map(r=>Math.max(r[2],CO.bb&&r[8]?r[8]:0)));
+ const y=v=>6+(hi-v)/(hi-lo||1)*(PH-12),x=i=>L+step*(i+.5);
+ let s=`<svg viewBox="0 0 ${W} ${PH+G+RH+14}" width="100%" style="display:block">`;
+ for(let k=0;k<=4;k++){const v=lo+(hi-lo)*k/4;s+=`<line x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}" stroke="#252b35"/><text x="${W-R+4}" y="${y(v)+3}">${v.toFixed(0)}</text>`}
+ const line=(idx,col)=>{let p='';d.forEach((r,i)=>{if(r[idx]!=null)p+=(p?'L':'M')+x(i).toFixed(1)+' '+y(r[idx]).toFixed(1)});return p?`<path d="${p}" fill="none" stroke="${col}" stroke-width="1.3"/>`:''};
+ d.forEach((r,i)=>{const col=r[4]>=r[1]?'#3ecf8e':'#f0646e';s+=`<line x1="${x(i)}" x2="${x(i)}" y1="${y(r[2])}" y2="${y(r[3])}" stroke="${col}"/><rect x="${x(i)-Math.max(step*.32,1)}" width="${Math.max(step*.64,2)}" y="${y(Math.max(r[1],r[4]))}" height="${Math.max(Math.abs(y(r[1])-y(r[4])),1)}" fill="${col}"/>`});
+ if(CO.sma20)s+=line(5,'#f2b84b');if(CO.sma50)s+=line(6,'#6aa6ff');if(CO.sma200)s+=line(7,'#c18cff');if(CO.bb)s+=line(8,'#8b95a5')+line(9,'#8b95a5');
+ const ry=v=>PH+G+(100-v)/100*RH;s+=`<rect x="${L}" y="${PH+G}" width="${W-R-L}" height="${RH}" fill="#11151b"/><line x1="${L}" x2="${W-R}" y1="${ry(30)}" y2="${ry(30)}" stroke="#3a3217"/><line x1="${L}" x2="${W-R}" y1="${ry(70)}" y2="${ry(70)}" stroke="#3a3217"/><text x="${W-R+4}" y="${ry(30)+3}">30</text><text x="${W-R+4}" y="${ry(70)+3}">70</text><text x="${L+2}" y="${PH+G+10}">RSI 14</text>`;
+ let p='';d.forEach((r,i)=>{if(r[10]!=null)p+=(p?'L':'M')+x(i).toFixed(1)+' '+ry(r[10]).toFixed(1)});s+=`<path d="${p}" fill="none" stroke="#6aa6ff" stroke-width="1.3"/>`;
+ s+=`<text x="${L}" y="${PH+G+RH+12}">${d[0][0]}</text><text x="${W-R-60}" y="${PH+G+RH+12}">${d[n-1][0]}</text></svg>`;
+ const bt=(k,t,on)=>`<button class="${on?'on':''}" onclick="${k}">${t}</button>`;
+ b.innerHTML=`<div class="seg">${bt("CM='daily';drawChart()",'Daily',CM==='daily')}${bt("CM='hourly';drawChart()",'Hourly',CM==='hourly')}${bt("CO.sma20^=1;drawChart()",'20-day',CO.sma20)}${bt("CO.sma50^=1;drawChart()",'50-day',CO.sma50)}${bt("CO.sma200^=1;drawChart()",'200-day',CO.sma200)}${bt("CO.bb^=1;drawChart()",'Bollinger',CO.bb)}</div>`+s+`<div class="sm mut">Yellow 20-day, blue 50-day, purple 200-day. Daily candles update after each scan.</div>`}
+function tog(k){const i=CS.indexOf(k);i>=0?CS.splice(i,1):CS.push(k);try{localStorage.setItem('aaplcombo',JSON.stringify(CS))}catch(e){}render(window.__S)}
+function rulesHtml(S){const T=S.rules_tab||{},R=S.rules||[],meta={};(T.rules||[]).forEach(r=>meta[r.key]=r);
+ const tg=t=>t==='proven'?'<span class="tag open">HIGH</span>':t==='aapl_only'?'<span class="tag paper">MEDIUM</span>':'<span class="tag">LOW · no alert</span>';
+ let h='<h2>Indicator rules (tested)</h2><div class="card"><div class="sm mut" style="margin-bottom:6px">Each rule was backtested on 15 years of AAPL against random entries, before and after 2022, then on 12 other stocks. High = held up everywhere (1 of 20). Medium = beat random on AAPL only. Tick rules to see if they all fire at once.</div>';
+ const order={proven:0,aapl_only:1,weak:2};
+ R.slice().sort((a,b)=>order[a.tier]-order[b.tier]).forEach(r=>{const m=meta[r.key]||{},on=CS.includes(r.key);
+  h+=`<div class="chk"><input type="checkbox" ${on?'checked':''} onchange="tog('${r.key}')"><div style="flex:1"><div class="row"><b>${r.name}</b>${r.fired?'<span class="tag open">FIRING</span>':tg(r.tier)}</div><div class="sm mut">${r.desc}${m.n?` · ${m.n} trades, ${m.win}% win, ${m.avgR}R avg (random entry: ${(T.baseline||{}).avgR}R) · other stocks better: ${m.others_pos}`:''}</div></div></div>`});
+ if(CS.length){const all=CS.every(k=>(R.find(r=>r.key===k)||{}).fired);const pair=CS.length===2?(T.combos||[]).find(c=>CS.every(k=>c.rules.includes(k))):null;
+  h+=`<div class="card" style="margin:10px 0 0;border-color:${all?'var(--up)':'var(--line)'}"><b>${all?'All selected rules are firing now':'Not all selected rules fire right now'}</b>${pair?`<div class="sm mut">Together in the past: ${pair.n} trades, ${pair.win}% win, ${pair.avgR}R avg${pair.n<30?' (small sample, treat with care)':''}.</div>`:'<div class="sm mut">No backtest stored for this exact set.</div>'}</div>`}
+ h+='<div class="sm mut" style="margin-top:8px">Push alerts go out for High and Medium rules. Low rules did not beat random entries, so they never alert.</div></div>';return h}
 function sigCard(s,stats){
-  const paper=s.kind==='scalp', tag=paper?'paper':s.status, lab=paper?'PAPER':s.status.toUpperCase();
+  const paper=s.kind==='scalp', prob=s.tier==='probation', tag=paper?'paper':s.status, lab=paper?'PAPER':s.status.toUpperCase()+(prob?' · '+(s.conf||'MEDIUM').toUpperCase()+' CONFIDENCE':' · HIGH CONFIDENCE');
   const entry=s.entry||s.plan_entry, z=size(entry,s.stop,s.mult), st=(stats[s.setup]||{}).all||{};
   const rr=((s.target-entry)/(entry-s.stop)).toFixed(1);
   return `<div class="card"><div class="row"><b>${s.name}</b><span class="tag ${tag}">${lab}</span></div>
   <div class="lv"><div><b>${s.status==='planned'?'ENTRY (open)':'ENTRY'}</b><span>${usd(entry)}</span></div><div><b>STOP</b><span class="dn">${usd(s.stop)}</span></div><div><b>TARGET</b><span class="up">${usd(s.target)}</span></div></div>
-  <div class="sm mut">${paper?'Same-day paper trade, not validated.':`${z.sh} shares (${usd(z.cost)}), risking ${usd(z.risk)} · R:R ${rr} · sell by day ${s.hold}`}
+  <div class="sm mut">${prob?(s.conf||'Medium')+' confidence setup, so half size. Tracked to build evidence.<br>':''}${paper?'Same-day paper trade, not validated.':`${z.sh} shares (${usd(z.cost)}), risking ${usd(z.risk)} · R:R ${rr} · sell by day ${s.hold}`}
   ${s.status==='planned'?'<br>Final levels update at 9:35 AM from the real open price.':''}${st.win?`<br>Backtest: ${st.win}% win · ${st.avgR}R avg · ${st.n} trades`:''}</div></div>`}
-function render(S){
+function render(S){window.__S=S;
   const st=S.stats||{}, up=S.chg_pct>=0, stale=(Date.now()-new Date(S.updated))/60000;
-  const active=(S.signals||[]).filter(s=>['planned','open'].includes(s.status)), done=(S.signals||[]).filter(s=>!['planned','open'].includes(s.status)).reverse().slice(0,12);
+  const sw=(S.signals||[]).filter(s=>s.kind!=='rapid'&&s.kind!=='scalp'), active=sw.filter(s=>['planned','open'].includes(s.status)), done=sw.filter(s=>!['planned','open'].includes(s.status)).reverse().slice(0,12);
   let h='';
   if(S.status!=='ok')h+=`<div class="card err">Data problem: ${S.status}. Alerts may be delayed.</div>`;
   else if(stale>45&&S.session==='open')h+=`<div class="card warn">Last scan was ${ago(S.updated)}. The scanner may be delayed.</div>`;
@@ -51,9 +80,22 @@ function render(S){
   h+=`<div class="card"><div class="row"><span class="mut">AAPL · ${S.session==='open'?'market open':'market closed'}</span><span class="pill ${S.regime.label}">${S.regime.label}</span></div>
   <div class="row"><span class="price">${usd(S.price)}</span><span class="${up?'up':'dn'}" style="font-size:18px;font-weight:650">${up?'+':''}${f(S.chg_pct)}%</span></div>
   <div class="sm mut">VIX ${f(S.vix,1)} · ${S.regime.note} · updated ${ago(S.updated)}</div></div>`;
-  h+='<h2>Alerts</h2>';
+  const RP=S.rapid||{open:[],closed:[],stats:{}}, rs=RP.stats||{}, ro=RP.open||[];
+  h+=`<h2>AAPL Rapid: buy the dip, sell +$${RP.target||2}</h2>`;
+  h+=ro.length?ro.map(s=>{const pl=s.pl_pct??0;return `<div class="card"><div class="row"><b>Open lot · ${s.shares} sh</b><span class="tag ${pl>=0?'open':'paper'}">${pl>=0?'IN THE GREEN':'WAITING FOR GREEN'}</span></div>
+  <div class="lv"><div><b>BOUGHT</b><span>${usd(s.entry)}</span></div><div><b>NOW</b><span class="${pl>=0?'up':'dn'}">${usd(s.last||s.entry)}</span></div><div><b>SELL AT</b><span class="up">${usd(s.target)}</span></div></div>
+  <div class="sm mut">${pl>=0?'+':''}${f(pl)}% · about ${usd((s.last||s.entry)-s.entry)} per share · day ${s.days_held||0} · stretch target ${usd(s.stretch)} · keep your sell order open. No stop: you wait until green.</div></div>`}).join(''):`<div class="card mut">No open Rapid lot. A dip alert will push to your phone (about once a week).</div>`;
+  h+=`<div class="card"><div class="sm"><b>Lots open: ${ro.length} of ${RP.lots||2}</b> · cash tied up about ${usd(ro.reduce((a,s)=>a+s.entry*s.shares,0))} (max ${usd((RP.lots||2)*(RP.shares||100)*350)})</div>
+  ${rs.n?`<div class="sm mut" style="margin-top:8px">Backtest (2 years, hourly): about ${rs.per_week} alerts a week. Hit +$${rs.target} same day ${rs.same_day}%, within 3 days ${rs.within3}%, within 10 days ${rs.within10}%. Worst drop while waiting ${rs.worst_drop}%, longest wait ${rs.longest_days} days. Past results, not a promise.</div>`:''}
+  <div class="sm mut" style="margin-top:8px">Risk: there is no stop. A rare trade can sit 10 to 15% underwater for weeks or months and block that lot's cash. You get warnings at -5% and -10%.</div>
+  ${(RP.closed||[]).length?`<div class="sm" style="margin-top:8px">Closed at target: ${(RP.closed||[]).length} (last ${RP.closed[RP.closed.length-1].exit_date})</div>`:''}</div>`;
+  h+='<h2>Swing alerts</h2>';
   h+=active.length?active.map(s=>sigCard(s,st)).join(''):`<div class="card mut">No active alerts. The scanner is watching and will push to your phone when a setup fires.</div>`;
-  h+='<h2>Watching</h2><div class="card">'+S.watch.map(w=>`<div style="margin-bottom:12px"><div class="row"><b>${w.name}</b>${w.fired?'<span class="tag open">FIRED</span>':''}</div><div class="sm mut">${w.text}</div><div class="bar"><i style="width:${Math.round(w.progress*100)}%"></i></div></div>`).join('')+'</div>';
+  const wrow=w=>`<div style="margin-bottom:12px"><div class="row"><b>${w.name}</b>${w.fired?'<span class="tag open">FIRED</span>':`<span class="sm mut">${w.conf}</span>`}</div><div class="sm mut">${w.text}</div><div class="bar"><i style="width:${Math.round(w.progress*100)}%"></i></div></div>`;
+  h+='<h2>Watching: high confidence</h2><div class="card">'+S.watch.filter(w=>w.tier!=='probation').map(wrow).join('')+'</div>';
+  h+='<h2>Watching: medium and low confidence (half size)</h2><div class="card">'+S.watch.filter(w=>w.tier==='probation').map(wrow).join('')+'</div>';
+  h+='<h2>Chart</h2><div class="card"><div id="chartbox"></div></div>';
+  h+=rulesHtml(S);
   const t=S.trend,i=S.ind;
   h+=`<h2>Key levels</h2><div class="card"><div class="grid">
   <div class="tile"><b>TREND</b><span class="${t.up?'up':'dn'}">${t.up?'Up':t.above200?'Mixed':'Down'}</span></div>
@@ -66,17 +108,17 @@ function render(S){
   <div class="tile"><b>20D LOW</b><span>${usd(i.ll20)}</span></div>
   <div class="tile"><b>ATR %</b><span>${f(i.atr_pct)}%</span></div></div></div>`;
   h+='<h2>Scorecard: backtest vs live</h2><div class="card"><table><tr><th>Setup</th><th>Win%</th><th>Avg R</th><th>Trades</th></tr>';
-  ['gap_down','oversold','breakout'].forEach(k=>{const b=st[k];if(!b)return;const lv=(S.signals||[]).filter(s=>s.setup===k&&['target','stop','timeout'].includes(s.status));const w=lv.length?Math.round(lv.filter(s=>s.R>0).length/lv.length*100):null,r=lv.length?(lv.reduce((a,s)=>a+s.R,0)/lv.length).toFixed(2):null;
-    h+=`<tr><td>${b.name}<div class="sm mut">test ${b.test.win}% / ${b.test.avgR}R vs random-day ${b.baseline_test.avgR}R</div></td><td>${b.all.win}</td><td>${b.all.avgR}</td><td>${b.all.n}</td></tr><tr><td class="sm mut">↳ live alerts</td><td class="sm">${w??'–'}</td><td class="sm">${r??'–'}</td><td class="sm">${lv.length}</td></tr>`});
-  const sc=st.scalp_orb;if(sc)h+=`<tr><td>${sc.name}<div class="sm mut">${sc.note}</div></td><td>${sc.win??'–'}</td><td>${sc.avgR??'–'}</td><td>${sc.n}</td></tr>`;
+  Object.keys(st).filter(k=>st[k]&&st[k].params).sort((x,y)=>(st[x].params.tier==='probation')-(st[y].params.tier==='probation')).forEach(k=>{const b=st[k];const lv=(S.signals||[]).filter(s=>s.setup===k&&['target','stop','timeout'].includes(s.status));const w=lv.length?Math.round(lv.filter(s=>s.R>0).length/lv.length*100):null,r=lv.length?(lv.reduce((a,s)=>a+s.R,0)/lv.length).toFixed(2):null;
+    h+=`<tr><td>${b.name} <span class="tag ${b.params.tier==='probation'?'paper':'open'}">${b.params.conf}</span><div class="sm mut">test ${b.test.win}% / ${b.test.avgR}R vs random-day ${b.baseline_test.avgR}R</div></td><td>${b.all.win}</td><td>${b.all.avgR}</td><td>${b.all.n}</td></tr><tr><td class="sm mut">↳ live alerts</td><td class="sm">${w??'–'}</td><td class="sm">${r??'–'}</td><td class="sm">${lv.length}</td></tr>`});
   h+='</table></div>';
   if(done.length){h+='<h2>Journal</h2><div class="card"><table><tr><th>Date</th><th>Setup</th><th>Result</th><th>R</th></tr>'+done.map(s=>`<tr><td>${(s.exit_date||s.plan_date).slice(5)}</td><td>${s.name.replace(' (PAPER)',' ·paper')}</td><td>${s.status}</td><td class="${s.R>0?'up':s.R<0?'dn':''}">${s.R!=null?(s.R>0?'+':'')+s.R:'–'}</td></tr>`).join('')+'</table></div>'}
   h+=`<h2>My account</h2><div class="card"><div class="row" style="gap:10px"><div style="flex:1"><label>Cash ($)</label><input id="cap" type="number" inputmode="decimal" value="${C.capital}"></div><div style="flex:1"><label>Risk per trade (%)</label><input id="rsk" type="number" step="0.1" inputmode="decimal" value="${C.risk}"></div></div>
   <div class="sm mut" style="margin-top:8px">Stored only on this phone. Share counts above update when you change these. Max ${C.maxpos}% of cash in one position.</div></div>`;
-  h+=`<div class="foot">Backtest ${st.meta?st.meta.from+' to '+st.meta.to:''}. Tested in 2011–2021, checked on 2022–2026. Results are history, not a promise; sample sizes are small (7 to 85 trades per setup). Alerts come from free, unofficial data and can be late or wrong. Cash account: sale proceeds settle the next business day, so you cannot reuse them the same day without a good-faith violation. Not financial advice. You decide every trade.</div>`;
+  h+=`<div class="foot">Backtest ${st.meta?st.meta.from+' to '+st.meta.to:''}. Tested in 2011–2021, checked on 2022–2026. Results are history, not a promise; sample sizes are small (7 to 230 trades per setup). Alerts come from free, unofficial data and can be late or wrong. Cash account: sale proceeds settle the next business day, so you cannot reuse them the same day without a good-faith violation. Not financial advice. You decide every trade.</div>`;
   $('#app').innerHTML=h;
   ['cap','rsk'].forEach(id=>$('#'+id).addEventListener('change',()=>{C.capital=+$('#cap').value||100000;C.risk=+$('#rsk').value||0.5;localStorage.setItem('aaplcfg',JSON.stringify(C));render(S)}));
 }
-fetch('state.json?'+Date.now()).then(r=>r.json()).then(render).catch(e=>{$('#app').innerHTML='<div class="card err">Could not load state.json. The first scan has not run yet.</div>'});
-setInterval(()=>fetch('state.json?'+Date.now()).then(r=>r.json()).then(render).catch(()=>{}),120000);
+const loadChart=()=>fetch('chart.json?'+Date.now()).then(r=>r.json()).then(j=>{CH=j;drawChart()}).catch(()=>{});
+fetch('state.json?'+Date.now()).then(r=>r.json()).then(S=>{render(S);loadChart()}).catch(e=>{$('#app').innerHTML='<div class="card err">Could not load state.json. The first scan has not run yet.</div>'});
+setInterval(()=>fetch('state.json?'+Date.now()).then(r=>r.json()).then(S=>{render(S);loadChart()}).catch(()=>{}),120000);
 </script></body></html>

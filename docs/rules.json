@@ -1,0 +1,408 @@
+{
+ "combos": [
+  {
+   "rules": [
+    "vol_spike_up",
+    "macd_cross"
+   ],
+   "n": 8,
+   "win": 75.0,
+   "avgR": 0.84
+  },
+  {
+   "rules": [
+    "vol_spike_up",
+    "close_x_sma20"
+   ],
+   "n": 5,
+   "win": 80.0,
+   "avgR": 0.67
+  },
+  {
+   "rules": [
+    "macd_cross",
+    "macd_cross_neg"
+   ],
+   "n": 63,
+   "win": 63.5,
+   "avgR": 0.3
+  },
+  {
+   "rules": [
+    "macd_cross",
+    "pull_sma20_up"
+   ],
+   "n": 21,
+   "win": 71.4,
+   "avgR": 0.59
+  },
+  {
+   "rules": [
+    "macd_cross",
+    "close_x_sma20"
+   ],
+   "n": 28,
+   "win": 78.6,
+   "avgR": 0.68
+  },
+  {
+   "rules": [
+    "macd_cross_neg",
+    "pull_sma20_up"
+   ],
+   "n": 19,
+   "win": 73.7,
+   "avgR": 0.64
+  },
+  {
+   "rules": [
+    "macd_cross_neg",
+    "close_x_sma20"
+   ],
+   "n": 23,
+   "win": 78.3,
+   "avgR": 0.68
+  },
+  {
+   "rules": [
+    "pull_sma20_up",
+    "close_x_sma20"
+   ],
+   "n": 86,
+   "win": 64.0,
+   "avgR": 0.33
+  }
+ ],
+ "baseline": {
+  "avgR": 0.08,
+  "slow_R": 0.11,
+  "hit3": 81
+ },
+ "exits": {
+  "stop": 1.5,
+  "tgt": 2.0,
+  "hold": 5
+ },
+ "rules": [
+  {
+   "key": "rsi_lt30",
+   "name": "RSI under 30",
+   "desc": "Oversold: RSI(14) below 30",
+   "n": 53,
+   "win": 54.7,
+   "avgR": 0.2,
+   "up_train": 0.07,
+   "up_test": 0.21,
+   "slow_n": 15,
+   "slow_R": 0.05,
+   "hit3": 85,
+   "others_pos": "10/12",
+   "passed": true,
+   "tier": "proven"
+  },
+  {
+   "key": "vol_spike_up",
+   "name": "Volume spike on up day",
+   "desc": "Volume 2x average and price up",
+   "n": 33,
+   "win": 66.7,
+   "avgR": 0.39,
+   "up_train": 0.26,
+   "up_test": 0.39,
+   "slow_n": 21,
+   "slow_R": 0.5,
+   "hit3": 92,
+   "others_pos": "6/12",
+   "passed": false,
+   "tier": "aapl_only"
+  },
+  {
+   "key": "macd_cross",
+   "name": "MACD bullish cross",
+   "desc": "MACD line crosses above its signal line",
+   "n": 133,
+   "win": 63.2,
+   "avgR": 0.29,
+   "up_train": 0.14,
+   "up_test": 0.33,
+   "slow_n": 71,
+   "slow_R": 0.42,
+   "hit3": 85,
+   "others_pos": "8/12",
+   "passed": false,
+   "tier": "aapl_only"
+  },
+  {
+   "key": "macd_cross_neg",
+   "name": "MACD cross below zero",
+   "desc": "MACD crosses up while still below zero (early reversal)",
+   "n": 63,
+   "win": 63.5,
+   "avgR": 0.3,
+   "up_train": 0.15,
+   "up_test": 0.32,
+   "slow_n": 19,
+   "slow_R": 0.69,
+   "hit3": 89,
+   "others_pos": "6/12",
+   "passed": false,
+   "tier": "aapl_only"
+  },
+  {
+   "key": "pull_sma20_up",
+   "name": "Pullback to 20-day in uptrend",
+   "desc": "Uptrend, low touches the 20-day, closes back above it",
+   "n": 135,
+   "win": 60.0,
+   "avgR": 0.28,
+   "up_train": 0.21,
+   "up_test": 0.15,
+   "slow_n": 79,
+   "slow_R": 0.36,
+   "hit3": 81,
+   "others_pos": "5/12",
+   "passed": false,
+   "tier": "aapl_only"
+  },
+  {
+   "key": "close_x_sma20",
+   "name": "Close crosses above 20-day",
+   "desc": "Price reclaims its 20-day average",
+   "n": 154,
+   "win": 60.4,
+   "avgR": 0.25,
+   "up_train": 0.19,
+   "up_test": 0.12,
+   "slow_n": 70,
+   "slow_R": 0.31,
+   "hit3": 80,
+   "others_pos": "5/12",
+   "passed": false,
+   "tier": "aapl_only"
+  },
+  {
+   "key": "golden_20_50",
+   "name": "20-day crosses above 50-day",
+   "desc": "Short average crosses above medium average",
+   "n": 42,
+   "win": 64.3,
+   "avgR": 0.28,
+   "up_train": 0.42,
+   "up_test": -0.17,
+   "slow_n": 18,
+   "slow_R": 0.52,
+   "hit3": 83,
+   "others_pos": "4/12",
+   "passed": false,
+   "tier": "weak"
+  },
+  {
+   "key": "break20",
+   "name": "20-day high breakout",
+   "desc": "Close above the prior 20-day high",
+   "n": 217,
+   "win": 59.4,
+   "avgR": 0.17,
+   "up_train": 0.1,
+   "up_test": 0.04,
+   "slow_n": 155,
+   "slow_R": 0.13,
+   "hit3": 81,
+   "others_pos": "3/12",
+   "passed": false,
+   "tier": "weak"
+  },
+  {
+   "key": "rsi_cross30",
+   "name": "RSI crosses back above 30",
+   "desc": "Oversold bounce confirmed: RSI(14) crosses up through 30",
+   "n": 35,
+   "win": 57.1,
+   "avgR": 0.1,
+   "up_train": -0.08,
+   "up_test": 0.2,
+   "slow_n": 9,
+   "slow_R": 0.21,
+   "hit3": 78,
+   "others_pos": "9/12",
+   "passed": false,
+   "tier": "weak"
+  },
+  {
+   "key": "stoch_cross",
+   "name": "Stochastic cross up under 20",
+   "desc": "Stochastic %K crosses above %D while below 20",
+   "n": 86,
+   "win": 52.3,
+   "avgR": 0.06,
+   "up_train": -0.16,
+   "up_test": 0.2,
+   "slow_n": 24,
+   "slow_R": 0.07,
+   "hit3": 82,
+   "others_pos": "7/12",
+   "passed": false,
+   "tier": "weak"
+  },
+  {
+   "key": "pull_sma50_up",
+   "name": "Pullback to 50-day in uptrend",
+   "desc": "Uptrend, low touches the 50-day, closes back above it",
+   "n": 87,
+   "win": 58.6,
+   "avgR": 0.12,
+   "up_train": 0.08,
+   "up_test": -0.05,
+   "slow_n": 41,
+   "slow_R": 0.09,
+   "hit3": 86,
+   "others_pos": "5/12",
+   "passed": false,
+   "tier": "weak"
+  },
+  {
+   "key": "bb_lower",
+   "name": "Close below lower Bollinger band",
+   "desc": "Price closes under the 20-day, 2-sigma band",
+   "n": 101,
+   "win": 52.5,
+   "avgR": 0.06,
+   "up_train": -0.1,
+   "up_test": 0.12,
+   "slow_n": 28,
+   "slow_R": -0.05,
+   "hit3": 85,
+   "others_pos": "6/12",
+   "passed": false,
+   "tier": "weak"
+  },
+  {
+   "key": "bb_squeeze",
+   "name": "Bollinger squeeze breakout",
+   "desc": "Bands tightest in 120 days, then close above the upper band",
+   "n": 37,
+   "win": 56.8,
+   "avgR": 0.09,
+   "up_train": 0.0,
+   "up_test": 0.01,
+   "slow_n": 26,
+   "slow_R": 0.15,
+   "hit3": 86,
+   "others_pos": "2/12",
+   "passed": false,
+   "tier": "weak"
+  },
+  {
+   "key": "inside_break",
+   "name": "Inside day breakout",
+   "desc": "Yesterday inside the prior bar, today closes above its high",
+   "n": 142,
+   "win": 54.2,
+   "avgR": 0.07,
+   "up_train": -0.05,
+   "up_test": 0.06,
+   "slow_n": 78,
+   "slow_R": 0.09,
+   "hit3": 80,
+   "others_pos": "5/12",
+   "passed": false,
+   "tier": "weak"
+  },
+  {
+   "key": "gap_fill_up",
+   "name": "Gap down then closes green",
+   "desc": "Opens 0.5%+ lower, closes above the open",
+   "n": 301,
+   "win": 52.5,
+   "avgR": 0.06,
+   "up_train": -0.1,
+   "up_test": 0.1,
+   "slow_n": 112,
+   "slow_R": 0.14,
+   "hit3": 80,
+   "others_pos": "6/12",
+   "passed": false,
+   "tier": "weak"
+  },
+  {
+   "key": "three_down_up",
+   "name": "3 down days in uptrend",
+   "desc": "Three lower closes in a row inside an uptrend",
+   "n": 153,
+   "win": 54.2,
+   "avgR": 0.1,
+   "up_train": 0.06,
+   "up_test": -0.06,
+   "slow_n": 90,
+   "slow_R": 0.17,
+   "hit3": 83,
+   "others_pos": "5/12",
+   "passed": false,
+   "tier": "weak"
+  },
+  {
+   "key": "bb_reclaim",
+   "name": "Back inside lower Bollinger band",
+   "desc": "Closed below the band yesterday, back inside today",
+   "n": 79,
+   "win": 48.1,
+   "avgR": -0.0,
+   "up_train": -0.22,
+   "up_test": 0.17,
+   "slow_n": 19,
+   "slow_R": -0.1,
+   "hit3": 80,
+   "others_pos": "9/12",
+   "passed": false,
+   "tier": "weak"
+  },
+  {
+   "key": "rsi_lt35_up",
+   "name": "RSI under 35 in uptrend",
+   "desc": "Dip inside an uptrend: RSI(14) below 35, price above 200-day",
+   "n": 38,
+   "win": 47.4,
+   "avgR": 0.03,
+   "up_train": -0.07,
+   "up_test": -0.03,
+   "slow_n": 18,
+   "slow_R": -0.22,
+   "hit3": 86,
+   "others_pos": "9/12",
+   "passed": false,
+   "tier": "weak"
+  },
+  {
+   "key": "rsi2_lt10_up",
+   "name": "RSI(2) under 10 in uptrend",
+   "desc": "Very short-term washout in an uptrend",
+   "n": 154,
+   "win": 49.4,
+   "avgR": 0.02,
+   "up_train": -0.03,
+   "up_test": -0.13,
+   "slow_n": 91,
+   "slow_R": 0.03,
+   "hit3": 84,
+   "others_pos": "9/12",
+   "passed": false,
+   "tier": "weak"
+  },
+  {
+   "key": "hammer",
+   "name": "Hammer after selling",
+   "desc": "Closes in top 30% of range after two down days",
+   "n": 269,
+   "win": 48.0,
+   "avgR": -0.02,
+   "up_train": -0.09,
+   "up_test": -0.13,
+   "slow_n": 119,
+   "slow_R": 0.02,
+   "hit3": 75,
+   "others_pos": "5/12",
+   "passed": false,
+   "tier": "weak"
+  }
+ ]
+}

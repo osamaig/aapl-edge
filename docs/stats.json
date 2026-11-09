@@ -5,13 +5,15 @@
    "name": "Gap-down dip buy",
    "stop": 1.5,
    "tgt": 2.0,
-   "hold": 5
+   "hold": 5,
+   "tier": "probation",
+   "conf": "Medium"
   },
   "all": {
    "n": 85,
    "win": 62.4,
    "avgR": 0.19,
-   "pf": 1.63,
+   "pf": 1.64,
    "days": 4.1
   },
   "train": {
@@ -25,7 +27,7 @@
    "n": 26,
    "win": 69.2,
    "avgR": 0.38,
-   "pf": 2.87,
+   "pf": 2.9,
    "days": 4.1
   },
   "baseline": {
@@ -49,7 +51,9 @@
    "name": "Oversold bounce",
    "stop": 2.0,
    "tgt": 3.0,
-   "hold": 10
+   "hold": 10,
+   "tier": "core",
+   "conf": "High"
   },
   "all": {
    "n": 39,
@@ -93,7 +97,9 @@
    "name": "Volume breakout",
    "stop": 1.5,
    "tgt": 3.0,
-   "hold": 10
+   "hold": 10,
+   "tier": "probation",
+   "conf": "Medium"
   },
   "all": {
    "n": 32,
@@ -131,6 +137,236 @@
    "days": 6.9
   }
  },
+ "high52": {
+  "name": "52-week high breakout",
+  "params": {
+   "name": "52-week high breakout",
+   "stop": 1.5,
+   "tgt": 2.0,
+   "hold": 5,
+   "tier": "probation",
+   "conf": "Medium"
+  },
+  "all": {
+   "n": 96,
+   "win": 60.4,
+   "avgR": 0.23,
+   "pf": 1.77,
+   "days": 4.1
+  },
+  "train": {
+   "n": 76,
+   "win": 64.5,
+   "avgR": 0.25,
+   "pf": 1.78,
+   "days": 3.9
+  },
+  "test": {
+   "n": 20,
+   "win": 45.0,
+   "avgR": 0.19,
+   "pf": 1.72,
+   "days": 4.7
+  },
+  "baseline": {
+   "n": 934,
+   "win": 54.1,
+   "avgR": 0.09,
+   "pf": 1.24,
+   "days": 4.0
+  },
+  "baseline_test": {
+   "n": 293,
+   "win": 52.9,
+   "avgR": 0.07,
+   "pf": 1.19,
+   "days": 4.2
+  }
+ },
+ "vix_fall": {
+  "name": "VIX falling from spike",
+  "params": {
+   "name": "VIX falling from spike",
+   "stop": 2.0,
+   "tgt": 3.0,
+   "hold": 10,
+   "tier": "probation",
+   "conf": "Low"
+  },
+  "all": {
+   "n": 41,
+   "win": 56.1,
+   "avgR": 0.28,
+   "pf": 1.95,
+   "days": 7.7
+  },
+  "train": {
+   "n": 28,
+   "win": 53.6,
+   "avgR": 0.22,
+   "pf": 1.7,
+   "days": 7.4
+  },
+  "test": {
+   "n": 13,
+   "win": 61.5,
+   "avgR": 0.42,
+   "pf": 2.56,
+   "days": 8.4
+  },
+  "baseline": {
+   "n": 490,
+   "win": 54.9,
+   "avgR": 0.16,
+   "pf": 1.42,
+   "days": 7.7
+  },
+  "baseline_test": {
+   "n": 158,
+   "win": 53.8,
+   "avgR": 0.11,
+   "pf": 1.29,
+   "days": 7.7
+  }
+ },
+ "rsi40": {
+  "name": "RSI under 40 pullback",
+  "params": {
+   "name": "RSI under 40 pullback",
+   "stop": 2.0,
+   "tgt": 3.0,
+   "hold": 10,
+   "tier": "probation",
+   "conf": "Low"
+  },
+  "all": {
+   "n": 59,
+   "win": 55.9,
+   "avgR": 0.27,
+   "pf": 1.75,
+   "days": 7.5
+  },
+  "train": {
+   "n": 32,
+   "win": 53.1,
+   "avgR": 0.16,
+   "pf": 1.4,
+   "days": 7.5
+  },
+  "test": {
+   "n": 27,
+   "win": 59.3,
+   "avgR": 0.4,
+   "pf": 2.33,
+   "days": 7.5
+  },
+  "baseline": {
+   "n": 490,
+   "win": 54.9,
+   "avgR": 0.16,
+   "pf": 1.42,
+   "days": 7.7
+  },
+  "baseline_test": {
+   "n": 158,
+   "win": 53.8,
+   "avgR": 0.11,
+   "pf": 1.29,
+   "days": 7.7
+  }
+ },
+ "drop3": {
+  "name": "Drop over 3% in uptrend",
+  "params": {
+   "name": "Drop over 3% in uptrend",
+   "stop": 2.0,
+   "tgt": 3.0,
+   "hold": 10,
+   "tier": "probation",
+   "conf": "Low"
+  },
+  "all": {
+   "n": 55,
+   "win": 60.0,
+   "avgR": 0.25,
+   "pf": 1.72,
+   "days": 7.7
+  },
+  "train": {
+   "n": 40,
+   "win": 60.0,
+   "avgR": 0.22,
+   "pf": 1.62,
+   "days": 7.7
+  },
+  "test": {
+   "n": 15,
+   "win": 60.0,
+   "avgR": 0.31,
+   "pf": 2.05,
+   "days": 7.9
+  },
+  "baseline": {
+   "n": 490,
+   "win": 54.9,
+   "avgR": 0.16,
+   "pf": 1.42,
+   "days": 7.7
+  },
+  "baseline_test": {
+   "n": 158,
+   "win": 53.8,
+   "avgR": 0.11,
+   "pf": 1.29,
+   "days": 7.7
+  }
+ },
+ "ibs10": {
+  "name": "Closed at day low (IBS)",
+  "params": {
+   "name": "Closed at day low (IBS)",
+   "stop": 2.0,
+   "tgt": 3.0,
+   "hold": 10,
+   "tier": "probation",
+   "conf": "Low"
+  },
+  "all": {
+   "n": 230,
+   "win": 56.5,
+   "avgR": 0.21,
+   "pf": 1.6,
+   "days": 7.9
+  },
+  "train": {
+   "n": 162,
+   "win": 54.9,
+   "avgR": 0.18,
+   "pf": 1.52,
+   "days": 8.0
+  },
+  "test": {
+   "n": 68,
+   "win": 60.3,
+   "avgR": 0.27,
+   "pf": 1.83,
+   "days": 7.7
+  },
+  "baseline": {
+   "n": 490,
+   "win": 54.9,
+   "avgR": 0.16,
+   "pf": 1.42,
+   "days": 7.7
+  },
+  "baseline_test": {
+   "n": 158,
+   "win": 53.8,
+   "avgR": 0.11,
+   "pf": 1.29,
+   "days": 7.7
+  }
+ },
  "scalp_orb": {
   "name": "Opening-range scalp (PAPER)",
   "sessions": 60,
@@ -140,7 +376,7 @@
   "note": "Only ~60 sessions of free 5-minute data exist. Too small to trust: paper-trade first."
  },
  "meta": {
-  "built": "2026-11-09T14:49:01.126414Z",
+  "built": "2026-11-09T17:24:39.974282Z",
   "from": "2011-11-09",
   "to": "2026-11-09",
   "split": "2022-01-01"

@@ -1,12 +1,14 @@
 """AAPL Edge live scanner. Run every ~5 min by GitHub Actions.
  - after the close  : scans for swing setups -> "plan for tomorrow" push
  - at the open      : fills plans with the real open price -> "ENTER NOW" push
- - during session   : watches stops/targets/time-stops, runs paper scalp scan
+ - during session   : watches swing stops/targets; AAPL Rapid dip alerts (buy dip, sell +$2, hold until green)
 Usage: python scanner/run.py [--dry] [--now 2026-11-09T09:40] [--asof 2026-11-06]"""
 import argparse, json, os, sys, datetime as dt
 import pandas as pd
 import requests
 import engine as E
+import rapid as R
+import rules as RL
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 STATE = os.path.join(ROOT, "docs", "state.json")
@@ -102,7 +104,7 @@ def main():
             pnl = (ex - s["entry"]) * sz["shares"]
             word = {"target": "TARGET HIT - sell", "stop": "STOP HIT - sell", "timeout": "TIME STOP - sell"}[kind]
             push(state, f"{s['id']}:exit", f"AAPL {word}", f"{s['name']}: exit near {fmt(ex)} ({s['R']:+.2f}R, about {pnl:+,.0f} USD on {sz['shares']} sh).",
-                 5 if kind != "target" else 4, "white_check_mark" if kind == "target" else "octagonal_sign", a.dry)
+                 (3 if s.get("tier") == "probation" else (5 if kind != "target" else 4)), "white_check_mark" if kind == "target" else "octagonal_sign", a.dry)
 
     # ---------- 2) fill planned entries at the open
     if (live and mins >= 9 * 60 + 35) or a.asof:
@@ -110,7 +112,8 @@ def main():
             if s["kind"] != "swing" or s["status"] != "planned": continue
             if str(last_date) <= s["plan_date"]: continue
             bar = df.iloc[-1]; entry = float(bar.open)
-            n_open = len([x for x in state["signals"] if x["kind"] == "swing" and x["status"] == "open"])
+            tier = s.get("tier", "core")
+            n_open = len([x for x in state["signals"] if x["kind"] == "swing" and x["status"] == "open" and x.get("tier", "core") == tier])
             if abs(entry - s["plan_entry"]) > 1.0 * s["atr"]:
                 s["status"] = "skipped"; s["note"] = "Opened too far from plan"; continue
             if n_open >= CFG["max_open"]:
@@ -118,77 +121,158 @@ def main():
             lv = E.plan_levels(entry, s["atr"], s["setup"])
             s.update(status="open", entry=round(entry, 2), entry_date=str(last_date), **lv)
             sz = E.size(entry, lv["stop"], CAPITAL, RISK, MAXPOS, s["mult"])
-            push(state, f"{s['id']}:enter", f"AAPL ENTER NOW: {s['name']}",
+            tag = f"ENTER NOW ({s.get('conf', 'Medium')} confidence, half size)" if tier == "probation" else "ENTER NOW (High confidence)"
+            push(state, f"{s['id']}:enter", f"AAPL {tag}: {s['name']}",
                  f"Buy ~{sz['shares']} sh at {fmt(entry)} (limit {fmt(entry * 1.002)}). Stop {fmt(lv['stop'])}. Target {fmt(lv['target'])}. Max hold {s['hold']} days. Risk {fmt(sz['risk'])}.",
-                 5, "rotating_light", a.dry)
+                 5 if tier == "core" else 3, "rotating_light" if tier == "core" else "test_tube", a.dry)
 
     # ---------- 3) scan for new swing plans (after the close only)
     if after_close:
         sg = E.signals(df)
         for k, ser in sg.items():
             if not bool(ser.iloc[-1]): continue
-            if k == "breakout" and reg["label"] == "DEFENSIVE": continue
+            if k in ("breakout", "high52") and reg["label"] == "DEFENSIVE": continue
             if earnings_soon:
                 continue
             sid = f"{k}-{last_date}"
             if any(x["id"] == sid for x in state["signals"]): continue
             if any(x["setup"] == k and x["status"] in ("planned", "open") for x in state["signals"]): continue
             p = E.SETUPS[k]; entry = float(d0.close); lv = E.plan_levels(entry, float(d0.atr), k)
-            sig = dict(id=sid, kind="swing", setup=k, name=p["name"], created=now.isoformat(), plan_date=str(last_date),
+            probation = p["tier"] == "probation"
+            mult = reg["mult"] * (0.5 if probation else 1.0)
+            sig = dict(id=sid, kind="swing", setup=k, name=p["name"], tier=p["tier"], conf=p["conf"], created=now.isoformat(), plan_date=str(last_date),
                        plan_entry=round(entry, 2), atr=round(float(d0.atr), 2), hold=p["hold"], stop_k=p["stop"], tgt_k=p["tgt"],
-                       mult=reg["mult"], status="planned", **lv)
+                       mult=mult, status="planned", **lv)
             state["signals"].append(sig)
-            sz = E.size(entry, lv["stop"], CAPITAL, RISK, MAXPOS, reg["mult"])
+            sz = E.size(entry, lv["stop"], CAPITAL, RISK, MAXPOS, mult)
             st = state["stats"].get(k, {}).get("all", {})
-            push(state, f"{sid}:plan", f"AAPL plan for tomorrow: {p['name']}",
+            label = f"plan for tomorrow ({p['conf']} confidence, half size)" if probation else f"plan for tomorrow ({p['conf']} confidence)"
+            push(state, f"{sid}:plan", f"AAPL {label}: {p['name']}",
                  f"Buy at the open if near {fmt(entry)}. Stop ~{fmt(lv['stop'])}, target ~{fmt(lv['target'])}, hold up to {p['hold']} days, ~{sz['shares']} sh. "
-                 f"Backtest: {st.get('win', '?')}% win, {st.get('avgR', '?')}R avg. Final levels arrive at 9:35 AM.",
-                 4, "calendar", a.dry)
+                 f"Backtest: {st.get('win', '?')}% win, {st.get('avgR', '?')}R avg over {st.get('n', '?')} trades. Final levels arrive at 9:35 AM.",
+                 2 if probation else 4, "test_tube" if probation else "calendar", a.dry)
         # expire stale plans
         for s in state["signals"]:
             if s["status"] == "planned" and (pd.Timestamp(last_date) - pd.Timestamp(s["plan_date"])).days > 4:
                 s["status"] = "expired"
 
-    # ---------- 4) paper scalp (opening range breakout), session only
-    if in_session and a5 is not None and CFG.get("scalp_enabled", True):
+    # ---------- 4) AAPL Rapid: buy a dip, sell about $2 higher, hold until green (no stop)
+    RC = dict(lots=CFG.get("rapid_lots", 2), shares=CFG.get("rapid_lot_shares", 100), target=CFG.get("rapid_target", 2.0),
+              stretch=CFG.get("rapid_stretch", 3.0), weekly=CFG.get("rapid_weekly_cap", 3))
+    R.P["dip"] = CFG.get("rapid_dip", 0.003)
+    rapid_open = [s for s in state["signals"] if s["kind"] == "rapid" and s["status"] == "open"]
+    try:
+        if (in_session or after_close) and not a.asof and (a5 is None) and rapid_open:
+            a5 = E.add_vwap(E.fetch("AAPL", "5d", "5m"))
+        # 4a) monitor open lots
+        for s in rapid_open:
+            hit = None
+            if a5 is not None:
+                b = a5[a5.index > pd.Timestamp(s["created"])]
+                if len(b) and float(b.high.max()) >= s["target"]: hit = s["target"]
+            later = df[df.index > pd.Timestamp(s["entry_date"])]
+            if hit is None and len(later) and float(later.high.max()) >= s["target"]: hit = s["target"]
+            sh = s["shares"]
+            if hit:
+                s.update(status="target", exit=round(hit, 2), exit_date=str(today))
+                push(state, f"{s['id']}:exit", "AAPL Rapid: TARGET HIT",
+                     f"Your sell order at {fmt(hit)} should have filled: about {(hit - s['entry']) * sh:+,.0f} USD on {sh} sh. Cash is free again (T+1 settle).", 4, "white_check_mark", a.dry)
+                continue
+            cur = price if (in_session or after_close) else float(d0.close)
+            dd = (cur / s["entry"] - 1) * 100
+            s["last"] = round(cur, 2); s["pl_pct"] = round(dd, 2)
+            s["days_held"] = int((pd.Timestamp(today) - pd.Timestamp(s["entry_date"])).days)
+            for lvl in (5, 10):
+                if dd <= -lvl:
+                    push(state, f"{s['id']}:dd{lvl}", f"AAPL Rapid: lot is down {lvl}%",
+                         f"Bought {fmt(s['entry'])}, now {fmt(cur)} ({dd:.1f}%, about {(cur - s['entry']) * sh:+,.0f} USD). Plan is hold until green. No new Rapid alerts while all lots are open.", 4, "warning", a.dry)
+        # 4b) daily summary after the close
+        if after_close and not a.asof and rapid_open and mins < 17 * 60 + 30:
+            lines = []
+            for s in rapid_open:
+                if "pl_pct" in s:
+                    lines.append(f"Lot {fmt(s['entry'])}: {s['pl_pct']:+.1f}%, day {s['days_held']}, needs {fmt(s['target'])} (sell order stays open)")
+            if lines:
+                push(state, f"rapid-summary-{today}", "AAPL Rapid daily check", "\n".join(lines), 2, "memo", a.dry)
+        # 4c) new entry (only at the hourly check times the backtest used)
+        mark = next((m for m in (11 * 60 + 30, 12 * 60 + 30, 13 * 60 + 30, 14 * 60 + 30, 15 * 60 + 30) if 0 <= mins - m <= 14), None)
+        open_now = [s for s in state["signals"] if s["kind"] == "rapid" and s["status"] == "open"]
+        wk = now.isocalendar()[1]
+        this_week = [s for s in state["signals"] if s["kind"] == "rapid" and pd.Timestamp(s["created"]).isocalendar()[1] == wk]
+        sid = f"rapid-{today}"
+        if (in_session and a5 is not None and mark and not earnings_soon and len(open_now) < RC["lots"] and len(this_week) < RC["weekly"]
+                and not any(x["id"] == sid for x in state["signals"])):
+            bars = a5[a5.index.date == today]; bars = bars[bars.index + pd.Timedelta(minutes=5) <= now.normalize() + pd.Timedelta(minutes=mark)]
+            sp = s5[s5.index.date == today]; sp = sp[sp.index + pd.Timedelta(minutes=5) <= now.normalize() + pd.Timedelta(minutes=mark)]
+            spy_prev = float(df.spy.iloc[-2]); spy_ret = float(sp.close.iloc[-1]) / spy_prev - 1 if len(sp) else 0.0
+            det = R.signal(bars, prev_close, bool(df.up.iloc[-2]), float(df.vix.iloc[-2]), spy_ret, 5) if len(bars) >= 2 else None
+            if det and RC["shares"] * price <= CFG.get("rapid_max_cash", 70000) / RC["lots"] * 1.05:
+                e = round(price, 2); tgt = round(e + RC["target"], 2)
+                sig = dict(id=sid, kind="rapid", setup="rapid", name="AAPL Rapid dip buy", created=now.isoformat(), plan_date=str(today),
+                           entry=e, target=tgt, stretch=round(e + RC["stretch"], 2), shares=RC["shares"], status="open", entry_date=str(today),
+                           day_high=det["day_high"], dip_pct=det["dip_pct"], tier="rapid")
+                state["signals"].append(sig)
+                push(state, f"{sid}:enter", "AAPL Rapid: BUY the dip (Medium confidence)",
+                     f"Buy {RC['shares']} sh near {fmt(e)} (limit {fmt(e + 0.10)}). Then place a GOOD-TIL-CANCELLED sell limit at {fmt(tgt)} (+$2; stretch {fmt(e + RC['stretch'])}). "
+                     f"Down {det['dip_pct']}% from today's high {fmt(det['day_high'])}. No stop: if it drops, hold until green. Cash used about {RC['shares'] * e:,.0f} USD. Lots open after this: {len(open_now) + 1} of {RC['lots']}.",
+                     5, "rotating_light", a.dry)
+    except Exception as e:
+        print("rapid error", e)
+
+    # ---------- 5) indicator rule library: status, combo/rule alerts, chart data
+    try:
+        rtab = load_json(os.path.join(ROOT, "docs", "rules.json"), {})
+        rsg = RL.evaluate(df)
+        meta = {r["key"]: r for r in rtab.get("rules", [])}
+        rule_state = [{"key": k, "name": RL.RULES[k][0], "desc": RL.RULES[k][1], "tier": meta.get(k, {}).get("tier", "weak"),
+                       "fired": bool(rsg[k].iloc[-1])} for k in RL.RULES]
+        state["rules"] = rule_state; state["rules_tab"] = {"baseline": rtab.get("baseline"), "combos": rtab.get("combos", []), "rules": rtab.get("rules", [])}
+        if after_close:
+            names = CFG.get("rule_alerts", [])
+            hit = [k for k in names if k in rsg and bool(rsg[k].iloc[-1])]
+            if hit and not earnings_soon:
+                entry = float(d0.close); atr = float(d0.atr)
+                stp, tgt = entry - 1.5 * atr, entry + 2.0 * atr
+                nm = " + ".join(RL.RULES[k][0] for k in hit)
+                push(state, f"rules-{last_date}", "AAPL indicator alert (Medium confidence, half size)",
+                     f"{nm}. Idea: buy near tomorrow's open (about {fmt(entry)}), stop {fmt(stp)}, target {fmt(tgt)}, hold up to 5 days. Half size. Medium confidence: these rules beat random entries on AAPL in testing, but with less evidence than the top setup.",
+                     3, "bar_chart", a.dry)
+    except Exception as e:
+        print("rules error", e)
+    try:
+        d_ = RL.add_ind(df).tail(130)
+        def r2(x): return None if pd.isna(x) else round(float(x), 2)
+        daily = [[str(i.date())] + [r2(r[c]) for c in ("open", "high", "low", "close", "sma20", "sma50", "sma200", "bb_up", "bb_lo", "rsi14", "macd_hist")] for i, r in d_.iterrows()]
+        chart = {"daily": daily, "cols": ["t", "o", "h", "l", "c", "sma20", "sma50", "sma200", "bb_up", "bb_lo", "rsi", "macd_hist"], "updated": now.isoformat()}
         try:
-            bars = a5[a5.index.date == today]; sp = s5[s5.index.date == today]
-            bars = bars[bars.index + pd.Timedelta(minutes=5) <= now]; sp = sp[sp.index + pd.Timedelta(minutes=5) <= now]
-            sid = f"scalp-{today}"
-            mine = next((x for x in state["signals"] if x["id"] == sid), None)
-            if mine is None and len(bars) >= 4:
-                det = E.scalp_detect(bars, sp, float(df.atr.iloc[-1]))
-                if det:
-                    sig = dict(id=sid, kind="scalp", setup="scalp_orb", name="Opening-range scalp (PAPER)", created=now.isoformat(),
-                               plan_date=str(today), entry=det["entry"], stop=det["stop"], target=det["target"], status="open",
-                               entry_date=str(today), hold=1, orh=det["orh"], orl=det["orl"], mult=reg["mult"])
-                    state["signals"].append(sig)
-                    sz = E.size(det["entry"], det["stop"], CAPITAL, RISK, MAXPOS, reg["mult"])
-                    push(state, f"{sid}:enter", "AAPL PAPER scalp (not validated - do not trade yet)",
-                         f"Broke the 15-min range high {fmt(det['orh'])}. Paper entry {fmt(det['entry'])}, stop {fmt(det['stop'])}, target {fmt(det['target'])}. Logged only.",
-                         2, "test_tube", a.dry)
-            elif mine and mine["status"] == "open":
-                px = bars[bars.index > pd.Timestamp(mine["created"])]
-                for _, r in px.iterrows():
-                    if r.low <= mine["stop"]: out, ex = "stop", mine["stop"]; break
-                    if r.high >= mine["target"]: out, ex = "target", mine["target"]; break
-                else:
-                    out, ex = (("timeout", price) if mins >= 15 * 60 + 50 else (None, None))
-                if out:
-                    mine.update(status=out, exit=round(ex, 2), exit_date=str(today), R=round((ex - mine["entry"]) / (mine["entry"] - mine["stop"]), 2))
+            hh = E.fetch("AAPL", "1mo", "1h"); hh["rsi14"] = E.rsi(hh.close, 14); hh["sma20"] = hh.close.rolling(20).mean(); hh["sma50"] = hh.close.rolling(50).mean()
+            sd = hh.close.rolling(20).std(); hh["bb_up"] = hh.sma20 + 2 * sd; hh["bb_lo"] = hh.sma20 - 2 * sd; hh = hh.tail(110)
+            chart["hourly"] = [[i.strftime("%m-%d %H:%M"), r2(r.open), r2(r.high), r2(r.low), r2(r.close), r2(r.sma20), r2(r.sma50), None, r2(r.bb_up), r2(r.bb_lo), r2(r.rsi14), None] for i, r in hh.iterrows()]
         except Exception as e:
-            print("scalp scan error", e)
+            print("hourly chart failed", e)
+        json.dump(chart, open(os.path.join(os.path.dirname(a.state), "chart.json"), "w"), separators=(",", ":"))
+    except Exception as e:
+        print("chart error", e)
 
     # ---------- state for the dashboard
     c = df.close
     def pct(x): return round(float(x) * 100, 2)
-    watch = [
-        {"key": "oversold", "name": "Oversold bounce", "text": f"RSI14 is {d0.rsi14:.0f}; triggers below 30", "progress": max(0, min(1, (70 - d0.rsi14) / 40)), "fired": bool(d0.rsi14 < 30)},
-        {"key": "breakout", "name": "Volume breakout", "text": f"Price {fmt(d0.close)} vs 20-day high {fmt(d0.hh20)}; volume {d0.vratio:.1f}x avg (needs 1.5x)",
-         "progress": max(0, min(1, (c.iloc[-1] / d0.hh20 - 0.95) / 0.05)) if d0.up else 0, "fired": bool(E.signals(df)["breakout"].iloc[-1])},
-        {"key": "gap_down", "name": "Gap-down dip buy", "text": f"Today's gap {pct(d0.gap):+.2f}% (needs below -1.5%) in an uptrend" if d0.up else "Needs uptrend (above 200-day, 50 over 200)",
-         "progress": max(0, min(1, -d0.gap / 0.015)) if d0.up else 0, "fired": bool(E.signals(df)["gap_down"].iloc[-1])},
-    ]
+    sgn = E.signals(df)
+    up = bool(d0.up)
+    def clamp(x): return max(0.0, min(1.0, float(x)))
+    ibs = float(d0.ibs) if pd.notna(d0.ibs) else 0.5
+    W = {
+        "gap_down": (f"Today's gap {pct(d0.gap):+.2f}% (needs below -1.5%) in an uptrend" if up else "Needs an uptrend (above 200-day, 50 over 200)", clamp(-d0.gap / 0.015) if up else 0),
+        "high52": (f"Price {fmt(d0.close)} vs 52-week high {fmt(d0.hh252)}", clamp((c.iloc[-1] / d0.hh252 - 0.93) / 0.07) if up else 0),
+        "oversold": (f"RSI14 is {d0.rsi14:.0f}; triggers below 30", clamp((70 - d0.rsi14) / 40)),
+        "breakout": (f"Price {fmt(d0.close)} vs 20-day high {fmt(d0.hh20)}; volume {d0.vratio:.1f}x avg (needs 1.5x)", clamp((c.iloc[-1] / d0.hh20 - 0.95) / 0.05) if up else 0),
+        "vix_fall": (f"VIX {d0.vix:.1f}; 5-day high {d0.vix5max:.1f} (needs 25+ then a 10% fall)", clamp((d0.vix5max - 15) / 10) * 0.5 + clamp((1 - d0.vix / d0.vix5max) / 0.1) * 0.5 if up else 0),
+        "rsi40": (f"RSI14 is {d0.rsi14:.0f}; triggers below 40 in an uptrend", clamp((70 - d0.rsi14) / 30) if up else 0),
+        "drop3": (f"Today {pct(d0.ret):+.2f}% (needs -3% or worse) in an uptrend", clamp(-d0.ret / 0.03) if up else 0),
+        "ibs10": (f"Closed at {ibs * 100:.0f}% of today's range (needs under 10%)", clamp((1 - ibs) / 0.9) if ibs > 0.1 else 1),
+    }
+    watch = [{"key": k, "name": E.SETUPS[k]["name"], "tier": E.SETUPS[k]["tier"], "conf": E.SETUPS[k]["conf"],
+              "text": W[k][0], "progress": W[k][1], "fired": bool(sgn[k].iloc[-1])} for k in E.SETUPS]
     closed = [s for s in state["signals"] if s["kind"] == "swing" and s["status"] in ("target", "stop", "timeout")]
     state.update(
         updated=now.isoformat(), session="open" if in_session else "closed", price=round(price, 2), prev_close=round(prev_close, 2),
@@ -198,6 +282,8 @@ def main():
         ind={"rsi14": round(float(d0.rsi14), 1), "atr": round(float(d0.atr), 2), "atr_pct": round(float(d0.atr / d0.close * 100), 2),
              "hh20": round(float(d0.hh20), 2), "ll20": round(float(d0.ll20), 2), "vratio": round(float(d0.vratio), 2), "bar_date": str(last_date)},
         watch=watch,
+        rapid={"lots": RC["lots"], "shares": RC["shares"], "target": RC["target"], "open": [x for x in state["signals"] if x["kind"] == "rapid" and x["status"] == "open"],
+               "closed": [x for x in state["signals"] if x["kind"] == "rapid" and x["status"] == "target"][-10:], "stats": load_json(os.path.join(ROOT, "docs", "rapid_stats.json"), {})},
         risk_cfg={"capital": None, "risk_pct": RISK},  # capital stays private; the dashboard uses your phone's setting
         journal={"swing": E.stats(pd.DataFrame([{"R": s["R"], "ret": 0, "days": 1, "date": s["exit_date"]} for s in closed])) if closed else {"n": 0}},
     )

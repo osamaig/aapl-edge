@@ -10,10 +10,16 @@ H = {"User-Agent": "Mozilla/5.0"}
 SLIP = 0.0003  # 3 bps each way
 
 # Parameters were fixed from the study (stop/target in daily ATRs, max hold in days).
+# tier: "core" = passed the strict tests (full size). "probation" = Medium/Low confidence (half size, tracked live).
 SETUPS = {
-    "gap_down": {"name": "Gap-down dip buy", "stop": 1.5, "tgt": 2.0, "hold": 5},
-    "oversold": {"name": "Oversold bounce", "stop": 2.0, "tgt": 3.0, "hold": 10},
-    "breakout": {"name": "Volume breakout", "stop": 1.5, "tgt": 3.0, "hold": 10},
+    "gap_down": {"name": "Gap-down dip buy", "stop": 1.5, "tgt": 2.0, "hold": 5, "tier": "probation", "conf": "Medium"},
+    "high52": {"name": "52-week high breakout", "stop": 1.5, "tgt": 2.0, "hold": 5, "tier": "probation", "conf": "Medium"},
+    "oversold": {"name": "Oversold bounce", "stop": 2.0, "tgt": 3.0, "hold": 10, "tier": "core", "conf": "High"},
+    "breakout": {"name": "Volume breakout", "stop": 1.5, "tgt": 3.0, "hold": 10, "tier": "probation", "conf": "Medium"},
+    "vix_fall": {"name": "VIX falling from spike", "stop": 2.0, "tgt": 3.0, "hold": 10, "tier": "probation", "conf": "Low"},
+    "rsi40": {"name": "RSI under 40 pullback", "stop": 2.0, "tgt": 3.0, "hold": 10, "tier": "probation", "conf": "Low"},
+    "drop3": {"name": "Drop over 3% in uptrend", "stop": 2.0, "tgt": 3.0, "hold": 10, "tier": "probation", "conf": "Low"},
+    "ibs10": {"name": "Closed at day low (IBS)", "stop": 2.0, "tgt": 3.0, "hold": 10, "tier": "probation", "conf": "Low"},
 }
 
 
@@ -67,6 +73,10 @@ def build_daily(aapl, spy, vix):
     df["vratio"] = df.volume / df.vol20
     df["gap"] = df.open / c.shift() - 1
     df["up"] = (c > df.sma200) & (df.sma50 > df.sma200)
+    df["ibs"] = (c - df.low) / (df.high - df.low)
+    df["ret"] = c.pct_change()
+    df["hh252"] = df.high.rolling(252).max().shift()
+    df["vix5max"] = df.vix.rolling(5).max()
     return df
 
 
@@ -77,6 +87,11 @@ def signals(df):
         "gap_down": df.up & (df.gap < -0.015),
         "oversold": df.rsi14 < 30,
         "breakout": df.up & (c > df.hh20) & (df.volume > 1.5 * df.vol20),
+        "high52": df.up & (c >= df.hh252),
+        "vix_fall": df.up & (df.vix5max >= 25) & (df.vix < 0.9 * df.vix5max),
+        "rsi40": df.up & (df.rsi14 < 40),
+        "drop3": df.up & (df.ret < -0.03),
+        "ibs10": df.ibs < 0.1,
     }
 
 
@@ -104,8 +119,8 @@ def size(entry, stop, capital, risk_pct, max_pos_pct, mult=1.0):
 
 
 # ---------------------------------------------------------------- swing backtest
-def backtest(df, sig, key):
-    p = SETUPS[key]
+def backtest(df, sig, key, p=None):
+    p = p or SETUPS[key]
     o, h, l, cl, at = (df[k].values for k in ("open", "high", "low", "close", "atr"))
     sg = sig.shift(1).fillna(False).values
     idx, rows, i = df.index, [], 1
