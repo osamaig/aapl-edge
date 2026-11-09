@@ -472,7 +472,7 @@
   }
  },
  "status": "ok",
- "updated": "2026-11-09T17:01:33.279278-05:00",
+ "updated": "2026-11-09T17:16:37.227555-05:00",
  "session": "closed",
  "price": 350.69,
  "prev_close": 342.37,
@@ -505,7 +505,7 @@
    "name": "Gap-down dip buy",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Today's gap +0.77% (needs below -1.5%) in an uptrend",
+   "text": "Today's gap +0.75% (needs below -1.5%) in an uptrend",
    "progress": 0.0,
    "fired": false
   },
