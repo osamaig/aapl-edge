@@ -92,14 +92,16 @@
    "target": 349.55,
    "stretch": 350.55,
    "shares": 100,
-   "status": "open",
+   "status": "target",
    "entry_date": "2026-11-10",
    "day_high": 353.87,
    "dip_pct": 1.83,
    "tier": "rapid",
    "last": 347.52,
    "pl_pct": -0.01,
-   "days_held": 0
+   "days_held": 0,
+   "exit": 349.55,
+   "exit_date": "2026-11-10"
   }
  ],
  "sent": [
@@ -109,7 +111,8 @@
   "rapid-2026-11-09:exit",
   "vix_fall-2026-11-09:plan",
   "vix_fall-2026-11-09:enter",
-  "rapid-2026-11-10:enter"
+  "rapid-2026-11-10:enter",
+  "rapid-2026-11-10:exit"
  ],
  "stats": {
   "gap_down": {
@@ -496,12 +499,12 @@
   }
  },
  "status": "ok",
- "updated": "2026-11-10T12:59:45.190736-05:00",
+ "updated": "2026-11-10T13:04:47.554224-05:00",
  "session": "open",
- "price": 347.52,
+ "price": 347.63,
  "prev_close": 350.69,
- "chg_pct": -0.91,
- "vix": 20.98,
+ "chg_pct": -0.87,
+ "vix": 21.04,
  "regime": {
   "label": "NORMAL",
   "mult": 1.0,
@@ -515,7 +518,7 @@
   "above200": true
  },
  "ind": {
-  "rsi14": 54.8,
+  "rsi14": 54.9,
   "atr": 8.75,
   "atr_pct": 2.52,
   "hh20": 355.38,
@@ -538,8 +541,8 @@
    "name": "52-week high breakout",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Price $347.51 vs 52-week high $355.38",
-   "progress": 0.6836386399646168,
+   "text": "Price $347.63 vs 52-week high $355.38",
+   "progress": 0.6884622539447754,
    "fired": false
   },
   {
@@ -548,7 +551,7 @@
    "tier": "core",
    "conf": "High",
    "text": "RSI14 is 55; triggers below 30",
-   "progress": 0.38115882022497305,
+   "progress": 0.37859587566349723,
    "fired": false
   },
   {
@@ -556,8 +559,8 @@
    "name": "Volume breakout",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Price $347.51 vs 20-day high $355.38; volume 0.3x avg (needs 1.5x)",
-   "progress": 0.5570940959504656,
+   "text": "Price $347.63 vs 20-day high $355.38; volume 0.3x avg (needs 1.5x)",
+   "progress": 0.5638471555226876,
    "fired": false
   },
   {
@@ -575,7 +578,7 @@
    "tier": "probation",
    "conf": "Low",
    "text": "RSI14 is 55; triggers below 40 in an uptrend",
-   "progress": 0.5082117602999641,
+   "progress": 0.5047945008846629,
    "fired": false
   },
   {
@@ -583,8 +586,8 @@
    "name": "Drop over 3% in uptrend",
    "tier": "probation",
    "conf": "Low",
-   "text": "Today -0.91% (needs -3% or worse) in an uptrend",
-   "progress": 0.3022605581038359,
+   "text": "Today -0.87% (needs -3% or worse) in an uptrend",
+   "progress": 0.29085493715160415,
    "fired": false
   },
   {
@@ -592,8 +595,8 @@
    "name": "Closed at day low (IBS)",
    "tier": "probation",
    "conf": "Low",
-   "text": "Closed at 14% of today's range (needs under 10%)",
-   "progress": 0.9537303228251109,
+   "text": "Closed at 16% of today's range (needs under 10%)",
+   "progress": 0.9357361018439958,
    "fired": false
   }
  ],
@@ -1155,28 +1158,7 @@
   "lots": 2,
   "shares": 100,
   "target": 2.0,
-  "open": [
-   {
-    "id": "rapid-2026-11-10",
-    "kind": "rapid",
-    "setup": "rapid",
-    "name": "AAPL Rapid dip buy",
-    "created": "2026-11-10T11:34:00.239294-05:00",
-    "plan_date": "2026-11-10",
-    "entry": 347.55,
-    "target": 349.55,
-    "stretch": 350.55,
-    "shares": 100,
-    "status": "open",
-    "entry_date": "2026-11-10",
-    "day_high": 353.87,
-    "dip_pct": 1.83,
-    "tier": "rapid",
-    "last": 347.52,
-    "pl_pct": -0.01,
-    "days_held": 0
-   }
-  ],
+  "open": [],
   "closed": [
    {
     "id": "rapid-2026-11-09",
@@ -1199,6 +1181,28 @@
     "days_held": 0,
     "exit": 351.86,
     "exit_date": "2026-11-09"
+   },
+   {
+    "id": "rapid-2026-11-10",
+    "kind": "rapid",
+    "setup": "rapid",
+    "name": "AAPL Rapid dip buy",
+    "created": "2026-11-10T11:34:00.239294-05:00",
+    "plan_date": "2026-11-10",
+    "entry": 347.55,
+    "target": 349.55,
+    "stretch": 350.55,
+    "shares": 100,
+    "status": "target",
+    "entry_date": "2026-11-10",
+    "day_high": 353.87,
+    "dip_pct": 1.83,
+    "tier": "rapid",
+    "last": 347.52,
+    "pl_pct": -0.01,
+    "days_held": 0,
+    "exit": 349.55,
+    "exit_date": "2026-11-10"
    }
   ],
   "stats": {
