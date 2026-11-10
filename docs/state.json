@@ -472,7 +472,7 @@
   }
  },
  "status": "ok",
- "updated": "2026-11-09T17:26:40.304777-05:00",
+ "updated": "2026-11-10T09:02:37.594291-05:00",
  "session": "closed",
  "price": 350.69,
  "prev_close": 342.37,
@@ -492,11 +492,11 @@
  },
  "ind": {
   "rsi14": 57.6,
-  "atr": 8.85,
-  "atr_pct": 2.52,
+  "atr": 8.86,
+  "atr_pct": 2.53,
   "hh20": 355.38,
   "ll20": 325.33,
-  "vratio": 0.95,
+  "vratio": 0.98,
   "bar_date": "2026-11-09"
  },
  "watch": [
@@ -505,7 +505,7 @@
    "name": "Gap-down dip buy",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Today's gap +0.75% (needs below -1.5%) in an uptrend",
+   "text": "Today's gap +0.77% (needs below -1.5%) in an uptrend",
    "progress": 0.0,
    "fired": false
   },
@@ -568,8 +568,8 @@
    "name": "Closed at day low (IBS)",
    "tier": "probation",
    "conf": "Low",
-   "text": "Closed at 79% of today's range (needs under 10%)",
-   "progress": 0.23555501302083331,
+   "text": "Closed at 78% of today's range (needs under 10%)",
+   "progress": 0.24135199152782158,
    "fired": false
   }
  ],
