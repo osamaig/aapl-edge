@@ -80,6 +80,23 @@
    "target": 378.1,
    "entry": 351.55,
    "entry_date": "2026-11-10"
+  },
+  {
+   "id": "rapid-2026-11-10",
+   "kind": "rapid",
+   "setup": "rapid",
+   "name": "AAPL Rapid dip buy",
+   "created": "2026-11-10T11:34:00.239294-05:00",
+   "plan_date": "2026-11-10",
+   "entry": 347.55,
+   "target": 349.55,
+   "stretch": 350.55,
+   "shares": 100,
+   "status": "open",
+   "entry_date": "2026-11-10",
+   "day_high": 353.87,
+   "dip_pct": 1.83,
+   "tier": "rapid"
   }
  ],
  "sent": [
@@ -88,7 +105,8 @@
   "rapid-2026-11-09:enter",
   "rapid-2026-11-09:exit",
   "vix_fall-2026-11-09:plan",
-  "vix_fall-2026-11-09:enter"
+  "vix_fall-2026-11-09:enter",
+  "rapid-2026-11-10:enter"
  ],
  "stats": {
   "gap_down": {
@@ -475,12 +493,12 @@
   }
  },
  "status": "ok",
- "updated": "2026-11-10T11:28:36.487363-05:00",
+ "updated": "2026-11-10T11:34:00.239294-05:00",
  "session": "open",
- "price": 347.28,
+ "price": 347.55,
  "prev_close": 350.69,
- "chg_pct": -0.97,
- "vix": 20.68,
+ "chg_pct": -0.9,
+ "vix": 20.71,
  "regime": {
   "label": "NORMAL",
   "mult": 1.0,
@@ -489,12 +507,12 @@
  "events": [],
  "trend": {
   "up": true,
-  "sma50": 337.24,
+  "sma50": 337.25,
   "sma200": 299.78,
   "above200": true
  },
  "ind": {
-  "rsi14": 54.6,
+  "rsi14": 54.8,
   "atr": 8.75,
   "atr_pct": 2.52,
   "hh20": 355.38,
@@ -517,8 +535,8 @@
    "name": "52-week high breakout",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Price $347.28 vs 52-week high $355.38",
-   "progress": 0.6743925619970567,
+   "text": "Price $347.56 vs 52-week high $355.38",
+   "progress": 0.6856480702035547,
    "fired": false
   },
   {
@@ -527,7 +545,7 @@
    "tier": "core",
    "conf": "High",
    "text": "RSI14 is 55; triggers below 30",
-   "progress": 0.38604488080379973,
+   "progress": 0.3800923089450098,
    "fired": false
   },
   {
@@ -535,8 +553,8 @@
    "name": "Volume breakout",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Price $347.28 vs 20-day high $355.38; volume 0.2x avg (needs 1.5x)",
-   "progress": 0.5441495867958812,
+   "text": "Price $347.56 vs 20-day high $355.38; volume 0.2x avg (needs 1.5x)",
+   "progress": 0.5599072982849784,
    "fired": false
   },
   {
@@ -554,7 +572,7 @@
    "tier": "probation",
    "conf": "Low",
    "text": "RSI14 is 55; triggers below 40 in an uptrend",
-   "progress": 0.5147265077383997,
+   "progress": 0.5067897452600131,
    "fired": false
   },
   {
@@ -562,8 +580,8 @@
    "name": "Drop over 3% in uptrend",
    "tier": "probation",
    "conf": "Low",
-   "text": "Today -0.97% (needs -3% or worse) in an uptrend",
-   "progress": 0.32412326540723163,
+   "text": "Today -0.89% (needs -3% or worse) in an uptrend",
+   "progress": 0.297509182946217,
    "fired": false
   },
   {
@@ -571,8 +589,8 @@
    "name": "Closed at day low (IBS)",
    "tier": "probation",
    "conf": "Low",
-   "text": "Closed at 11% of today's range (needs under 10%)",
-   "progress": 0.9882222972744155,
+   "text": "Closed at 15% of today's range (needs under 10%)",
+   "progress": 0.9462342562007299,
    "fired": false
   }
  ],
@@ -1134,7 +1152,25 @@
   "lots": 2,
   "shares": 100,
   "target": 2.0,
-  "open": [],
+  "open": [
+   {
+    "id": "rapid-2026-11-10",
+    "kind": "rapid",
+    "setup": "rapid",
+    "name": "AAPL Rapid dip buy",
+    "created": "2026-11-10T11:34:00.239294-05:00",
+    "plan_date": "2026-11-10",
+    "entry": 347.55,
+    "target": 349.55,
+    "stretch": 350.55,
+    "shares": 100,
+    "status": "open",
+    "entry_date": "2026-11-10",
+    "day_high": 353.87,
+    "dip_pct": 1.83,
+    "tier": "rapid"
+   }
+  ],
   "closed": [
    {
     "id": "rapid-2026-11-09",
