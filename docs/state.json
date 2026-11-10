@@ -499,12 +499,12 @@
   }
  },
  "status": "ok",
- "updated": "2026-11-10T16:05:47.601052-05:00",
+ "updated": "2026-11-10T16:20:51.829337-05:00",
  "session": "closed",
  "price": 348.51,
  "prev_close": 350.69,
  "chg_pct": -0.62,
- "vix": 19.47,
+ "vix": 19.48,
  "regime": {
   "label": "NORMAL",
   "mult": 1.0,
@@ -523,7 +523,7 @@
   "atr_pct": 2.51,
   "hh20": 355.38,
   "ll20": 325.33,
-  "vratio": 0.54,
+  "vratio": 0.57,
   "bar_date": "2026-11-10"
  },
  "watch": [
@@ -532,7 +532,7 @@
    "name": "Gap-down dip buy",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Today's gap +0.24% (needs below -1.5%) in an uptrend",
+   "text": "Today's gap +0.19% (needs below -1.5%) in an uptrend",
    "progress": 0.0,
    "fired": false
   },
@@ -559,7 +559,7 @@
    "name": "Volume breakout",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Price $348.51 vs 20-day high $355.38; volume 0.5x avg (needs 1.5x)",
+   "text": "Price $348.51 vs 20-day high $355.38; volume 0.6x avg (needs 1.5x)",
    "progress": 0.6133718823346368,
    "fired": false
   },
