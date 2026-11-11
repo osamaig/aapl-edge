@@ -499,12 +499,12 @@
   }
  },
  "status": "ok",
- "updated": "2026-11-11T12:38:35.465928-05:00",
+ "updated": "2026-11-11T12:43:55.576476-05:00",
  "session": "open",
- "price": 354.36,
+ "price": 354.33,
  "prev_close": 348.51,
- "chg_pct": 1.68,
- "vix": 17.67,
+ "chg_pct": 1.67,
+ "vix": 17.73,
  "regime": {
   "label": "NORMAL",
   "mult": 1.0,
@@ -523,7 +523,7 @@
   "atr_pct": 2.43,
   "hh20": 355.38,
   "ll20": 325.33,
-  "vratio": 0.31,
+  "vratio": 0.32,
   "bar_date": "2026-11-11"
  },
  "watch": [
@@ -541,8 +541,8 @@
    "name": "52-week high breakout",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Price $354.36 vs 52-week high $355.38",
-   "progress": 0.958796866034696,
+   "text": "Price $354.31 vs 52-week high $355.38",
+   "progress": 0.9569873974129418,
    "fired": false
   },
   {
@@ -551,7 +551,7 @@
    "tier": "core",
    "conf": "High",
    "text": "RSI14 is 60; triggers below 30",
-   "progress": 0.2590189545963602,
+   "progress": 0.25972320536656107,
    "fired": false
   },
   {
@@ -559,8 +559,8 @@
    "name": "Volume breakout",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Price $354.36 vs 20-day high $355.38; volume 0.3x avg (needs 1.5x)",
-   "progress": 0.9423156124485765,
+   "text": "Price $354.31 vs 20-day high $355.38; volume 0.3x avg (needs 1.5x)",
+   "progress": 0.9397823563781205,
    "fired": false
   },
   {
@@ -578,7 +578,7 @@
    "tier": "probation",
    "conf": "Low",
    "text": "RSI14 is 60; triggers below 40 in an uptrend",
-   "progress": 0.34535860612848024,
+   "progress": 0.34629760715541474,
    "fired": false
   },
   {
@@ -586,7 +586,7 @@
    "name": "Drop over 3% in uptrend",
    "tier": "probation",
    "conf": "Low",
-   "text": "Today +1.68% (needs -3% or worse) in an uptrend",
+   "text": "Today +1.66% (needs -3% or worse) in an uptrend",
    "progress": 0.0,
    "fired": false
   },
@@ -595,8 +595,8 @@
    "name": "Closed at day low (IBS)",
    "tier": "probation",
    "conf": "Low",
-   "text": "Closed at 87% of today's range (needs under 10%)",
-   "progress": 0.14833857293561423,
+   "text": "Closed at 86% of today's range (needs under 10%)",
+   "progress": 0.15695441838078175,
    "fired": false
   }
  ],
