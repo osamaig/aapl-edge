@@ -499,12 +499,12 @@
   }
  },
  "status": "ok",
- "updated": "2026-11-11T11:48:19.088539-05:00",
+ "updated": "2026-11-11T12:03:23.818278-05:00",
  "session": "open",
- "price": 354.04,
+ "price": 354.69,
  "prev_close": 348.51,
- "chg_pct": 1.59,
- "vix": 17.86,
+ "chg_pct": 1.77,
+ "vix": 17.8,
  "regime": {
   "label": "NORMAL",
   "mult": 1.0,
@@ -513,17 +513,17 @@
  "events": [],
  "trend": {
   "up": true,
-  "sma50": 337.85,
-  "sma200": 300.26,
+  "sma50": 337.86,
+  "sma200": 300.27,
   "above200": true
  },
  "ind": {
-  "rsi14": 59.4,
-  "atr": 8.55,
+  "rsi14": 59.8,
+  "atr": 8.57,
   "atr_pct": 2.42,
   "hh20": 355.38,
   "ll20": 325.33,
-  "vratio": 0.26,
+  "vratio": 0.27,
   "bar_date": "2026-11-11"
  },
  "watch": [
@@ -541,8 +541,8 @@
    "name": "52-week high breakout",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Price $354.05 vs 52-week high $355.38",
-   "progress": 0.9465354159503415,
+   "text": "Price $354.69 vs 52-week high $355.38",
+   "progress": 0.9722629928557023,
    "fired": false
   },
   {
@@ -550,8 +550,8 @@
    "name": "Oversold bounce",
    "tier": "core",
    "conf": "High",
-   "text": "RSI14 is 59; triggers below 30",
-   "progress": 0.2638104661740194,
+   "text": "RSI14 is 60; triggers below 30",
+   "progress": 0.2538085967934768,
    "fired": false
   },
   {
@@ -559,8 +559,8 @@
    "name": "Volume breakout",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Price $354.05 vs 20-day high $355.38; volume 0.3x avg (needs 1.5x)",
-   "progress": 0.9251495823304801,
+   "text": "Price $354.69 vs 20-day high $355.38; volume 0.3x avg (needs 1.5x)",
+   "progress": 0.9611681899979851,
    "fired": false
   },
   {
@@ -568,7 +568,7 @@
    "name": "VIX falling from spike",
    "tier": "probation",
    "conf": "Low",
-   "text": "VIX 17.9; 5-day high 28.2 (needs 25+ then a 10% fall)",
+   "text": "VIX 17.8; 5-day high 28.2 (needs 25+ then a 10% fall)",
    "progress": 1.0,
    "fired": true
   },
@@ -577,8 +577,8 @@
    "name": "RSI under 40 pullback",
    "tier": "probation",
    "conf": "Low",
-   "text": "RSI14 is 59; triggers below 40 in an uptrend",
-   "progress": 0.3517472882320258,
+   "text": "RSI14 is 60; triggers below 40 in an uptrend",
+   "progress": 0.3384114623913023,
    "fired": false
   },
   {
@@ -586,7 +586,7 @@
    "name": "Drop over 3% in uptrend",
    "tier": "probation",
    "conf": "Low",
-   "text": "Today +1.59% (needs -3% or worse) in an uptrend",
+   "text": "Today +1.77% (needs -3% or worse) in an uptrend",
    "progress": 0.0,
    "fired": false
   },
@@ -595,8 +595,8 @@
    "name": "Closed at day low (IBS)",
    "tier": "probation",
    "conf": "Low",
-   "text": "Closed at 92% of today's range (needs under 10%)",
-   "progress": 0.08472149300749367,
+   "text": "Closed at 99% of today's range (needs under 10%)",
+   "progress": 0.010257103889809407,
    "fired": false
   }
  ],
