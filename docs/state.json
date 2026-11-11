@@ -499,12 +499,12 @@
   }
  },
  "status": "ok",
- "updated": "2026-11-11T13:44:18.034658-05:00",
+ "updated": "2026-11-11T13:59:23.966831-05:00",
  "session": "open",
- "price": 355.05,
+ "price": 355.06,
  "prev_close": 348.51,
  "chg_pct": 1.88,
- "vix": 17.38,
+ "vix": 17.35,
  "regime": {
   "label": "NORMAL",
   "mult": 1.0,
@@ -523,7 +523,7 @@
   "atr_pct": 2.43,
   "hh20": 355.38,
   "ll20": 325.33,
-  "vratio": 0.36,
+  "vratio": 0.37,
   "bar_date": "2026-11-11"
  },
  "watch": [
@@ -541,8 +541,8 @@
    "name": "52-week high breakout",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Price $355.05 vs 52-week high $355.38",
-   "progress": 0.9865338731789931,
+   "text": "Price $355.06 vs 52-week high $355.38",
+   "progress": 0.9871362115473188,
    "fired": false
   },
   {
@@ -551,7 +551,7 @@
    "tier": "core",
    "conf": "High",
    "text": "RSI14 is 60; triggers below 30",
-   "progress": 0.2483452715900178,
+   "progress": 0.24811598591770548,
    "fired": false
   },
   {
@@ -559,8 +559,8 @@
    "name": "Volume breakout",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Price $355.05 vs 20-day high $355.38; volume 0.4x avg (needs 1.5x)",
-   "progress": 0.9811474224505923,
+   "text": "Price $355.06 vs 20-day high $355.38; volume 0.4x avg (needs 1.5x)",
+   "progress": 0.9819906961662483,
    "fired": false
   },
   {
@@ -578,7 +578,7 @@
    "tier": "probation",
    "conf": "Low",
    "text": "RSI14 is 60; triggers below 40 in an uptrend",
-   "progress": 0.3311270287866904,
+   "progress": 0.33082131455694064,
    "fired": false
   },
   {
@@ -595,8 +595,8 @@
    "name": "Closed at day low (IBS)",
    "tier": "probation",
    "conf": "Low",
-   "text": "Closed at 95% of today's range (needs under 10%)",
-   "progress": 0.052729088918364767,
+   "text": "Closed at 96% of today's range (needs under 10%)",
+   "progress": 0.049956548475131,
    "fired": false
   }
  ],
