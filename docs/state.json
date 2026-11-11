@@ -102,6 +102,25 @@
    "days_held": 0,
    "exit": 349.55,
    "exit_date": "2026-11-10"
+  },
+  {
+   "id": "high52-2026-11-11",
+   "kind": "swing",
+   "setup": "high52",
+   "name": "52-week high breakout",
+   "tier": "probation",
+   "conf": "Medium",
+   "created": "2026-11-11T16:05:12.568611-05:00",
+   "plan_date": "2026-11-11",
+   "plan_entry": 355.63,
+   "atr": 8.66,
+   "hold": 5,
+   "stop_k": 1.5,
+   "tgt_k": 2.0,
+   "mult": 0.5,
+   "status": "planned",
+   "stop": 342.65,
+   "target": 372.94
   }
  ],
  "sent": [
@@ -112,7 +131,9 @@
   "vix_fall-2026-11-09:plan",
   "vix_fall-2026-11-09:enter",
   "rapid-2026-11-10:enter",
-  "rapid-2026-11-10:exit"
+  "rapid-2026-11-10:exit",
+  "high52-2026-11-11:plan",
+  "rules-2026-11-11"
  ],
  "stats": {
   "gap_down": {
@@ -499,12 +520,12 @@
   }
  },
  "status": "ok",
- "updated": "2026-11-11T16:00:10.111079-05:00",
+ "updated": "2026-11-11T16:05:12.568611-05:00",
  "session": "closed",
- "price": 355.79,
+ "price": 355.63,
  "prev_close": 348.51,
- "chg_pct": 2.09,
- "vix": 17.59,
+ "chg_pct": 2.04,
+ "vix": 17.48,
  "regime": {
   "label": "NORMAL",
   "mult": 1.0,
@@ -518,12 +539,12 @@
   "above200": true
  },
  "ind": {
-  "rsi14": 60.5,
+  "rsi14": 60.4,
   "atr": 8.66,
   "atr_pct": 2.43,
   "hh20": 355.38,
   "ll20": 325.33,
-  "vratio": 0.53,
+  "vratio": 0.65,
   "bar_date": "2026-11-11"
  },
  "watch": [
@@ -541,7 +562,7 @@
    "name": "52-week high breakout",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Price $355.79 vs 52-week high $355.38",
+   "text": "Price $355.63 vs 52-week high $355.38",
    "progress": 1.0,
    "fired": true
   },
@@ -550,8 +571,8 @@
    "name": "Oversold bounce",
    "tier": "core",
    "conf": "High",
-   "text": "RSI14 is 61; triggers below 30",
-   "progress": 0.23707157299340675,
+   "text": "RSI14 is 60; triggers below 30",
+   "progress": 0.2394713194617351,
    "fired": false
   },
   {
@@ -559,7 +580,7 @@
    "name": "Volume breakout",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Price $355.79 vs 20-day high $355.38; volume 0.5x avg (needs 1.5x)",
+   "text": "Price $355.63 vs 20-day high $355.38; volume 0.6x avg (needs 1.5x)",
    "progress": 1.0,
    "fired": false
   },
@@ -568,7 +589,7 @@
    "name": "VIX falling from spike",
    "tier": "probation",
    "conf": "Low",
-   "text": "VIX 17.6; 5-day high 28.2 (needs 25+ then a 10% fall)",
+   "text": "VIX 17.5; 5-day high 28.2 (needs 25+ then a 10% fall)",
    "progress": 1.0,
    "fired": true
   },
@@ -577,8 +598,8 @@
    "name": "RSI under 40 pullback",
    "tier": "probation",
    "conf": "Low",
-   "text": "RSI14 is 61; triggers below 40 in an uptrend",
-   "progress": 0.31609543065787565,
+   "text": "RSI14 is 60; triggers below 40 in an uptrend",
+   "progress": 0.3192950926156468,
    "fired": false
   },
   {
@@ -586,7 +607,7 @@
    "name": "Drop over 3% in uptrend",
    "tier": "probation",
    "conf": "Low",
-   "text": "Today +2.09% (needs -3% or worse) in an uptrend",
+   "text": "Today +2.04% (needs -3% or worse) in an uptrend",
    "progress": 0.0,
    "fired": false
   },
@@ -595,8 +616,8 @@
    "name": "Closed at day low (IBS)",
    "tier": "probation",
    "conf": "Low",
-   "text": "Closed at 98% of today's range (needs under 10%)",
-   "progress": 0.01858650745394239,
+   "text": "Closed at 96% of today's range (needs under 10%)",
+   "progress": 0.045625646904836,
    "fired": false
   }
  ],
