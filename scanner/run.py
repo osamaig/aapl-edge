@@ -161,65 +161,99 @@ def main():
             if s["status"] == "planned" and (pd.Timestamp(last_date) - pd.Timestamp(s["plan_date"])).days > 4:
                 s["status"] = "expired"
 
-    # ---------- 4) AAPL Rapid: buy a dip, sell about $2 higher, hold until green (no stop)
-    RC = dict(lots=CFG.get("rapid_lots", 2), shares=CFG.get("rapid_lot_shares", 100), target=CFG.get("rapid_target", 2.0),
-              stretch=CFG.get("rapid_stretch", 3.0), weekly=CFG.get("rapid_weekly_cap", 3))
+    # ---------- 4) Rapid: buy a dip, sell about +0.57% (+$2 on AAPL), hold until green (no stop). Lots are shared across stocks.
+    SYMS = CFG.get("rapid_symbols", ["AAPL"])
+    RC = dict(lots=CFG.get("rapid_lots", 2), cash=CFG.get("rapid_lot_cash", 35000), aapl_sh=CFG.get("rapid_lot_shares", 100),
+              aapl_tgt=CFG.get("rapid_target", 2.0), aapl_str=CFG.get("rapid_stretch", 3.0),
+              pct=CFG.get("rapid_target_pct", 0.57) / 100, spct=CFG.get("rapid_stretch_pct", 0.86) / 100, weekly=CFG.get("rapid_weekly_cap", 4))
     R.P["dip"] = CFG.get("rapid_dip", 0.003)
-    rapid_open = [s for s in state["signals"] if s["kind"] == "rapid" and s["status"] == "open"]
+    CTX = {}
+
+    def sctx(sym, need_intraday):
+        c = CTX.setdefault(sym, {"df": None, "a5": None, "s5": None, "done_i": False})
+        try:
+            if c["df"] is None:
+                c["df"] = df if sym == "AAPL" else E.build_daily(E.fetch(sym, "2y", "1d"), spy, vix)
+            if need_intraday and not c["done_i"]:
+                c["done_i"] = True
+                c["a5"] = a5 if (sym == "AAPL" and a5 is not None) else E.add_vwap(E.fetch(sym, "5d", "5m"))
+                c["s5"] = s5 if s5 is not None else E.add_vwap(E.fetch("SPY", "5d", "5m"))
+        except Exception as e:
+            print("rapid data failed", sym, e)
+        return c
+
+    def last_px(c):
+        return float(c["a5"].close.iloc[-1]) if c["a5"] is not None and len(c["a5"]) else float(c["df"].close.iloc[-1])
+
+    def sym_earnings_soon(sym):
+        ds = CFG.get("earnings", []) if sym == "AAPL" else CFG.get("earnings_other", {}).get(sym, [])
+        return any(0 <= (pd.Timestamp(d) - pd.Timestamp(today)).days <= 1 for d in ds)
+
     try:
-        if (in_session or after_close) and not a.asof and (a5 is None) and rapid_open:
-            a5 = E.add_vwap(E.fetch("AAPL", "5d", "5m"))
+        live_ok = (in_session or after_close) and not a.asof
+        rapid_open = [x for x in state["signals"] if x["kind"] == "rapid" and x["status"] == "open"]
         # 4a) monitor open lots
         for s in rapid_open:
+            sym = s.get("sym", "AAPL"); c = sctx(sym, live_ok)
+            if c["df"] is None: continue
             hit = None
-            if a5 is not None:
-                b = a5[a5.index > pd.Timestamp(s["created"])]
+            if c["a5"] is not None:
+                b = c["a5"][c["a5"].index > pd.Timestamp(s["created"])]
                 if len(b) and float(b.high.max()) >= s["target"]: hit = s["target"]
-            later = df[df.index > pd.Timestamp(s["entry_date"])]
+            later = c["df"][c["df"].index > pd.Timestamp(s["entry_date"])]
             if hit is None and len(later) and float(later.high.max()) >= s["target"]: hit = s["target"]
             sh = s["shares"]
             if hit:
                 s.update(status="target", exit=round(hit, 2), exit_date=str(today))
-                push(state, f"{s['id']}:exit", "AAPL Rapid: TARGET HIT",
+                push(state, f"{s['id']}:exit", f"{sym} Rapid: TARGET HIT",
                      f"Your sell order at {fmt(hit)} should have filled: about {(hit - s['entry']) * sh:+,.0f} USD on {sh} sh. Cash is free again (T+1 settle).", 4, "white_check_mark", a.dry)
                 continue
-            cur = price if (in_session or after_close) else float(d0.close)
+            cur = last_px(c) if live_ok else float(c["df"].close.iloc[-1])
             dd = (cur / s["entry"] - 1) * 100
             s["last"] = round(cur, 2); s["pl_pct"] = round(dd, 2)
             s["days_held"] = int((pd.Timestamp(today) - pd.Timestamp(s["entry_date"])).days)
-            for lvl in (5, 10):
+            for lvl in (5, 10, 20):
                 if dd <= -lvl:
-                    push(state, f"{s['id']}:dd{lvl}", f"AAPL Rapid: lot is down {lvl}%",
-                         f"Bought {fmt(s['entry'])}, now {fmt(cur)} ({dd:.1f}%, about {(cur - s['entry']) * sh:+,.0f} USD). Plan is hold until green. No new Rapid alerts while all lots are open.", 4, "warning", a.dry)
+                    extra = " This is the point to consider a disaster exit." if lvl == 20 else " Plan is hold until green."
+                    push(state, f"{s['id']}:dd{lvl}", f"{sym} Rapid: lot is down {lvl}%",
+                         f"Bought {fmt(s['entry'])}, now {fmt(cur)} ({dd:.1f}%, about {(cur - s['entry']) * sh:+,.0f} USD).{extra}", 4, "warning", a.dry)
         # 4b) daily summary after the close
         if after_close and not a.asof and rapid_open and mins < 17 * 60 + 30:
-            lines = []
-            for s in rapid_open:
-                if "pl_pct" in s:
-                    lines.append(f"Lot {fmt(s['entry'])}: {s['pl_pct']:+.1f}%, day {s['days_held']}, needs {fmt(s['target'])} (sell order stays open)")
+            lines = [f"{x.get('sym', 'AAPL')} lot {fmt(x['entry'])}: {x['pl_pct']:+.1f}%, day {x['days_held']}, needs {fmt(x['target'])} (sell order stays open)"
+                     for x in rapid_open if "pl_pct" in x]
             if lines:
-                push(state, f"rapid-summary-{today}", "AAPL Rapid daily check", "\n".join(lines), 2, "memo", a.dry)
-        # 4c) new entry (only at the hourly check times the backtest used)
+                push(state, f"rapid-summary-{today}", "Rapid daily check", "\n".join(lines), 2, "memo", a.dry)
+        # 4c) new entries (only at the hourly check times the backtest used)
         mark = next((m for m in (11 * 60 + 30, 12 * 60 + 30, 13 * 60 + 30, 14 * 60 + 30, 15 * 60 + 30) if 0 <= mins - m <= 14), None)
-        open_now = [s for s in state["signals"] if s["kind"] == "rapid" and s["status"] == "open"]
-        wk = now.isocalendar()[1]
-        this_week = [s for s in state["signals"] if s["kind"] == "rapid" and pd.Timestamp(s["created"]).isocalendar()[1] == wk]
-        sid = f"rapid-{today}"
-        if (in_session and a5 is not None and mark and not earnings_soon and len(open_now) < RC["lots"] and len(this_week) < RC["weekly"]
-                and not any(x["id"] == sid for x in state["signals"])):
-            bars = a5[a5.index.date == today]; bars = bars[bars.index + pd.Timedelta(minutes=5) <= now.normalize() + pd.Timedelta(minutes=mark)]
-            sp = s5[s5.index.date == today]; sp = sp[sp.index + pd.Timedelta(minutes=5) <= now.normalize() + pd.Timedelta(minutes=mark)]
-            spy_prev = float(df.spy.iloc[-2]); spy_ret = float(sp.close.iloc[-1]) / spy_prev - 1 if len(sp) else 0.0
-            det = R.signal(bars, prev_close, bool(df.up.iloc[-2]), float(df.vix.iloc[-2]), spy_ret, 5) if len(bars) >= 2 else None
-            if det and RC["shares"] * price <= CFG.get("rapid_max_cash", 70000) / RC["lots"] * 1.05:
-                e = round(price, 2); tgt = round(e + RC["target"], 2)
-                sig = dict(id=sid, kind="rapid", setup="rapid", name="AAPL Rapid dip buy", created=now.isoformat(), plan_date=str(today),
-                           entry=e, target=tgt, stretch=round(e + RC["stretch"], 2), shares=RC["shares"], status="open", entry_date=str(today),
-                           day_high=det["day_high"], dip_pct=det["dip_pct"], tier="rapid")
-                state["signals"].append(sig)
-                push(state, f"{sid}:enter", "AAPL Rapid: BUY the dip (Medium confidence)",
-                     f"Buy {RC['shares']} sh near {fmt(e)} (limit {fmt(e + 0.10)}). Then place a GOOD-TIL-CANCELLED sell limit at {fmt(tgt)} (+$2; stretch {fmt(e + RC['stretch'])}). "
-                     f"Down {det['dip_pct']}% from today's high {fmt(det['day_high'])}. No stop: if it drops, hold until green. Cash used about {RC['shares'] * e:,.0f} USD. Lots open after this: {len(open_now) + 1} of {RC['lots']}.",
+        if in_session and mark and not a.asof:
+            wk = now.isocalendar()[1]
+            for sym in SYMS:
+                open_now = [x for x in state["signals"] if x["kind"] == "rapid" and x["status"] == "open"]
+                this_week = [x for x in state["signals"] if x["kind"] == "rapid" and pd.Timestamp(x["created"]).isocalendar()[1] == wk]
+                if len(open_now) >= RC["lots"] or len(this_week) >= RC["weekly"]: break
+                if sym_earnings_soon(sym): continue
+                if any(x["kind"] == "rapid" and x.get("sym", "AAPL") == sym and x["plan_date"] == str(today) for x in state["signals"]): continue
+                c = sctx(sym, True)
+                if c["df"] is None or c["a5"] is None: continue
+                cut = now.normalize() + pd.Timedelta(minutes=mark)
+                bars = c["a5"][c["a5"].index.date == today]; bars = bars[bars.index + pd.Timedelta(minutes=5) <= cut]
+                sp = c["s5"][c["s5"].index.date == today]; sp = sp[sp.index + pd.Timedelta(minutes=5) <= cut]
+                dprev = c["df"][c["df"].index.date < today]
+                if len(bars) < 2 or len(dprev) < 2: continue
+                spy_prev = float(dprev.spy.iloc[-1]); spy_ret = float(sp.close.iloc[-1]) / spy_prev - 1 if len(sp) else 0.0
+                det = R.signal(bars, float(dprev.close.iloc[-1]), bool(dprev.up.iloc[-1]), float(dprev.vix.iloc[-1]), spy_ret, 5)
+                if not det: continue
+                px = last_px(c); e = round(px, 2)
+                if sym == "AAPL": sh, tgt, stc = RC["aapl_sh"], round(e + RC["aapl_tgt"], 2), round(e + RC["aapl_str"], 2)
+                else: sh, tgt, stc = int(RC["cash"] / px), round(e * (1 + RC["pct"]), 2), round(e * (1 + RC["spct"]), 2)
+                if sh < 1: continue
+                sid = f"rapid-{sym}-{today}"
+                state["signals"].append(dict(id=sid, kind="rapid", setup="rapid", sym=sym, name=f"{sym} Rapid dip buy", created=now.isoformat(), plan_date=str(today),
+                                             entry=e, target=tgt, stretch=stc, shares=sh, status="open", entry_date=str(today),
+                                             day_high=det["day_high"], dip_pct=det["dip_pct"], tier="rapid"))
+                push(state, f"{sid}:enter", f"{sym} Rapid: BUY the dip (Medium confidence)",
+                     f"Buy {sh} sh of {sym} near {fmt(e)} (limit {fmt(e + max(0.10, e * 0.0003))}). Then place a GOOD-TIL-CANCELLED sell limit at {fmt(tgt)} (stretch {fmt(stc)}). "
+                     f"Down {det['dip_pct']}% from today's high {fmt(det['day_high'])}. No stop: if it drops, hold until green. Cash used about {sh * e:,.0f} USD. Lots open after this: {len(open_now) + 1} of {RC['lots']}.",
                      5, "rotating_light", a.dry)
     except Exception as e:
         print("rapid error", e)
@@ -287,7 +321,7 @@ def main():
         ind={"rsi14": round(float(d0.rsi14), 1), "atr": round(float(d0.atr), 2), "atr_pct": round(float(d0.atr / d0.close * 100), 2),
              "hh20": round(float(d0.hh20), 2), "ll20": round(float(d0.ll20), 2), "vratio": round(float(d0.vratio), 2), "bar_date": str(last_date)},
         watch=watch,
-        rapid={"lots": RC["lots"], "shares": RC["shares"], "target": RC["target"], "open": [x for x in state["signals"] if x["kind"] == "rapid" and x["status"] == "open"],
+        rapid={"lots": RC["lots"], "cash": RC["cash"], "symbols": SYMS, "open": [x for x in state["signals"] if x["kind"] == "rapid" and x["status"] == "open"],
                "closed": [x for x in state["signals"] if x["kind"] == "rapid" and x["status"] == "target"][-10:], "stats": load_json(os.path.join(ROOT, "docs", "rapid_stats.json"), {})},
         risk_cfg={"capital": None, "risk_pct": RISK},  # capital stays private; the dashboard uses your phone's setting
         journal={"swing": E.stats(pd.DataFrame([{"R": s["R"], "ret": 0, "days": 1, "date": s["exit_date"]} for s in closed])) if closed else {"n": 0}},

@@ -26,7 +26,7 @@ def signal(day, prev_close, up, vix, spy_ret, res):
     return None
 
 
-def backtest(a, s, daily, res, pct=None, lot_cap=True):
+def backtest(a, s, daily, res, pct=None, lot_cap=True, stop=None):
     """a, s: AAPL / SPY intraday bars. daily: engine frame (close, sma200, vix). One lot at a time (waits for green).
     Returns DataFrame of trades: entry_date, entry, days, dd (worst drop from entry before exit), exit_date."""
     pct = pct or 0.0057
@@ -50,14 +50,18 @@ def backtest(a, s, daily, res, pct=None, lot_cap=True):
                 k = ii[0] + j + 1
                 if k >= n: break
                 e = float(a.open.iloc[k]) * 1.0004; tgt = e * (1 + pct); dd = 0.0; ex = None
+                stopped = False
                 for m in range(k, n):
                     dd = max(dd, (e - float(a.low.iloc[m])) / e)
+                    if stop is not None and float(a.low.iloc[m]) <= e * (1 - stop):
+                        ex = m; stopped = True; break
                     if a.high.iloc[m] >= tgt: ex = m; break
-                if ex is None: rows.append((d, e, np.nan, dd, None, k, n)); blocked_until = n; break
-                rows.append((d, e, (np.datetime64(times[ex].date()) - np.datetime64(d)).astype(int), dd, times[ex].date(), k, ex))
+                if ex is None: rows.append((d, e, np.nan, dd, None, k, n, np.nan, False)); blocked_until = n; break
+                xr = (min(float(a.open.iloc[ex]), e * (1 - stop)) / e - 1) if stopped else pct
+                rows.append((d, e, (np.datetime64(times[ex].date()) - np.datetime64(d)).astype(int), dd, times[ex].date(), k, ex, xr, stopped))
                 if lot_cap: blocked_until = ex
                 break
-    return pd.DataFrame(rows, columns=["date", "entry", "cal_days", "dd", "exit_date", "k", "ex"])
+    return pd.DataFrame(rows, columns=["date", "entry", "cal_days", "dd", "exit_date", "k", "ex", "ret", "stopped"])
 
 
 def pc_spy(sps, daily, d):

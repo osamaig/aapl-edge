@@ -1,12 +1,78 @@
 {
- "n": 124,
- "per_week": 0.85,
- "same_day": 29,
- "within3": 76,
- "within10": 94,
- "p90_drop": 3.9,
- "worst_drop": 15.0,
- "longest_days": 155,
+ "by": {
+  "AAPL": {
+   "n": 157,
+   "per_week": 1.08,
+   "same_day": 27,
+   "within3": 75,
+   "within10": 90,
+   "p90_drop": 5.2,
+   "worst_drop": 34.7,
+   "over10": 9,
+   "over20": 2,
+   "longest_days": 298
+  },
+  "WMT": {
+   "n": 203,
+   "per_week": 1.39,
+   "same_day": 28,
+   "within3": 70,
+   "within10": 88,
+   "p90_drop": 3.5,
+   "worst_drop": 24.1,
+   "over10": 4,
+   "over20": 3,
+   "longest_days": 215
+  },
+  "JPM": {
+   "n": 257,
+   "per_week": 1.76,
+   "same_day": 25,
+   "within3": 72,
+   "within10": 91,
+   "p90_drop": 3.5,
+   "worst_drop": 27.6,
+   "over10": 7,
+   "over20": 2,
+   "longest_days": 163
+  },
+  "GOOGL": {
+   "n": 231,
+   "per_week": 1.58,
+   "same_day": 36,
+   "within3": 77,
+   "within10": 92,
+   "p90_drop": 3.9,
+   "worst_drop": 31.2,
+   "over10": 9,
+   "over20": 5,
+   "longest_days": 161
+  },
+  "AMZN": {
+   "n": 137,
+   "per_week": 0.94,
+   "same_day": 34,
+   "within3": 69,
+   "within10": 83,
+   "p90_drop": 8.3,
+   "worst_drop": 32.5,
+   "over10": 12,
+   "over20": 6,
+   "longest_days": 269
+  },
+  "MSFT": {
+   "n": 112,
+   "per_week": 0.77,
+   "same_day": 15,
+   "within3": 72,
+   "within10": 88,
+   "p90_drop": 5.1,
+   "worst_drop": 35.8,
+   "over10": 4,
+   "over20": 4,
+   "longest_days": 350
+  }
+ },
  "lots": 2,
- "target": 2.0
+ "target_pct": 0.57
 }

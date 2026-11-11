@@ -12,11 +12,31 @@
   "rapid_target": 2.0,
   "rapid_stretch": 3.0,
   "rapid_max_cash": 70000,
-  "rapid_weekly_cap": 3,
+  "rapid_weekly_cap": 4,
   "rapid_dip": 0.003,
   "rule_alerts": [
     "macd_cross",
     "pull_sma20_up",
     "vol_spike_up"
-  ]
+  ],
+  "rapid_symbols": [
+    "AAPL",
+    "WMT",
+    "JPM",
+    "GOOGL",
+    "AMZN",
+    "MSFT"
+  ],
+  "rapid_lot_cash": 35000,
+  "rapid_target_pct": 0.57,
+  "rapid_stretch_pct": 0.86,
+  "earnings_other": {
+    "WMT": [
+      "2026-11-19"
+    ],
+    "JPM": [],
+    "GOOGL": [],
+    "AMZN": [],
+    "MSFT": []
+  }
 }
