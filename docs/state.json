@@ -499,12 +499,12 @@
   }
  },
  "status": "ok",
- "updated": "2026-11-11T13:59:23.966831-05:00",
+ "updated": "2026-11-11T14:14:29.162270-05:00",
  "session": "open",
- "price": 355.06,
+ "price": 354.76,
  "prev_close": 348.51,
- "chg_pct": 1.88,
- "vix": 17.35,
+ "chg_pct": 1.79,
+ "vix": 17.41,
  "regime": {
   "label": "NORMAL",
   "mult": 1.0,
@@ -513,17 +513,17 @@
  "events": [],
  "trend": {
   "up": true,
-  "sma50": 337.87,
+  "sma50": 337.86,
   "sma200": 300.27,
   "above200": true
  },
  "ind": {
-  "rsi14": 60.1,
+  "rsi14": 59.9,
   "atr": 8.61,
   "atr_pct": 2.43,
   "hh20": 355.38,
   "ll20": 325.33,
-  "vratio": 0.37,
+  "vratio": 0.39,
   "bar_date": "2026-11-11"
  },
  "watch": [
@@ -541,8 +541,8 @@
    "name": "52-week high breakout",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Price $355.06 vs 52-week high $355.38",
-   "progress": 0.9871362115473188,
+   "text": "Price $354.76 vs 52-week high $355.38",
+   "progress": 0.9750771765969231,
    "fired": false
   },
   {
@@ -551,7 +551,7 @@
    "tier": "core",
    "conf": "High",
    "text": "RSI14 is 60; triggers below 30",
-   "progress": 0.24811598591770548,
+   "progress": 0.2527265140494562,
    "fired": false
   },
   {
@@ -559,8 +559,8 @@
    "name": "Volume breakout",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Price $355.06 vs 20-day high $355.38; volume 0.4x avg (needs 1.5x)",
-   "progress": 0.9819906961662483,
+   "text": "Price $354.76 vs 20-day high $355.38; volume 0.4x avg (needs 1.5x)",
+   "progress": 0.9651080472356943,
    "fired": false
   },
   {
@@ -578,7 +578,7 @@
    "tier": "probation",
    "conf": "Low",
    "text": "RSI14 is 60; triggers below 40 in an uptrend",
-   "progress": 0.33082131455694064,
+   "progress": 0.3369686853992749,
    "fired": false
   },
   {
@@ -586,7 +586,7 @@
    "name": "Drop over 3% in uptrend",
    "tier": "probation",
    "conf": "Low",
-   "text": "Today +1.88% (needs -3% or worse) in an uptrend",
+   "text": "Today +1.79% (needs -3% or worse) in an uptrend",
    "progress": 0.0,
    "fired": false
   },
@@ -595,8 +595,8 @@
    "name": "Closed at day low (IBS)",
    "tier": "probation",
    "conf": "Low",
-   "text": "Closed at 96% of today's range (needs under 10%)",
-   "progress": 0.049956548475131,
+   "text": "Closed at 91% of today's range (needs under 10%)",
+   "progress": 0.10546382455860986,
    "fired": false
   }
  ],
