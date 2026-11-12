@@ -235,7 +235,7 @@ def main():
             for sym in SYMS:
                 open_now = [x for x in state["signals"] if x["kind"] == "rapid" and x["status"] == "open"]
                 if sym_earnings_soon(sym): continue
-                if any(x["kind"] == "rapid" and x.get("sym", "AAPL") == sym and x["plan_date"] == str(today) for x in state["signals"]): continue
+                if any(x["id"] == f"rapid-{sym}-{today}-{mark}" for x in state["signals"]): continue
                 c = sctx(sym, True)
                 if c["df"] is None or c["a5"] is None: continue
                 cut = now.normalize() + pd.Timedelta(minutes=mark)
@@ -250,7 +250,7 @@ def main():
                 if sym == "AAPL": sh, tgt, stc = RC["aapl_sh"], round(e + RC["aapl_tgt"], 2), round(e + RC["aapl_str"], 2)
                 else: sh, tgt, stc = int(RC["cash"] / px), round(e * (1 + RC["pct"]), 2), round(e * (1 + RC["spct"]), 2)
                 if sh < 1: continue
-                sid = f"rapid-{sym}-{today}"
+                sid = f"rapid-{sym}-{today}-{mark}"
                 state["signals"].append(dict(id=sid, kind="rapid", setup="rapid", sym=sym, name=f"{sym} Rapid dip buy", created=now.isoformat(), plan_date=str(today),
                                              entry=e, target=tgt, stretch=stc, shares=sh, status="open", entry_date=str(today),
                                              day_high=det["day_high"], dip_pct=det["dip_pct"], tier="rapid"))
