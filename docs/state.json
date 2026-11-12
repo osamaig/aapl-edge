@@ -964,12 +964,12 @@
   }
  },
  "status": "ok",
- "updated": "2026-11-12T16:26:20.967466-05:00",
+ "updated": "2026-11-12T16:41:20.926419-05:00",
  "session": "closed",
  "price": 354.88,
  "prev_close": 355.63,
  "chg_pct": -0.21,
- "vix": 18.73,
+ "vix": 18.7,
  "regime": {
   "label": "NORMAL",
   "mult": 1.0,
