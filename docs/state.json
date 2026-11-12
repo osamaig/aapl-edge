@@ -523,12 +523,12 @@
   }
  },
  "status": "ok",
- "updated": "2026-11-12T10:35:33.804195-05:00",
+ "updated": "2026-11-12T10:50:38.582886-05:00",
  "session": "open",
- "price": 357.73,
+ "price": 357.85,
  "prev_close": 355.63,
- "chg_pct": 0.59,
- "vix": 18.51,
+ "chg_pct": 0.62,
+ "vix": 18.16,
  "regime": {
   "label": "NORMAL",
   "mult": 1.0,
@@ -542,12 +542,12 @@
   "above200": true
  },
  "ind": {
-  "rsi14": 61.7,
+  "rsi14": 61.8,
   "atr": 8.3,
   "atr_pct": 2.32,
   "hh20": 355.91,
   "ll20": 325.33,
-  "vratio": 0.19,
+  "vratio": 0.2,
   "bar_date": "2026-11-12"
  },
  "watch": [
@@ -565,7 +565,7 @@
    "name": "52-week high breakout",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Price $357.73 vs 52-week high $355.91",
+   "text": "Price $357.85 vs 52-week high $355.91",
    "progress": 1.0,
    "fired": true
   },
@@ -575,7 +575,7 @@
    "tier": "core",
    "conf": "High",
    "text": "RSI14 is 62; triggers below 30",
-   "progress": 0.20667535963227762,
+   "progress": 0.20478715336407358,
    "fired": false
   },
   {
@@ -583,7 +583,7 @@
    "name": "Volume breakout",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Price $357.73 vs 20-day high $355.91; volume 0.2x avg (needs 1.5x)",
+   "text": "Price $357.85 vs 20-day high $355.91; volume 0.2x avg (needs 1.5x)",
    "progress": 1.0,
    "fired": false
   },
@@ -592,7 +592,7 @@
    "name": "VIX falling from spike",
    "tier": "probation",
    "conf": "Low",
-   "text": "VIX 18.5; 5-day high 25.6 (needs 25+ then a 10% fall)",
+   "text": "VIX 18.2; 5-day high 25.6 (needs 25+ then a 10% fall)",
    "progress": 1.0,
    "fired": true
   },
@@ -602,7 +602,7 @@
    "tier": "probation",
    "conf": "Low",
    "text": "RSI14 is 62; triggers below 40 in an uptrend",
-   "progress": 0.2755671461763702,
+   "progress": 0.2730495378187648,
    "fired": false
   },
   {
@@ -610,7 +610,7 @@
    "name": "Drop over 3% in uptrend",
    "tier": "probation",
    "conf": "Low",
-   "text": "Today +0.59% (needs -3% or worse) in an uptrend",
+   "text": "Today +0.62% (needs -3% or worse) in an uptrend",
    "progress": 0.0,
    "fired": false
   },
@@ -619,8 +619,8 @@
    "name": "Closed at day low (IBS)",
    "tier": "probation",
    "conf": "Low",
-   "text": "Closed at 52% of today's range (needs under 10%)",
-   "progress": 0.5295224160326774,
+   "text": "Closed at 56% of today's range (needs under 10%)",
+   "progress": 0.4892460271806626,
    "fired": false
   }
  ],
