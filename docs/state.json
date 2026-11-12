@@ -142,8 +142,8 @@
    "day_high": 359.37,
    "dip_pct": 0.35,
    "tier": "rapid",
-   "last": 356.46,
-   "pl_pct": -0.47,
+   "last": 356.61,
+   "pl_pct": -0.42,
    "days_held": 0
   },
   {
@@ -163,8 +163,8 @@
    "day_high": 347.2,
    "dip_pct": 0.61,
    "tier": "rapid",
-   "last": 344.54,
-   "pl_pct": -0.02,
+   "last": 344.92,
+   "pl_pct": 0.09,
    "days_held": 0
   },
   {
@@ -184,8 +184,8 @@
    "day_high": 273.6,
    "dip_pct": 1.4,
    "tier": "rapid",
-   "last": 269.23,
-   "pl_pct": -0.23,
+   "last": 269.7,
+   "pl_pct": -0.06,
    "days_held": 0
   }
  ],
@@ -589,12 +589,12 @@
   }
  },
  "status": "ok",
- "updated": "2026-11-12T12:21:23.533736-05:00",
+ "updated": "2026-11-12T12:26:26.998168-05:00",
  "session": "open",
- "price": 356.46,
+ "price": 356.61,
  "prev_close": 355.63,
- "chg_pct": 0.23,
- "vix": 17.69,
+ "chg_pct": 0.28,
+ "vix": 17.65,
  "regime": {
   "label": "NORMAL",
   "mult": 1.0,
@@ -613,7 +613,7 @@
   "atr_pct": 2.33,
   "hh20": 355.91,
   "ll20": 325.33,
-  "vratio": 0.3,
+  "vratio": 0.31,
   "bar_date": "2026-11-12"
  },
  "watch": [
@@ -631,7 +631,7 @@
    "name": "52-week high breakout",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Price $356.46 vs 52-week high $355.91",
+   "text": "Price $356.61 vs 52-week high $355.91",
    "progress": 1.0,
    "fired": true
   },
@@ -641,7 +641,7 @@
    "tier": "core",
    "conf": "High",
    "text": "RSI14 is 61; triggers below 30",
-   "progress": 0.22621304063178743,
+   "progress": 0.22385484035527253,
    "fired": false
   },
   {
@@ -649,7 +649,7 @@
    "name": "Volume breakout",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Price $356.46 vs 20-day high $355.91; volume 0.3x avg (needs 1.5x)",
+   "text": "Price $356.61 vs 20-day high $355.91; volume 0.3x avg (needs 1.5x)",
    "progress": 1.0,
    "fired": false
   },
@@ -658,7 +658,7 @@
    "name": "VIX falling from spike",
    "tier": "probation",
    "conf": "Low",
-   "text": "VIX 17.7; 5-day high 25.6 (needs 25+ then a 10% fall)",
+   "text": "VIX 17.6; 5-day high 25.6 (needs 25+ then a 10% fall)",
    "progress": 1.0,
    "fired": true
   },
@@ -668,7 +668,7 @@
    "tier": "probation",
    "conf": "Low",
    "text": "RSI14 is 61; triggers below 40 in an uptrend",
-   "progress": 0.30161738750904993,
+   "progress": 0.2984731204736967,
    "fired": false
   },
   {
@@ -676,7 +676,7 @@
    "name": "Drop over 3% in uptrend",
    "tier": "probation",
    "conf": "Low",
-   "text": "Today +0.23% (needs -3% or worse) in an uptrend",
+   "text": "Today +0.28% (needs -3% or worse) in an uptrend",
    "progress": 0.0,
    "fired": false
   },
@@ -685,8 +685,8 @@
    "name": "Closed at day low (IBS)",
    "tier": "probation",
    "conf": "Low",
-   "text": "Closed at 16% of today's range (needs under 10%)",
-   "progress": 0.9371241911043852,
+   "text": "Closed at 20% of today's range (needs under 10%)",
+   "progress": 0.888794491102517,
    "fired": false
   }
  ],
@@ -1273,8 +1273,8 @@
     "day_high": 359.37,
     "dip_pct": 0.35,
     "tier": "rapid",
-    "last": 356.46,
-    "pl_pct": -0.47,
+    "last": 356.61,
+    "pl_pct": -0.42,
     "days_held": 0
    },
    {
@@ -1294,8 +1294,8 @@
     "day_high": 347.2,
     "dip_pct": 0.61,
     "tier": "rapid",
-    "last": 344.54,
-    "pl_pct": -0.02,
+    "last": 344.92,
+    "pl_pct": 0.09,
     "days_held": 0
    },
    {
@@ -1315,8 +1315,8 @@
     "day_high": 273.6,
     "dip_pct": 1.4,
     "tier": "rapid",
-    "last": 269.23,
-    "pl_pct": -0.23,
+    "last": 269.7,
+    "pl_pct": -0.06,
     "days_held": 0
    }
   ],
