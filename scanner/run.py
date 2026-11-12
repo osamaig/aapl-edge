@@ -83,6 +83,9 @@ def main():
             if 0 <= n <= 2: ev.append({"type": k.upper(), "date": d, "days": n})
     earnings_soon = any(e["type"] == "EARNINGS" and e["days"] <= 1 for e in ev)
 
+    for s in state["signals"]:  # trades you closed by hand: list their ids in config "retire" so the app stops tracking them
+        if s.get("id") in CFG.get("retire", []) and s.get("status") in ("open", "planned"):
+            s["status"] = "retired"; s["note"] = "Closed by hand"
     for s in state["signals"]:  # keep labels current; retire the old paper-scalp experiment
         if s.get("kind") == "swing" and s.get("setup") in E.SETUPS:
             s["tier"], s["conf"] = E.SETUPS[s["setup"]]["tier"], E.SETUPS[s["setup"]]["conf"]
@@ -120,9 +123,11 @@ def main():
             tier = s.get("tier", "core")
             n_open = len([x for x in state["signals"] if x["kind"] == "swing" and x["status"] == "open" and x.get("tier", "core") == tier])
             if abs(entry - s["plan_entry"]) > 1.0 * s["atr"]:
-                s["status"] = "skipped"; s["note"] = "Opened too far from plan"; continue
+                s["status"] = "skipped"; s["note"] = "Opened too far from plan"
+                push(state, f"{s['id']}:skip", f"AAPL plan skipped: {s['name']}", "AAPL opened too far from last night's plan, so do not enter this one.", 2, "no_entry", a.dry); continue
             if n_open >= CFG["max_open"]:
-                s["status"] = "skipped"; s["note"] = "Max open positions reached"; continue
+                s["status"] = "skipped"; s["note"] = "Max open positions reached"
+                push(state, f"{s['id']}:skip", f"AAPL plan skipped: {s['name']}", f"The app already tracks {n_open} open swing trade(s) of this kind, so it did not enter this one. Do not enter it either, to match the app.", 2, "no_entry", a.dry); continue
             lv = E.plan_levels(entry, s["atr"], s["setup"])
             s.update(status="open", entry=round(entry, 2), entry_date=str(last_date), **lv)
             sz = E.size(entry, lv["stop"], CAPITAL, RISK, MAXPOS, s["mult"])
