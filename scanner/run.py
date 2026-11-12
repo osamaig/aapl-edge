@@ -261,6 +261,40 @@ def main():
     except Exception as e:
         print("rapid error", e)
 
+    # ---------- 4b) Shadow log: 5-minute RSI under 30 then a green candle. Logged only, NO push. Test of a possible new alert.
+    try:
+        sh_list = state.setdefault("shadow", [])
+        if (in_session or after_close) and not a.asof:
+            SH_T, SH_C = 0.0028, 0.0002
+            for sym in SYMS:
+                c = sctx(sym, True)
+                if c["a5"] is None or len(c["a5"]) < 40: continue
+                x = c["a5"][["open", "high", "low", "close"]].copy()
+                dlt = x.close.diff(); up = dlt.clip(lower=0).ewm(alpha=1 / 14, adjust=False).mean(); dn = (-dlt.clip(upper=0)).ewm(alpha=1 / 14, adjust=False).mean()
+                x["rsi"] = 100 - 100 / (1 + up / dn)
+                done = x[x.index + pd.Timedelta(minutes=5) <= now]
+                # resolve open shadow entries
+                for t in sh_list:
+                    if t["sym"] != sym or t["status"] != "open": continue
+                    after = x[x.index > pd.Timestamp(t["bar"])]
+                    tgt = t["entry"] * (1 + SH_T)
+                    hit = after[after.high >= tgt]
+                    if len(hit): t.update(status="hit", ret=round(SH_T * 100 - SH_C * 100, 3), exit_time=str(hit.index[0]))
+                    elif t["day"] != str(today) or after_close:
+                        t.update(status="eod", ret=round((float(after.close.iloc[-1]) / t["entry"] - 1 - SH_C) * 100, 3) if len(after) else 0.0)
+                    elif len(after): t["worst"] = round(min(t.get("worst", 0), (float(after.low.min()) / t["entry"] - 1) * 100), 2)
+                if len(done) < 30 or not in_session: continue
+                i = len(done) - 1; r = done.rsi.values; last = done.iloc[i]; ts = done.index[i]
+                if not (dt.time(10, 0) <= ts.time() <= dt.time(15, 30)): continue
+                if r[i - 5:i - 1].min() < 30 and last.close > last.open:
+                    sid = f"shadow-{sym}-{ts.isoformat()}"
+                    if any(t["id"] == sid for t in sh_list): continue
+                    if any(t["sym"] == sym and t["status"] == "open" and t["day"] == str(today) for t in sh_list): continue
+                    sh_list.append(dict(id=sid, sym=sym, bar=ts.isoformat(), day=str(today), entry=round(float(last.close), 2), status="open", rsi=round(float(r[i - 5:i - 1].min()), 1)))
+        del sh_list[:-300]
+    except Exception as e:
+        print("shadow error", e)
+
     # ---------- 5) indicator rule library: status, combo/rule alerts, chart data
     try:
         rtab = load_json(os.path.join(ROOT, "docs", "rules.json"), {})
@@ -324,6 +358,7 @@ def main():
         ind={"rsi14": round(float(d0.rsi14), 1), "atr": round(float(d0.atr), 2), "atr_pct": round(float(d0.atr / d0.close * 100), 2),
              "hh20": round(float(d0.hh20), 2), "ll20": round(float(d0.ll20), 2), "vratio": round(float(d0.vratio), 2), "bar_date": str(last_date)},
         watch=watch,
+        shadow=state.get("shadow", [])[-40:],
         rapid={"lots": RC["lots"], "cash": RC["cash"], "symbols": SYMS, "open": [x for x in state["signals"] if x["kind"] == "rapid" and x["status"] == "open"],
                "closed": [x for x in state["signals"] if x["kind"] == "rapid" and x["status"] == "target"][-10:], "stats": load_json(os.path.join(ROOT, "docs", "rapid_stats.json"), {})},
         risk_cfg={"capital": None, "risk_pct": RISK},  # capital stays private; the dashboard uses your phone's setting
