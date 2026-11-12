@@ -291,6 +291,10 @@ def main():
                     if any(t["id"] == sid for t in sh_list): continue
                     if any(t["sym"] == sym and t["status"] == "open" and t["day"] == str(today) for t in sh_list): continue
                     sh_list.append(dict(id=sid, sym=sym, bar=ts.isoformat(), day=str(today), entry=round(float(last.close), 2), status="open", rsi=round(float(r[i - 5:i - 1].min()), 1)))
+                    e5 = round(float(last.close), 2); t5 = round(e5 * (1 + SH_T), 2)
+                    push(state, f"{sid}:enter", f"{sym} Quick bounce: RSI was under 30 (Low confidence)",
+                         f"5-minute RSI dipped to {round(float(r[i - 5:i - 1].min()), 1)} and the latest candle is green. Buy near {fmt(e5)}, sell limit {fmt(t5)} (+0.28%). "
+                         f"Weak edge in testing (about +0.05% a trade), no stop in the test, worst case about -1.4%. Small size.", 3, "chart_with_upwards_trend", a.dry)
         del sh_list[:-300]
     except Exception as e:
         print("shadow error", e)
