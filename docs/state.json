@@ -142,8 +142,8 @@
    "day_high": 359.37,
    "dip_pct": 0.35,
    "tier": "rapid",
-   "last": 355.25,
-   "pl_pct": -0.8,
+   "last": 355.23,
+   "pl_pct": -0.81,
    "days_held": 0
   },
   {
@@ -163,7 +163,7 @@
    "day_high": 347.2,
    "dip_pct": 0.61,
    "tier": "rapid",
-   "last": 344.55,
+   "last": 344.57,
    "pl_pct": -0.01,
    "days_held": 0
   },
@@ -184,7 +184,7 @@
    "day_high": 273.6,
    "dip_pct": 1.4,
    "tier": "rapid",
-   "last": 269.3,
+   "last": 269.31,
    "pl_pct": -0.2,
    "days_held": 0
   },
@@ -205,7 +205,7 @@
    "day_high": 359.37,
    "dip_pct": 0.82,
    "tier": "rapid",
-   "last": 355.25,
+   "last": 355.23,
    "pl_pct": -0.31,
    "days_held": 0
   },
@@ -226,8 +226,8 @@
    "day_high": 347.2,
    "dip_pct": 0.64,
    "tier": "rapid",
-   "last": 344.55,
-   "pl_pct": -0.07,
+   "last": 344.57,
+   "pl_pct": -0.06,
    "days_held": 0
   },
   {
@@ -247,8 +247,8 @@
    "day_high": 273.6,
    "dip_pct": 1.49,
    "tier": "rapid",
-   "last": 269.3,
-   "pl_pct": -0.06,
+   "last": 269.31,
+   "pl_pct": -0.05,
    "days_held": 0
   }
  ],
@@ -655,12 +655,12 @@
   }
  },
  "status": "ok",
- "updated": "2026-11-12T12:58:37.114319-05:00",
+ "updated": "2026-11-12T13:00:21.024233-05:00",
  "session": "open",
- "price": 355.25,
+ "price": 355.23,
  "prev_close": 355.63,
  "chg_pct": -0.11,
- "vix": 17.51,
+ "vix": 17.46,
  "regime": {
   "label": "NORMAL",
   "mult": 1.0,
@@ -674,7 +674,7 @@
   "above200": true
  },
  "ind": {
-  "rsi14": 60.1,
+  "rsi14": 60.0,
   "atr": 8.34,
   "atr_pct": 2.35,
   "hh20": 355.91,
@@ -697,8 +697,8 @@
    "name": "52-week high breakout",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Price $355.26 vs 52-week high $355.91",
-   "progress": 0.9739101823576448,
+   "text": "Price $355.25 vs 52-week high $355.91",
+   "progress": 0.973508404800638,
    "fired": false
   },
   {
@@ -707,7 +707,7 @@
    "tier": "core",
    "conf": "High",
    "text": "RSI14 is 60; triggers below 30",
-   "progress": 0.24856155219982004,
+   "progress": 0.24880595758746046,
    "fired": false
   },
   {
@@ -715,8 +715,8 @@
    "name": "Volume breakout",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Price $355.26 vs 20-day high $355.91; volume 0.3x avg (needs 1.5x)",
-   "progress": 0.9634742553007047,
+   "text": "Price $355.25 vs 20-day high $355.91; volume 0.3x avg (needs 1.5x)",
+   "progress": 0.9629117667208953,
    "fired": false
   },
   {
@@ -734,7 +734,7 @@
    "tier": "probation",
    "conf": "Low",
    "text": "RSI14 is 60; triggers below 40 in an uptrend",
-   "progress": 0.3314154029330934,
+   "progress": 0.33174127678328064,
    "fired": false
   },
   {
@@ -742,8 +742,8 @@
    "name": "Drop over 3% in uptrend",
    "tier": "probation",
    "conf": "Low",
-   "text": "Today -0.10% (needs -3% or worse) in an uptrend",
-   "progress": 0.03467978068099435,
+   "text": "Today -0.11% (needs -3% or worse) in an uptrend",
+   "progress": 0.035617999755832574,
    "fired": false
   },
   {
@@ -751,7 +751,7 @@
    "name": "Closed at day low (IBS)",
    "tier": "probation",
    "conf": "Low",
-   "text": "Closed at 3% of today's range (needs under 10%)",
+   "text": "Closed at 4% of today's range (needs under 10%)",
    "progress": 1,
    "fired": true
   }
@@ -1339,8 +1339,8 @@
     "day_high": 359.37,
     "dip_pct": 0.35,
     "tier": "rapid",
-    "last": 355.25,
-    "pl_pct": -0.8,
+    "last": 355.23,
+    "pl_pct": -0.81,
     "days_held": 0
    },
    {
@@ -1360,7 +1360,7 @@
     "day_high": 347.2,
     "dip_pct": 0.61,
     "tier": "rapid",
-    "last": 344.55,
+    "last": 344.57,
     "pl_pct": -0.01,
     "days_held": 0
    },
@@ -1381,7 +1381,7 @@
     "day_high": 273.6,
     "dip_pct": 1.4,
     "tier": "rapid",
-    "last": 269.3,
+    "last": 269.31,
     "pl_pct": -0.2,
     "days_held": 0
    },
@@ -1402,7 +1402,7 @@
     "day_high": 359.37,
     "dip_pct": 0.82,
     "tier": "rapid",
-    "last": 355.25,
+    "last": 355.23,
     "pl_pct": -0.31,
     "days_held": 0
    },
@@ -1423,8 +1423,8 @@
     "day_high": 347.2,
     "dip_pct": 0.64,
     "tier": "rapid",
-    "last": 344.55,
-    "pl_pct": -0.07,
+    "last": 344.57,
+    "pl_pct": -0.06,
     "days_held": 0
    },
    {
@@ -1444,8 +1444,8 @@
     "day_high": 273.6,
     "dip_pct": 1.49,
     "tier": "rapid",
-    "last": 269.3,
-    "pl_pct": -0.06,
+    "last": 269.31,
+    "pl_pct": -0.05,
     "days_held": 0
    }
   ],
