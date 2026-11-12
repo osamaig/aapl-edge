@@ -125,7 +125,7 @@ def main():
             if abs(entry - s["plan_entry"]) > 1.0 * s["atr"]:
                 s["status"] = "skipped"; s["note"] = "Opened too far from plan"
                 push(state, f"{s['id']}:skip", f"AAPL plan skipped: {s['name']}", "AAPL opened too far from last night's plan, so do not enter this one.", 2, "no_entry", a.dry); continue
-            if n_open >= CFG["max_open"]:
+            if CFG.get("max_open", 0) and n_open >= CFG["max_open"]:
                 s["status"] = "skipped"; s["note"] = "Max open positions reached"
                 push(state, f"{s['id']}:skip", f"AAPL plan skipped: {s['name']}", f"The app already tracks {n_open} open swing trade(s) of this kind, so it did not enter this one. Do not enter it either, to match the app.", 2, "no_entry", a.dry); continue
             lv = E.plan_levels(entry, s["atr"], s["setup"])
@@ -234,8 +234,6 @@ def main():
             wk = now.isocalendar()[1]
             for sym in SYMS:
                 open_now = [x for x in state["signals"] if x["kind"] == "rapid" and x["status"] == "open"]
-                this_week = [x for x in state["signals"] if x["kind"] == "rapid" and pd.Timestamp(x["created"]).isocalendar()[1] == wk]
-                if len(open_now) >= RC["lots"] or len(this_week) >= RC["weekly"]: break
                 if sym_earnings_soon(sym): continue
                 if any(x["kind"] == "rapid" and x.get("sym", "AAPL") == sym and x["plan_date"] == str(today) for x in state["signals"]): continue
                 c = sctx(sym, True)
@@ -258,7 +256,7 @@ def main():
                                              day_high=det["day_high"], dip_pct=det["dip_pct"], tier="rapid"))
                 push(state, f"{sid}:enter", f"{sym} Rapid: BUY the dip (Medium confidence)",
                      f"Buy {sh} sh of {sym} near {fmt(e)} (limit {fmt(e + max(0.10, e * 0.0003))}). Then place a GOOD-TIL-CANCELLED sell limit at {fmt(tgt)} (stretch {fmt(stc)}). "
-                     f"Down {det['dip_pct']}% from today's high {fmt(det['day_high'])}. No stop: if it drops, hold until green. Cash used about {sh * e:,.0f} USD. Lots open after this: {len(open_now) + 1} of {RC['lots']}.",
+                     f"Down {det['dip_pct']}% from today's high {fmt(det['day_high'])}. No stop: if it drops, hold until green. Cash used about {sh * e:,.0f} USD.",
                      5, "rotating_light", a.dry)
     except Exception as e:
         print("rapid error", e)

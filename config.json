@@ -2,17 +2,17 @@
   "capital": 100000,
   "risk_pct": 0.5,
   "max_position_pct": 10,
-  "max_open": 2,
+  "max_open": 0,
   "fomc": [
     "2026-12-09"
   ],
   "earnings": [],
-  "rapid_lots": 2,
+  "rapid_lots": 0,
   "rapid_lot_shares": 100,
   "rapid_target": 2.0,
   "rapid_stretch": 3.0,
   "rapid_max_cash": 70000,
-  "rapid_weekly_cap": 4,
+  "rapid_weekly_cap": 0,
   "rapid_dip": 0.003,
   "rule_alerts": [
     "macd_cross",
