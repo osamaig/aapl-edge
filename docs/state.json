@@ -141,7 +141,10 @@
    "entry_date": "2026-11-12",
    "day_high": 359.37,
    "dip_pct": 0.35,
-   "tier": "rapid"
+   "tier": "rapid",
+   "last": 357.62,
+   "pl_pct": -0.14,
+   "days_held": 0
   },
   {
    "id": "rapid-JPM-2026-11-12-690",
@@ -159,7 +162,10 @@
    "entry_date": "2026-11-12",
    "day_high": 347.2,
    "dip_pct": 0.61,
-   "tier": "rapid"
+   "tier": "rapid",
+   "last": 344.17,
+   "pl_pct": -0.13,
+   "days_held": 0
   },
   {
    "id": "rapid-AMZN-2026-11-12-690",
@@ -177,7 +183,10 @@
    "entry_date": "2026-11-12",
    "day_high": 273.6,
    "dip_pct": 1.4,
-   "tier": "rapid"
+   "tier": "rapid",
+   "last": 269.16,
+   "pl_pct": -0.25,
+   "days_held": 0
   }
  ],
  "sent": [
@@ -580,12 +589,12 @@
   }
  },
  "status": "ok",
- "updated": "2026-11-12T11:30:52.803405-05:00",
+ "updated": "2026-11-12T11:35:56.504159-05:00",
  "session": "open",
- "price": 358.13,
+ "price": 357.62,
  "prev_close": 355.63,
- "chg_pct": 0.7,
- "vix": 17.46,
+ "chg_pct": 0.56,
+ "vix": 17.43,
  "regime": {
   "label": "NORMAL",
   "mult": 1.0,
@@ -594,17 +603,17 @@
  "events": [],
  "trend": {
   "up": true,
-  "sma50": 338.54,
+  "sma50": 338.53,
   "sma200": 300.78,
   "above200": true
  },
  "ind": {
-  "rsi14": 62.0,
+  "rsi14": 61.7,
   "atr": 8.3,
   "atr_pct": 2.32,
   "hh20": 355.91,
   "ll20": 325.33,
-  "vratio": 0.24,
+  "vratio": 0.25,
   "bar_date": "2026-11-12"
  },
  "watch": [
@@ -622,7 +631,7 @@
    "name": "52-week high breakout",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Price $358.13 vs 52-week high $355.91",
+   "text": "Price $357.61 vs 52-week high $355.91",
    "progress": 1.0,
    "fired": true
   },
@@ -632,7 +641,7 @@
    "tier": "core",
    "conf": "High",
    "text": "RSI14 is 62; triggers below 30",
-   "progress": 0.20058451802192928,
+   "progress": 0.20849500301454782,
    "fired": false
   },
   {
@@ -640,7 +649,7 @@
    "name": "Volume breakout",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Price $358.13 vs 20-day high $355.91; volume 0.2x avg (needs 1.5x)",
+   "text": "Price $357.61 vs 20-day high $355.91; volume 0.2x avg (needs 1.5x)",
    "progress": 1.0,
    "fired": false
   },
@@ -649,7 +658,7 @@
    "name": "VIX falling from spike",
    "tier": "probation",
    "conf": "Low",
-   "text": "VIX 17.5; 5-day high 25.6 (needs 25+ then a 10% fall)",
+   "text": "VIX 17.4; 5-day high 25.6 (needs 25+ then a 10% fall)",
    "progress": 1.0,
    "fired": true
   },
@@ -659,7 +668,7 @@
    "tier": "probation",
    "conf": "Low",
    "text": "RSI14 is 62; triggers below 40 in an uptrend",
-   "progress": 0.267446024029239,
+   "progress": 0.2779933373527304,
    "fired": false
   },
   {
@@ -667,7 +676,7 @@
    "name": "Drop over 3% in uptrend",
    "tier": "probation",
    "conf": "Low",
-   "text": "Today +0.70% (needs -3% or worse) in an uptrend",
+   "text": "Today +0.56% (needs -3% or worse) in an uptrend",
    "progress": 0.0,
    "fired": false
   },
@@ -676,8 +685,8 @@
    "name": "Closed at day low (IBS)",
    "tier": "probation",
    "conf": "Low",
-   "text": "Closed at 64% of today's range (needs under 10%)",
-   "progress": 0.3990273094762595,
+   "text": "Closed at 49% of today's range (needs under 10%)",
+   "progress": 0.5681861760341721,
    "fired": false
   }
  ],
@@ -1263,7 +1272,10 @@
     "entry_date": "2026-11-12",
     "day_high": 359.37,
     "dip_pct": 0.35,
-    "tier": "rapid"
+    "tier": "rapid",
+    "last": 357.62,
+    "pl_pct": -0.14,
+    "days_held": 0
    },
    {
     "id": "rapid-JPM-2026-11-12-690",
@@ -1281,7 +1293,10 @@
     "entry_date": "2026-11-12",
     "day_high": 347.2,
     "dip_pct": 0.61,
-    "tier": "rapid"
+    "tier": "rapid",
+    "last": 344.17,
+    "pl_pct": -0.13,
+    "days_held": 0
    },
    {
     "id": "rapid-AMZN-2026-11-12-690",
@@ -1299,7 +1314,10 @@
     "entry_date": "2026-11-12",
     "day_high": 273.6,
     "dip_pct": 1.4,
-    "tier": "rapid"
+    "tier": "rapid",
+    "last": 269.16,
+    "pl_pct": -0.25,
+    "days_held": 0
    }
   ],
   "closed": [
