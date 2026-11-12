@@ -964,12 +964,12 @@
   }
  },
  "status": "ok",
- "updated": "2026-11-12T16:15:21.110878-05:00",
+ "updated": "2026-11-12T16:26:20.967466-05:00",
  "session": "closed",
  "price": 354.88,
  "prev_close": 355.63,
  "chg_pct": -0.21,
- "vix": 18.76,
+ "vix": 18.73,
  "regime": {
   "label": "NORMAL",
   "mult": 1.0,
@@ -997,7 +997,7 @@
    "name": "Gap-down dip buy",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Today's gap +0.61% (needs below -1.5%) in an uptrend",
+   "text": "Today's gap +0.58% (needs below -1.5%) in an uptrend",
    "progress": 0.0,
    "fired": false
   },
@@ -1033,7 +1033,7 @@
    "name": "VIX falling from spike",
    "tier": "probation",
    "conf": "Low",
-   "text": "VIX 18.8; 5-day high 25.6 (needs 25+ then a 10% fall)",
+   "text": "VIX 18.7; 5-day high 25.6 (needs 25+ then a 10% fall)",
    "progress": 1.0,
    "fired": true
   },
