@@ -502,6 +502,44 @@
    "last": 523.0,
    "pl_pct": 0.15,
    "days_held": 0
+  },
+  {
+   "id": "vix_fall-2026-11-12",
+   "kind": "swing",
+   "setup": "vix_fall",
+   "name": "VIX falling from spike",
+   "tier": "probation",
+   "conf": "Low",
+   "created": "2026-11-12T16:05:20.732021-05:00",
+   "plan_date": "2026-11-12",
+   "plan_entry": 354.88,
+   "atr": 8.39,
+   "hold": 10,
+   "stop_k": 2.0,
+   "tgt_k": 3.0,
+   "mult": 0.5,
+   "status": "planned",
+   "stop": 338.1,
+   "target": 380.05
+  },
+  {
+   "id": "ibs10-2026-11-12",
+   "kind": "swing",
+   "setup": "ibs10",
+   "name": "Closed at day low (IBS)",
+   "tier": "probation",
+   "conf": "Low",
+   "created": "2026-11-12T16:05:20.732021-05:00",
+   "plan_date": "2026-11-12",
+   "plan_entry": 354.88,
+   "atr": 8.39,
+   "hold": 10,
+   "stop_k": 2.0,
+   "tgt_k": 3.0,
+   "mult": 0.5,
+   "status": "planned",
+   "stop": 338.1,
+   "target": 380.05
   }
  ],
  "sent": [
@@ -536,7 +574,10 @@
   "rapid-AAPL-2026-11-12-930:enter",
   "rapid-JPM-2026-11-12-930:enter",
   "rapid-AMZN-2026-11-12-930:enter",
-  "rapid-MSFT-2026-11-12-930:enter"
+  "rapid-MSFT-2026-11-12-930:enter",
+  "vix_fall-2026-11-12:plan",
+  "ibs10-2026-11-12:plan",
+  "rapid-summary-2026-11-12"
  ],
  "stats": {
   "gap_down": {
@@ -923,12 +964,12 @@
   }
  },
  "status": "ok",
- "updated": "2026-11-12T16:01:21.221478-05:00",
+ "updated": "2026-11-12T16:05:20.732021-05:00",
  "session": "closed",
  "price": 354.88,
  "prev_close": 355.63,
  "chg_pct": -0.21,
- "vix": 18.92,
+ "vix": 18.98,
  "regime": {
   "label": "NORMAL",
   "mult": 1.0,
@@ -947,7 +988,7 @@
   "atr_pct": 2.36,
   "hh20": 355.91,
   "ll20": 325.33,
-  "vratio": 0.6,
+  "vratio": 0.52,
   "bar_date": "2026-11-12"
  },
  "watch": [
@@ -983,7 +1024,7 @@
    "name": "Volume breakout",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Price $354.88 vs 20-day high $355.91; volume 0.6x avg (needs 1.5x)",
+   "text": "Price $354.88 vs 20-day high $355.91; volume 0.5x avg (needs 1.5x)",
    "progress": 0.9421202681184138,
    "fired": false
   },
@@ -992,7 +1033,7 @@
    "name": "VIX falling from spike",
    "tier": "probation",
    "conf": "Low",
-   "text": "VIX 18.9; 5-day high 25.6 (needs 25+ then a 10% fall)",
+   "text": "VIX 19.0; 5-day high 25.6 (needs 25+ then a 10% fall)",
    "progress": 1.0,
    "fired": true
   },
@@ -2101,9 +2142,10 @@
    "bar": "2026-11-12T13:00:00-05:00",
    "day": "2026-11-12",
    "entry": 355.53,
-   "status": "open",
+   "status": "eod",
    "rsi": 27.0,
-   "worst": -0.32
+   "worst": -0.32,
+   "ret": -0.203
   },
   {
    "id": "shadow-MSFT-2026-11-12T13:55:00-05:00",
@@ -2123,9 +2165,10 @@
    "bar": "2026-11-12T14:05:00-05:00",
    "day": "2026-11-12",
    "entry": 525.48,
-   "status": "open",
+   "status": "eod",
    "rsi": 26.9,
-   "worst": -0.93
+   "worst": -0.93,
+   "ret": -0.492
   },
   {
    "id": "shadow-AMZN-2026-11-12T14:50:00-05:00",
@@ -2133,9 +2176,10 @@
    "bar": "2026-11-12T14:50:00-05:00",
    "day": "2026-11-12",
    "entry": 267.99,
-   "status": "open",
+   "status": "eod",
    "rsi": 28.8,
-   "worst": -0.29
+   "worst": -0.29,
+   "ret": -0.225
   }
  ]
 }
