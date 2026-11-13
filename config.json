@@ -42,5 +42,11 @@
   "retire": [
     "gap_down-2026-11-06",
     "vix_fall-2026-11-09"
+  ],
+  "oswing_symbols": [
+    "GOOGL",
+    "WMT",
+    "PG",
+    "MSFT"
   ]
 }

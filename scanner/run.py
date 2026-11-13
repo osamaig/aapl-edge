@@ -299,6 +299,61 @@ def main():
     except Exception as e:
         print("shadow error", e)
 
+    # ---------- 4c) Oversold bounce swing on other stocks (daily RSI14 under 30). Plan after the close, enter at the next open, stop 2 ATR, target 3 ATR, hold up to 10 days. No caps.
+    try:
+        OSYMS = [x for x in CFG.get("oswing_symbols", []) if x != "AAPL"]
+        OSS = load_json(os.path.join(ROOT, "docs", "oswing_stats.json"), {}).get("by", {})
+        xs = state["signals"]
+        for t in [x for x in xs if x["kind"] == "oswing" and x["status"] in ("planned", "open")]:
+            sym = t["sym"]; c = sctx(sym, False); dfx = c["df"]
+            if dfx is None: continue
+            ld = dfx.index[-1].date()
+            if t["status"] == "planned":
+                if (pd.Timestamp(today) - pd.Timestamp(t["plan_date"])).days > 4: t["status"] = "expired"; continue
+                if ld == today and today > pd.Timestamp(t["plan_date"]).date() and live and mins >= 9 * 60 + 35:
+                    entry = float(dfx.open.iloc[-1])
+                    if abs(entry - t["plan_entry"]) > 1.0 * t["atr"]:
+                        t["status"] = "skipped"; t["note"] = "Opened too far from plan"
+                        push(state, f"{t['id']}:skip", f"{sym} plan skipped: Oversold bounce", f"{sym} opened too far from last night's plan, so do not enter this one.", 2, "no_entry", a.dry); continue
+                    stop, tgt = round(entry - 2.0 * t["atr"], 2), round(entry + 3.0 * t["atr"], 2)
+                    t.update(status="open", entry=round(entry, 2), entry_date=str(ld), stop=stop, target=tgt)
+                    sz = E.size(entry, stop, CAPITAL, RISK, MAXPOS, t["mult"])
+                    push(state, f"{t['id']}:enter", f"{sym} ENTER NOW (Medium confidence): Oversold bounce",
+                         f"Buy ~{sz['shares']} sh of {sym} at {fmt(entry)} (limit {fmt(entry * 1.002)}). Stop {fmt(stop)}. Target {fmt(tgt)}. Max hold {t['hold']} days. Risk {fmt(sz['risk'])}.", 4, "rotating_light", a.dry)
+            if t["status"] == "open":
+                bars = dfx[dfx.index >= pd.Timestamp(t["entry_date"])]; res = None
+                for n_, (d_, r_) in enumerate(bars.iterrows(), 1):
+                    closed_ = d_ < dfx.index[-1] or after_close
+                    if r_.low <= t["stop"]: res = ("stop", t["stop"], d_); break
+                    if r_.high >= t["target"]: res = ("target", t["target"], d_); break
+                    if n_ >= t["hold"] and closed_: res = ("timeout", float(r_.close), d_); break
+                    if n_ >= t["hold"] and in_session and mins >= 15 * 60 + 30:
+                        push(state, f"{t['id']}:timestop", f"{sym} time stop", f"Oversold bounce: max hold reached. Sell before the close.", 4, "alarm_clock", a.dry)
+                if res:
+                    kind_, ex_, d_ = res
+                    t.update(status=kind_, exit=round(ex_, 2), exit_date=str(d_.date()), R=round((ex_ - t["entry"]) / (t["entry"] - t["stop"]), 2))
+                    word = {"target": "TARGET HIT - sell", "stop": "STOP HIT - sell", "timeout": "TIME STOP - sell"}[kind_]
+                    push(state, f"{t['id']}:exit", f"{sym} {word}", f"Oversold bounce: exit near {fmt(ex_)} ({t['R']:+.2f}R).", 5 if kind_ != "target" else 4,
+                         "white_check_mark" if kind_ == "target" else "octagonal_sign", a.dry)
+        if after_close:
+            for sym in OSYMS:
+                c = sctx(sym, False); dfx = c["df"]
+                if dfx is None or dfx.index[-1].date() != last_date: continue
+                if float(dfx.rsi14.iloc[-1]) >= CFG.get("oswing_rsi", 30): continue
+                sid = f"oswing-{sym}-{last_date}"
+                if any(x["id"] == sid for x in xs) or any(x["kind"] == "oswing" and x["sym"] == sym and x["status"] in ("planned", "open") for x in xs): continue
+                if sym_earnings_soon(sym): continue
+                r0 = dfx.iloc[-1]; entry = float(r0.close); atr_ = float(r0.atr); rg = E.regime(float(r0.vix), bool(r0.up))
+                stop, tgt = round(entry - 2.0 * atr_, 2), round(entry + 3.0 * atr_, 2)
+                xs.append(dict(id=sid, kind="oswing", setup="oswing", sym=sym, name=f"{sym} Oversold bounce", tier="core", conf="Medium", created=now.isoformat(),
+                               plan_date=str(last_date), plan_entry=round(entry, 2), atr=round(atr_, 2), hold=10, mult=rg["mult"], status="planned", stop=stop, target=tgt))
+                sz = E.size(entry, stop, CAPITAL, RISK, MAXPOS, rg["mult"]); st = OSS.get(sym, {})
+                push(state, f"{sid}:plan", f"{sym} plan for tomorrow (Medium confidence): Oversold bounce",
+                     f"{sym} closed oversold (daily RSI {float(r0.rsi14):.0f}). Buy at the open if near {fmt(entry)}. Stop ~{fmt(stop)}, target ~{fmt(tgt)}, hold up to 10 days, ~{sz['shares']} sh. "
+                     f"Backtest: {st.get('win', '?')}% win, {st.get('avgR', '?')}R avg over {st.get('n', '?')} trades. Final levels arrive at 9:35 AM.", 4, "calendar", a.dry)
+    except Exception as e:
+        print("oswing error", e)
+
     # ---------- 5) indicator rule library: status, combo/rule alerts, chart data
     try:
         rtab = load_json(os.path.join(ROOT, "docs", "rules.json"), {})
@@ -363,6 +418,7 @@ def main():
              "hh20": round(float(d0.hh20), 2), "ll20": round(float(d0.ll20), 2), "vratio": round(float(d0.vratio), 2), "bar_date": str(last_date)},
         watch=watch,
         shadow=state.get("shadow", [])[-40:],
+        oswing={"open": [x for x in state["signals"] if x["kind"] == "oswing" and x["status"] in ("planned", "open")], "closed": [x for x in state["signals"] if x["kind"] == "oswing" and x["status"] in ("target", "stop", "timeout")][-8:], "stats": load_json(os.path.join(ROOT, "docs", "oswing_stats.json"), {}).get("by", {})},
         rapid={"lots": RC["lots"], "cash": RC["cash"], "symbols": SYMS, "open": [x for x in state["signals"] if x["kind"] == "rapid" and x["status"] == "open"],
                "closed": [x for x in state["signals"] if x["kind"] == "rapid" and x["status"] == "target"][-10:], "stats": load_json(os.path.join(ROOT, "docs", "rapid_stats.json"), {})},
         risk_cfg={"capital": None, "risk_pct": RISK},  # capital stays private; the dashboard uses your phone's setting
