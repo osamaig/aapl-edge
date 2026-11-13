@@ -188,8 +188,8 @@
    "day_high": 273.6,
    "dip_pct": 1.4,
    "tier": "rapid",
-   "last": 264.98,
-   "pl_pct": -1.8,
+   "last": 264.62,
+   "pl_pct": -1.94,
    "days_held": 1
   },
   {
@@ -255,8 +255,8 @@
    "day_high": 273.6,
    "dip_pct": 1.49,
    "tier": "rapid",
-   "last": 264.98,
-   "pl_pct": -1.66,
+   "last": 264.62,
+   "pl_pct": -1.79,
    "days_held": 1
   },
   {
@@ -322,8 +322,8 @@
    "day_high": 273.6,
    "dip_pct": 1.57,
    "tier": "rapid",
-   "last": 264.98,
-   "pl_pct": -1.6,
+   "last": 264.62,
+   "pl_pct": -1.73,
    "days_held": 1
   },
   {
@@ -343,8 +343,8 @@
    "day_high": 529.61,
    "dip_pct": 0.68,
    "tier": "rapid",
-   "last": 522.34,
-   "pl_pct": -0.48,
+   "last": 522.78,
+   "pl_pct": -0.39,
    "days_held": 1
   },
   {
@@ -410,8 +410,8 @@
    "day_high": 273.6,
    "dip_pct": 1.65,
    "tier": "rapid",
-   "last": 264.98,
-   "pl_pct": -1.51,
+   "last": 264.62,
+   "pl_pct": -1.64,
    "days_held": 1
   },
   {
@@ -431,8 +431,8 @@
    "day_high": 529.61,
    "dip_pct": 1.11,
    "tier": "rapid",
-   "last": 522.34,
-   "pl_pct": -0.25,
+   "last": 522.78,
+   "pl_pct": -0.16,
    "days_held": 1
   },
   {
@@ -568,6 +568,78 @@
    "target": 383.13,
    "entry": 357.96,
    "entry_date": "2026-11-13"
+  },
+  {
+   "id": "rapid-AAPL-2026-11-13-690",
+   "kind": "rapid",
+   "setup": "rapid",
+   "sym": "AAPL",
+   "name": "AAPL Rapid dip buy",
+   "created": "2026-11-13T11:30:21.099811-05:00",
+   "plan_date": "2026-11-13",
+   "entry": 358.26,
+   "target": 360.26,
+   "stretch": 361.26,
+   "shares": 100,
+   "status": "open",
+   "entry_date": "2026-11-13",
+   "day_high": 360.83,
+   "dip_pct": 0.65,
+   "tier": "rapid"
+  },
+  {
+   "id": "rapid-JPM-2026-11-13-690",
+   "kind": "rapid",
+   "setup": "rapid",
+   "sym": "JPM",
+   "name": "JPM Rapid dip buy",
+   "created": "2026-11-13T11:30:21.099811-05:00",
+   "plan_date": "2026-11-13",
+   "entry": 344.74,
+   "target": 346.71,
+   "stretch": 347.7,
+   "shares": 101,
+   "status": "open",
+   "entry_date": "2026-11-13",
+   "day_high": 346.8,
+   "dip_pct": 0.52,
+   "tier": "rapid"
+  },
+  {
+   "id": "rapid-AMZN-2026-11-13-690",
+   "kind": "rapid",
+   "setup": "rapid",
+   "sym": "AMZN",
+   "name": "AMZN Rapid dip buy",
+   "created": "2026-11-13T11:30:21.099811-05:00",
+   "plan_date": "2026-11-13",
+   "entry": 264.62,
+   "target": 266.13,
+   "stretch": 266.9,
+   "shares": 132,
+   "status": "open",
+   "entry_date": "2026-11-13",
+   "day_high": 269.94,
+   "dip_pct": 1.84,
+   "tier": "rapid"
+  },
+  {
+   "id": "rapid-MSFT-2026-11-13-690",
+   "kind": "rapid",
+   "setup": "rapid",
+   "sym": "MSFT",
+   "name": "MSFT Rapid dip buy",
+   "created": "2026-11-13T11:30:21.099811-05:00",
+   "plan_date": "2026-11-13",
+   "entry": 522.78,
+   "target": 525.76,
+   "stretch": 527.28,
+   "shares": 66,
+   "status": "open",
+   "entry_date": "2026-11-13",
+   "day_high": 526.07,
+   "dip_pct": 0.57,
+   "tier": "rapid"
   }
  ],
  "sent": [
@@ -623,7 +695,11 @@
   "shadow-GOOGL-2026-11-13T10:45:00-05:00:enter",
   "rapid-MSFT-2026-11-12-930:exit",
   "shadow-GOOGL-2026-11-13T10:55:00-05:00:enter",
-  "shadow-AMZN-2026-11-13T10:55:00-05:00:enter"
+  "shadow-AMZN-2026-11-13T10:55:00-05:00:enter",
+  "rapid-AAPL-2026-11-13-690:enter",
+  "rapid-JPM-2026-11-13-690:enter",
+  "rapid-AMZN-2026-11-13-690:enter",
+  "rapid-MSFT-2026-11-13-690:enter"
  ],
  "stats": {
   "gap_down": {
@@ -1010,12 +1086,12 @@
   }
  },
  "status": "ok",
- "updated": "2026-11-13T11:26:21.165949-05:00",
+ "updated": "2026-11-13T11:30:21.099811-05:00",
  "session": "open",
- "price": 357.65,
+ "price": 358.26,
  "prev_close": 354.88,
- "chg_pct": 0.78,
- "vix": 20.08,
+ "chg_pct": 0.95,
+ "vix": 20.39,
  "regime": {
   "label": "NORMAL",
   "mult": 1.0,
@@ -1024,17 +1100,17 @@
  "events": [],
  "trend": {
   "up": true,
-  "sma50": 339.07,
+  "sma50": 339.08,
   "sma200": 301.26,
   "above200": true
  },
  "ind": {
-  "rsi14": 61.6,
+  "rsi14": 62.0,
   "atr": 8.22,
-  "atr_pct": 2.3,
+  "atr_pct": 2.29,
   "hh20": 359.37,
   "ll20": 325.33,
-  "vratio": 0.28,
+  "vratio": 0.29,
   "bar_date": "2026-11-13"
  },
  "watch": [
@@ -1052,8 +1128,8 @@
    "name": "52-week high breakout",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Price $357.81 vs 52-week high $359.37",
-   "progress": 0.9379868110546759,
+   "text": "Price $358.33 vs 52-week high $359.37",
+   "progress": 0.9586574696571124,
    "fired": false
   },
   {
@@ -1062,7 +1138,7 @@
    "tier": "core",
    "conf": "High",
    "text": "RSI14 is 62; triggers below 30",
-   "progress": 0.20887565962395324,
+   "progress": 0.20068751892672604,
    "fired": false
   },
   {
@@ -1070,8 +1146,8 @@
    "name": "Volume breakout",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Price $357.81 vs 20-day high $359.37; volume 0.3x avg (needs 1.5x)",
-   "progress": 0.9131815354765482,
+   "text": "Price $358.33 vs 20-day high $359.37; volume 0.3x avg (needs 1.5x)",
+   "progress": 0.9421204575199593,
    "fired": false
   },
   {
@@ -1079,8 +1155,8 @@
    "name": "VIX falling from spike",
    "tier": "probation",
    "conf": "Low",
-   "text": "VIX 20.1; 5-day high 20.1 (needs 25+ then a 10% fall)",
-   "progress": 0.2539999961853027,
+   "text": "VIX 20.4; 5-day high 20.4 (needs 25+ then a 10% fall)",
+   "progress": 0.2694999694824219,
    "fired": false
   },
   {
@@ -1089,7 +1165,7 @@
    "tier": "probation",
    "conf": "Low",
    "text": "RSI14 is 62; triggers below 40 in an uptrend",
-   "progress": 0.2785008794986043,
+   "progress": 0.2675833585689681,
    "fired": false
   },
   {
@@ -1097,7 +1173,7 @@
    "name": "Drop over 3% in uptrend",
    "tier": "probation",
    "conf": "Low",
-   "text": "Today +0.83% (needs -3% or worse) in an uptrend",
+   "text": "Today +0.97% (needs -3% or worse) in an uptrend",
    "progress": 0.0,
    "fired": false
   },
@@ -1106,8 +1182,8 @@
    "name": "Closed at day low (IBS)",
    "tier": "probation",
    "conf": "Low",
-   "text": "Closed at 14% of today's range (needs under 10%)",
-   "progress": 0.9505791809912981,
+   "text": "Closed at 29% of today's range (needs under 10%)",
+   "progress": 0.7869061581746697,
    "fired": false
   }
  ],
@@ -1694,8 +1770,8 @@
     "day_high": 273.6,
     "dip_pct": 1.4,
     "tier": "rapid",
-    "last": 264.98,
-    "pl_pct": -1.8,
+    "last": 264.62,
+    "pl_pct": -1.94,
     "days_held": 1
    },
    {
@@ -1715,8 +1791,8 @@
     "day_high": 273.6,
     "dip_pct": 1.49,
     "tier": "rapid",
-    "last": 264.98,
-    "pl_pct": -1.66,
+    "last": 264.62,
+    "pl_pct": -1.79,
     "days_held": 1
    },
    {
@@ -1736,8 +1812,8 @@
     "day_high": 273.6,
     "dip_pct": 1.57,
     "tier": "rapid",
-    "last": 264.98,
-    "pl_pct": -1.6,
+    "last": 264.62,
+    "pl_pct": -1.73,
     "days_held": 1
    },
    {
@@ -1757,8 +1833,8 @@
     "day_high": 529.61,
     "dip_pct": 0.68,
     "tier": "rapid",
-    "last": 522.34,
-    "pl_pct": -0.48,
+    "last": 522.78,
+    "pl_pct": -0.39,
     "days_held": 1
    },
    {
@@ -1778,8 +1854,8 @@
     "day_high": 273.6,
     "dip_pct": 1.65,
     "tier": "rapid",
-    "last": 264.98,
-    "pl_pct": -1.51,
+    "last": 264.62,
+    "pl_pct": -1.64,
     "days_held": 1
    },
    {
@@ -1799,9 +1875,81 @@
     "day_high": 529.61,
     "dip_pct": 1.11,
     "tier": "rapid",
-    "last": 522.34,
-    "pl_pct": -0.25,
+    "last": 522.78,
+    "pl_pct": -0.16,
     "days_held": 1
+   },
+   {
+    "id": "rapid-AAPL-2026-11-13-690",
+    "kind": "rapid",
+    "setup": "rapid",
+    "sym": "AAPL",
+    "name": "AAPL Rapid dip buy",
+    "created": "2026-11-13T11:30:21.099811-05:00",
+    "plan_date": "2026-11-13",
+    "entry": 358.26,
+    "target": 360.26,
+    "stretch": 361.26,
+    "shares": 100,
+    "status": "open",
+    "entry_date": "2026-11-13",
+    "day_high": 360.83,
+    "dip_pct": 0.65,
+    "tier": "rapid"
+   },
+   {
+    "id": "rapid-JPM-2026-11-13-690",
+    "kind": "rapid",
+    "setup": "rapid",
+    "sym": "JPM",
+    "name": "JPM Rapid dip buy",
+    "created": "2026-11-13T11:30:21.099811-05:00",
+    "plan_date": "2026-11-13",
+    "entry": 344.74,
+    "target": 346.71,
+    "stretch": 347.7,
+    "shares": 101,
+    "status": "open",
+    "entry_date": "2026-11-13",
+    "day_high": 346.8,
+    "dip_pct": 0.52,
+    "tier": "rapid"
+   },
+   {
+    "id": "rapid-AMZN-2026-11-13-690",
+    "kind": "rapid",
+    "setup": "rapid",
+    "sym": "AMZN",
+    "name": "AMZN Rapid dip buy",
+    "created": "2026-11-13T11:30:21.099811-05:00",
+    "plan_date": "2026-11-13",
+    "entry": 264.62,
+    "target": 266.13,
+    "stretch": 266.9,
+    "shares": 132,
+    "status": "open",
+    "entry_date": "2026-11-13",
+    "day_high": 269.94,
+    "dip_pct": 1.84,
+    "tier": "rapid"
+   },
+   {
+    "id": "rapid-MSFT-2026-11-13-690",
+    "kind": "rapid",
+    "setup": "rapid",
+    "sym": "MSFT",
+    "name": "MSFT Rapid dip buy",
+    "created": "2026-11-13T11:30:21.099811-05:00",
+    "plan_date": "2026-11-13",
+    "entry": 522.78,
+    "target": 525.76,
+    "stretch": 527.28,
+    "shares": 66,
+    "status": "open",
+    "entry_date": "2026-11-13",
+    "day_high": 526.07,
+    "dip_pct": 0.57,
+    "tier": "rapid"
    }
   ],
   "closed": [
