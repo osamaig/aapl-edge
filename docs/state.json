@@ -607,8 +607,8 @@
    "day_high": 346.8,
    "dip_pct": 0.52,
    "tier": "rapid",
-   "last": 346.49,
-   "pl_pct": 0.51,
+   "last": 346.19,
+   "pl_pct": 0.42,
    "days_held": 0
   },
   {
@@ -850,8 +850,8 @@
    "day_high": 346.8,
    "dip_pct": 0.65,
    "tier": "rapid",
-   "last": 346.49,
-   "pl_pct": 0.54,
+   "last": 346.19,
+   "pl_pct": 0.45,
    "days_held": 0
   },
   {
@@ -1390,12 +1390,12 @@
   }
  },
  "status": "ok",
- "updated": "2026-11-13T16:05:20.508928-05:00",
+ "updated": "2026-11-13T16:15:21.258135-05:00",
  "session": "closed",
  "price": 356.27,
  "prev_close": 354.88,
  "chg_pct": 0.39,
- "vix": 18.97,
+ "vix": 18.86,
  "regime": {
   "label": "NORMAL",
   "mult": 1.0,
@@ -1414,7 +1414,7 @@
   "atr_pct": 2.31,
   "hh20": 359.37,
   "ll20": 325.33,
-  "vratio": 0.72,
+  "vratio": 0.83,
   "bar_date": "2026-11-13"
  },
  "watch": [
@@ -1450,7 +1450,7 @@
    "name": "Volume breakout",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Price $356.27 vs 20-day high $359.37; volume 0.7x avg (needs 1.5x)",
+   "text": "Price $356.27 vs 20-day high $359.37; volume 0.8x avg (needs 1.5x)",
    "progress": 0.8274755185109584,
    "fired": false
   },
@@ -1459,8 +1459,8 @@
    "name": "VIX falling from spike",
    "tier": "probation",
    "conf": "Low",
-   "text": "VIX 19.0; 5-day high 19.9 (needs 25+ then a 10% fall)",
-   "progress": 0.48445400966332514,
+   "text": "VIX 18.9; 5-day high 19.9 (needs 25+ then a 10% fall)",
+   "progress": 0.5120641257731726,
    "fired": false
   },
   {
@@ -2221,8 +2221,8 @@
     "day_high": 346.8,
     "dip_pct": 0.52,
     "tier": "rapid",
-    "last": 346.49,
-    "pl_pct": 0.51,
+    "last": 346.19,
+    "pl_pct": 0.42,
     "days_held": 0
    },
    {
@@ -2326,8 +2326,8 @@
     "day_high": 346.8,
     "dip_pct": 0.65,
     "tier": "rapid",
-    "last": 346.49,
-    "pl_pct": 0.54,
+    "last": 346.19,
+    "pl_pct": 0.45,
     "days_held": 0
    }
   ],
