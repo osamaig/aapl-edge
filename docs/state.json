@@ -1093,7 +1093,8 @@
   "rapid-JPM-2026-11-16-690:enter",
   "rapid-MSFT-2026-11-16-690:enter",
   "shadow-AAPL-2026-11-16T13:45:00-05:00:enter",
-  "shadow-MSFT-2026-11-16T14:55:00-05:00:enter"
+  "shadow-MSFT-2026-11-16T14:55:00-05:00:enter",
+  "rapid-summary-2026-11-16"
  ],
  "stats": {
   "gap_down": {
@@ -1480,12 +1481,12 @@
   }
  },
  "status": "ok",
- "updated": "2026-11-16T16:01:20.848414-05:00",
+ "updated": "2026-11-16T16:05:20.594017-05:00",
  "session": "closed",
  "price": 352.78,
  "prev_close": 356.27,
  "chg_pct": -0.98,
- "vix": 23.89,
+ "vix": 23.77,
  "regime": {
   "label": "CAUTIOUS",
   "mult": 0.75,
@@ -1549,8 +1550,8 @@
    "name": "VIX falling from spike",
    "tier": "probation",
    "conf": "Low",
-   "text": "VIX 23.9; 5-day high 23.9 (needs 25+ then a 10% fall)",
-   "progress": 0.4444999694824219,
+   "text": "VIX 23.8; 5-day high 23.8 (needs 25+ then a 10% fall)",
+   "progress": 0.43850002288818357,
    "fired": false
   },
   {
@@ -2868,9 +2869,10 @@
    "bar": "2026-11-16T10:30:00-05:00",
    "day": "2026-11-16",
    "entry": 342.6,
-   "status": "open",
+   "status": "eod",
    "rsi": 29.9,
-   "worst": -1.73
+   "worst": -1.73,
+   "ret": -1.277
   },
   {
    "id": "shadow-AMZN-2026-11-16T10:30:00-05:00",
@@ -2961,9 +2963,10 @@
    "bar": "2026-11-16T10:50:00-05:00",
    "day": "2026-11-16",
    "entry": 289.18,
-   "status": "open",
+   "status": "eod",
    "rsi": 18.4,
-   "worst": -2.02
+   "worst": -2.02,
+   "ret": -1.908
   },
   {
    "id": "shadow-AMZN-2026-11-16T10:50:00-05:00",
@@ -2971,9 +2974,10 @@
    "bar": "2026-11-16T10:50:00-05:00",
    "day": "2026-11-16",
    "entry": 262.02,
-   "status": "open",
+   "status": "eod",
    "rsi": 19.0,
-   "worst": -2.04
+   "worst": -2.04,
+   "ret": -1.65
   },
   {
    "id": "shadow-AAPL-2026-11-16T13:45:00-05:00",
@@ -2981,9 +2985,10 @@
    "bar": "2026-11-16T13:45:00-05:00",
    "day": "2026-11-16",
    "entry": 352.87,
-   "status": "open",
+   "status": "eod",
    "rsi": 29.2,
-   "worst": -0.44
+   "worst": -0.44,
+   "ret": -0.046
   },
   {
    "id": "shadow-MSFT-2026-11-16T14:55:00-05:00",
@@ -2991,9 +2996,10 @@
    "bar": "2026-11-16T14:55:00-05:00",
    "day": "2026-11-16",
    "entry": 519.12,
-   "status": "open",
+   "status": "eod",
    "rsi": 29.8,
-   "worst": -0.42
+   "worst": -0.42,
+   "ret": -0.238
   }
  ],
  "oswing": {
