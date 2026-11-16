@@ -1481,12 +1481,12 @@
   }
  },
  "status": "ok",
- "updated": "2026-11-16T16:15:20.926975-05:00",
+ "updated": "2026-11-16T16:16:20.471425-05:00",
  "session": "closed",
  "price": 352.78,
  "prev_close": 356.27,
  "chg_pct": -0.98,
- "vix": 23.42,
+ "vix": 23.29,
  "regime": {
   "label": "CAUTIOUS",
   "mult": 0.75,
@@ -1550,8 +1550,8 @@
    "name": "VIX falling from spike",
    "tier": "probation",
    "conf": "Low",
-   "text": "VIX 23.4; 5-day high 23.4 (needs 25+ then a 10% fall)",
-   "progress": 0.42100000381469727,
+   "text": "VIX 23.3; 5-day high 23.3 (needs 25+ then a 10% fall)",
+   "progress": 0.4145000457763672,
    "fired": false
   },
   {
