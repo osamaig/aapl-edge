@@ -188,8 +188,8 @@
    "day_high": 273.6,
    "dip_pct": 1.4,
    "tier": "rapid",
-   "last": 261.77,
-   "pl_pct": -2.99,
+   "last": 262.2,
+   "pl_pct": -2.84,
    "days_held": 4
   },
   {
@@ -255,8 +255,8 @@
    "day_high": 273.6,
    "dip_pct": 1.49,
    "tier": "rapid",
-   "last": 261.77,
-   "pl_pct": -2.85,
+   "last": 262.2,
+   "pl_pct": -2.69,
    "days_held": 4
   },
   {
@@ -322,8 +322,8 @@
    "day_high": 273.6,
    "dip_pct": 1.57,
    "tier": "rapid",
-   "last": 261.77,
-   "pl_pct": -2.79,
+   "last": 262.2,
+   "pl_pct": -2.63,
    "days_held": 4
   },
   {
@@ -412,8 +412,8 @@
    "day_high": 273.6,
    "dip_pct": 1.65,
    "tier": "rapid",
-   "last": 261.77,
-   "pl_pct": -2.7,
+   "last": 262.2,
+   "pl_pct": -2.54,
    "days_held": 4
   },
   {
@@ -590,8 +590,8 @@
    "day_high": 360.83,
    "dip_pct": 0.65,
    "tier": "rapid",
-   "last": 355.14,
-   "pl_pct": -0.87,
+   "last": 355.42,
+   "pl_pct": -0.79,
    "days_held": 3
   },
   {
@@ -611,8 +611,8 @@
    "day_high": 346.8,
    "dip_pct": 0.52,
    "tier": "rapid",
-   "last": 343.2,
-   "pl_pct": -0.45,
+   "last": 343.17,
+   "pl_pct": -0.46,
    "days_held": 3
   },
   {
@@ -678,8 +678,8 @@
    "day_high": 360.83,
    "dip_pct": 0.79,
    "tier": "rapid",
-   "last": 355.14,
-   "pl_pct": -0.77,
+   "last": 355.42,
+   "pl_pct": -0.7,
    "days_held": 3
   },
   {
@@ -768,8 +768,8 @@
    "day_high": 360.83,
    "dip_pct": 0.78,
    "tier": "rapid",
-   "last": 355.14,
-   "pl_pct": -0.77,
+   "last": 355.42,
+   "pl_pct": -0.69,
    "days_held": 3
   },
   {
@@ -835,8 +835,8 @@
    "day_high": 360.83,
    "dip_pct": 0.79,
    "tier": "rapid",
-   "last": 355.14,
-   "pl_pct": -0.8,
+   "last": 355.42,
+   "pl_pct": -0.72,
    "days_held": 3
   },
   {
@@ -856,7 +856,7 @@
    "day_high": 346.8,
    "dip_pct": 0.65,
    "tier": "rapid",
-   "last": 343.2,
+   "last": 343.17,
    "pl_pct": -0.42,
    "days_held": 3
   },
@@ -1023,7 +1023,9 @@
   "shadow-AAPL-2026-11-16T10:45:00-05:00:enter",
   "shadow-AMZN-2026-11-16T10:45:00-05:00:enter",
   "shadow-MSFT-2026-11-16T10:45:00-05:00:enter",
-  "shadow-GOOGL-2026-11-16T10:45:00-05:00:enter"
+  "shadow-GOOGL-2026-11-16T10:45:00-05:00:enter",
+  "shadow-GOOGL-2026-11-16T10:50:00-05:00:enter",
+  "shadow-AMZN-2026-11-16T10:50:00-05:00:enter"
  ],
  "stats": {
   "gap_down": {
@@ -1410,11 +1412,11 @@
   }
  },
  "status": "ok",
- "updated": "2026-11-16T10:51:20.465459-05:00",
+ "updated": "2026-11-16T10:55:21.167100-05:00",
  "session": "open",
- "price": 355.14,
+ "price": 355.42,
  "prev_close": 356.27,
- "chg_pct": -0.32,
+ "chg_pct": -0.24,
  "vix": 21.5,
  "regime": {
   "label": "NORMAL",
@@ -1424,17 +1426,17 @@
  "events": [],
  "trend": {
   "up": true,
-  "sma50": 339.74,
+  "sma50": 339.75,
   "sma200": 301.73,
   "above200": true
  },
  "ind": {
-  "rsi14": 59.4,
+  "rsi14": 59.7,
   "atr": 7.92,
   "atr_pct": 2.23,
   "hh20": 360.83,
   "ll20": 325.33,
-  "vratio": 0.22,
+  "vratio": 0.23,
   "bar_date": "2026-11-16"
  },
  "watch": [
@@ -1452,8 +1454,8 @@
    "name": "52-week high breakout",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Price $355.11 vs 52-week high $360.83",
-   "progress": 0.7735379369958859,
+   "text": "Price $355.42 vs 52-week high $360.83",
+   "progress": 0.785812339572053,
    "fired": false
   },
   {
@@ -1461,8 +1463,8 @@
    "name": "Oversold bounce",
    "tier": "core",
    "conf": "High",
-   "text": "RSI14 is 59; triggers below 30",
-   "progress": 0.2654959315255091,
+   "text": "RSI14 is 60; triggers below 30",
+   "progress": 0.25720053331725784,
    "fired": false
   },
   {
@@ -1470,8 +1472,8 @@
    "name": "Volume breakout",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Price $355.11 vs 20-day high $360.83; volume 0.2x avg (needs 1.5x)",
-   "progress": 0.6829531117942422,
+   "text": "Price $355.42 vs 20-day high $360.83; volume 0.2x avg (needs 1.5x)",
+   "progress": 0.7001372754008761,
    "fired": false
   },
   {
@@ -1488,8 +1490,8 @@
    "name": "RSI under 40 pullback",
    "tier": "probation",
    "conf": "Low",
-   "text": "RSI14 is 59; triggers below 40 in an uptrend",
-   "progress": 0.3539945753673455,
+   "text": "RSI14 is 60; triggers below 40 in an uptrend",
+   "progress": 0.34293404442301045,
    "fired": false
   },
   {
@@ -1497,8 +1499,8 @@
    "name": "Drop over 3% in uptrend",
    "tier": "probation",
    "conf": "Low",
-   "text": "Today -0.33% (needs -3% or worse) in an uptrend",
-   "progress": 0.10853226465700194,
+   "text": "Today -0.24% (needs -3% or worse) in an uptrend",
+   "progress": 0.07952541725360456,
    "fired": false
   },
   {
@@ -1506,8 +1508,8 @@
    "name": "Closed at day low (IBS)",
    "tier": "probation",
    "conf": "Low",
-   "text": "Closed at 51% of today's range (needs under 10%)",
-   "progress": 0.5419423791976038,
+   "text": "Closed at 59% of today's range (needs under 10%)",
+   "progress": 0.4575124288798799,
    "fired": false
   }
  ],
@@ -2094,8 +2096,8 @@
     "day_high": 273.6,
     "dip_pct": 1.4,
     "tier": "rapid",
-    "last": 261.77,
-    "pl_pct": -2.99,
+    "last": 262.2,
+    "pl_pct": -2.84,
     "days_held": 4
    },
    {
@@ -2115,8 +2117,8 @@
     "day_high": 273.6,
     "dip_pct": 1.49,
     "tier": "rapid",
-    "last": 261.77,
-    "pl_pct": -2.85,
+    "last": 262.2,
+    "pl_pct": -2.69,
     "days_held": 4
    },
    {
@@ -2136,8 +2138,8 @@
     "day_high": 273.6,
     "dip_pct": 1.57,
     "tier": "rapid",
-    "last": 261.77,
-    "pl_pct": -2.79,
+    "last": 262.2,
+    "pl_pct": -2.63,
     "days_held": 4
    },
    {
@@ -2157,8 +2159,8 @@
     "day_high": 273.6,
     "dip_pct": 1.65,
     "tier": "rapid",
-    "last": 261.77,
-    "pl_pct": -2.7,
+    "last": 262.2,
+    "pl_pct": -2.54,
     "days_held": 4
    },
    {
@@ -2178,8 +2180,8 @@
     "day_high": 360.83,
     "dip_pct": 0.65,
     "tier": "rapid",
-    "last": 355.14,
-    "pl_pct": -0.87,
+    "last": 355.42,
+    "pl_pct": -0.79,
     "days_held": 3
    },
    {
@@ -2199,8 +2201,8 @@
     "day_high": 346.8,
     "dip_pct": 0.52,
     "tier": "rapid",
-    "last": 343.2,
-    "pl_pct": -0.45,
+    "last": 343.17,
+    "pl_pct": -0.46,
     "days_held": 3
    },
    {
@@ -2220,8 +2222,8 @@
     "day_high": 360.83,
     "dip_pct": 0.79,
     "tier": "rapid",
-    "last": 355.14,
-    "pl_pct": -0.77,
+    "last": 355.42,
+    "pl_pct": -0.7,
     "days_held": 3
    },
    {
@@ -2241,8 +2243,8 @@
     "day_high": 360.83,
     "dip_pct": 0.78,
     "tier": "rapid",
-    "last": 355.14,
-    "pl_pct": -0.77,
+    "last": 355.42,
+    "pl_pct": -0.69,
     "days_held": 3
    },
    {
@@ -2262,8 +2264,8 @@
     "day_high": 360.83,
     "dip_pct": 0.79,
     "tier": "rapid",
-    "last": 355.14,
-    "pl_pct": -0.8,
+    "last": 355.42,
+    "pl_pct": -0.72,
     "days_held": 3
    },
    {
@@ -2283,7 +2285,7 @@
     "day_high": 346.8,
     "dip_pct": 0.65,
     "tier": "rapid",
-    "last": 343.2,
+    "last": 343.17,
     "pl_pct": -0.42,
     "days_held": 3
    }
@@ -2791,9 +2793,11 @@
    "bar": "2026-11-16T10:45:00-05:00",
    "day": "2026-11-16",
    "entry": 261.32,
-   "status": "open",
+   "status": "hit",
    "rsi": 19.0,
-   "worst": -0.02
+   "worst": -0.02,
+   "ret": 0.26,
+   "exit_time": "2026-11-16 10:50:00-05:00"
   },
   {
    "id": "shadow-MSFT-2026-11-16T10:45:00-05:00",
@@ -2801,9 +2805,11 @@
    "bar": "2026-11-16T10:45:00-05:00",
    "day": "2026-11-16",
    "entry": 521.84,
-   "status": "open",
+   "status": "hit",
    "rsi": 22.3,
-   "worst": -0.03
+   "worst": -0.03,
+   "ret": 0.26,
+   "exit_time": "2026-11-16 10:50:00-05:00"
   },
   {
    "id": "shadow-GOOGL-2026-11-16T10:45:00-05:00",
@@ -2811,8 +2817,28 @@
    "bar": "2026-11-16T10:45:00-05:00",
    "day": "2026-11-16",
    "entry": 288.23,
+   "status": "hit",
+   "rsi": 18.3,
+   "ret": 0.26,
+   "exit_time": "2026-11-16 10:50:00-05:00"
+  },
+  {
+   "id": "shadow-GOOGL-2026-11-16T10:50:00-05:00",
+   "sym": "GOOGL",
+   "bar": "2026-11-16T10:50:00-05:00",
+   "day": "2026-11-16",
+   "entry": 289.18,
    "status": "open",
-   "rsi": 18.3
+   "rsi": 18.4
+  },
+  {
+   "id": "shadow-AMZN-2026-11-16T10:50:00-05:00",
+   "sym": "AMZN",
+   "bar": "2026-11-16T10:50:00-05:00",
+   "day": "2026-11-16",
+   "entry": 262.02,
+   "status": "open",
+   "rsi": 19.0
   }
  ],
  "oswing": {
