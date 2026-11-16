@@ -188,8 +188,8 @@
    "day_high": 273.6,
    "dip_pct": 1.4,
    "tier": "rapid",
-   "last": 258.46,
-   "pl_pct": -4.22,
+   "last": 258.26,
+   "pl_pct": -4.3,
    "days_held": 4
   },
   {
@@ -255,8 +255,8 @@
    "day_high": 273.6,
    "dip_pct": 1.49,
    "tier": "rapid",
-   "last": 258.46,
-   "pl_pct": -4.08,
+   "last": 258.26,
+   "pl_pct": -4.15,
    "days_held": 4
   },
   {
@@ -322,8 +322,8 @@
    "day_high": 273.6,
    "dip_pct": 1.57,
    "tier": "rapid",
-   "last": 258.46,
-   "pl_pct": -4.02,
+   "last": 258.26,
+   "pl_pct": -4.1,
    "days_held": 4
   },
   {
@@ -412,8 +412,8 @@
    "day_high": 273.6,
    "dip_pct": 1.65,
    "tier": "rapid",
-   "last": 258.46,
-   "pl_pct": -3.93,
+   "last": 258.26,
+   "pl_pct": -4.01,
    "days_held": 4
   },
   {
@@ -611,8 +611,8 @@
    "day_high": 346.8,
    "dip_pct": 0.52,
    "tier": "rapid",
-   "last": 341.63,
-   "pl_pct": -0.9,
+   "last": 341.74,
+   "pl_pct": -0.87,
    "days_held": 3
   },
   {
@@ -856,8 +856,8 @@
    "day_high": 346.8,
    "dip_pct": 0.65,
    "tier": "rapid",
-   "last": 341.63,
-   "pl_pct": -0.87,
+   "last": 341.74,
+   "pl_pct": -0.84,
    "days_held": 3
   },
   {
@@ -967,8 +967,8 @@
    "day_high": 346.52,
    "dip_pct": 0.96,
    "tier": "rapid",
-   "last": 341.63,
-   "pl_pct": -0.46,
+   "last": 341.74,
+   "pl_pct": -0.43,
    "days_held": 0
   },
   {
@@ -988,8 +988,8 @@
    "day_high": 527.95,
    "dip_pct": 0.37,
    "tier": "rapid",
-   "last": 523.01,
-   "pl_pct": -0.63,
+   "last": 522.76,
+   "pl_pct": -0.68,
    "days_held": 0
   }
  ],
@@ -1478,12 +1478,12 @@
   }
  },
  "status": "ok",
- "updated": "2026-11-16T12:21:20.353294-05:00",
+ "updated": "2026-11-16T12:25:21.123825-05:00",
  "session": "open",
  "price": 353.27,
  "prev_close": 356.27,
  "chg_pct": -0.84,
- "vix": 21.14,
+ "vix": 21.22,
  "regime": {
   "label": "NORMAL",
   "mult": 1.0,
@@ -1547,8 +1547,8 @@
    "name": "VIX falling from spike",
    "tier": "probation",
    "conf": "Low",
-   "text": "VIX 21.1; 5-day high 21.1 (needs 25+ then a 10% fall)",
-   "progress": 0.30699996948242186,
+   "text": "VIX 21.2; 5-day high 21.2 (needs 25+ then a 10% fall)",
+   "progress": 0.3109999656677246,
    "fired": false
   },
   {
@@ -2162,8 +2162,8 @@
     "day_high": 273.6,
     "dip_pct": 1.4,
     "tier": "rapid",
-    "last": 258.46,
-    "pl_pct": -4.22,
+    "last": 258.26,
+    "pl_pct": -4.3,
     "days_held": 4
    },
    {
@@ -2183,8 +2183,8 @@
     "day_high": 273.6,
     "dip_pct": 1.49,
     "tier": "rapid",
-    "last": 258.46,
-    "pl_pct": -4.08,
+    "last": 258.26,
+    "pl_pct": -4.15,
     "days_held": 4
    },
    {
@@ -2204,8 +2204,8 @@
     "day_high": 273.6,
     "dip_pct": 1.57,
     "tier": "rapid",
-    "last": 258.46,
-    "pl_pct": -4.02,
+    "last": 258.26,
+    "pl_pct": -4.1,
     "days_held": 4
    },
    {
@@ -2225,8 +2225,8 @@
     "day_high": 273.6,
     "dip_pct": 1.65,
     "tier": "rapid",
-    "last": 258.46,
-    "pl_pct": -3.93,
+    "last": 258.26,
+    "pl_pct": -4.01,
     "days_held": 4
    },
    {
@@ -2267,8 +2267,8 @@
     "day_high": 346.8,
     "dip_pct": 0.52,
     "tier": "rapid",
-    "last": 341.63,
-    "pl_pct": -0.9,
+    "last": 341.74,
+    "pl_pct": -0.87,
     "days_held": 3
    },
    {
@@ -2351,8 +2351,8 @@
     "day_high": 346.8,
     "dip_pct": 0.65,
     "tier": "rapid",
-    "last": 341.63,
-    "pl_pct": -0.87,
+    "last": 341.74,
+    "pl_pct": -0.84,
     "days_held": 3
    },
    {
@@ -2393,8 +2393,8 @@
     "day_high": 346.52,
     "dip_pct": 0.96,
     "tier": "rapid",
-    "last": 341.63,
-    "pl_pct": -0.46,
+    "last": 341.74,
+    "pl_pct": -0.43,
     "days_held": 0
    },
    {
@@ -2414,8 +2414,8 @@
     "day_high": 527.95,
     "dip_pct": 0.37,
     "tier": "rapid",
-    "last": 523.01,
-    "pl_pct": -0.63,
+    "last": 522.76,
+    "pl_pct": -0.68,
     "days_held": 0
    }
   ],
@@ -2961,7 +2961,7 @@
    "entry": 289.18,
    "status": "open",
    "rsi": 18.4,
-   "worst": -0.72
+   "worst": -0.83
   },
   {
    "id": "shadow-AMZN-2026-11-16T10:50:00-05:00",
@@ -2971,7 +2971,7 @@
    "entry": 262.02,
    "status": "open",
    "rsi": 19.0,
-   "worst": -1.38
+   "worst": -1.48
   }
  ],
  "oswing": {
