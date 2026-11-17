@@ -1674,7 +1674,7 @@
   }
  },
  "status": "ok",
- "updated": "2026-11-17T16:55:21.091549-05:00",
+ "updated": "2026-11-17T17:10:20.959229-05:00",
  "session": "closed",
  "price": 351.91,
  "prev_close": 352.78,
@@ -1734,7 +1734,7 @@
    "name": "Volume breakout",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Price $351.91 vs 20-day high $360.83; volume 0.7x avg (needs 1.5x)",
+   "text": "Price $351.91 vs 20-day high $360.83; volume 0.8x avg (needs 1.5x)",
    "progress": 0.5055852760524515,
    "fired": false
   },
