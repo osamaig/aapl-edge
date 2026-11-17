@@ -188,8 +188,8 @@
    "day_high": 273.6,
    "dip_pct": 1.4,
    "tier": "rapid",
-   "last": 255.19,
-   "pl_pct": -5.43,
+   "last": 255.28,
+   "pl_pct": -5.4,
    "days_held": 5
   },
   {
@@ -255,8 +255,8 @@
    "day_high": 273.6,
    "dip_pct": 1.49,
    "tier": "rapid",
-   "last": 255.19,
-   "pl_pct": -5.29,
+   "last": 255.28,
+   "pl_pct": -5.26,
    "days_held": 5
   },
   {
@@ -322,8 +322,8 @@
    "day_high": 273.6,
    "dip_pct": 1.57,
    "tier": "rapid",
-   "last": 255.19,
-   "pl_pct": -5.24,
+   "last": 255.28,
+   "pl_pct": -5.2,
    "days_held": 5
   },
   {
@@ -412,8 +412,8 @@
    "day_high": 273.6,
    "dip_pct": 1.65,
    "tier": "rapid",
-   "last": 255.19,
-   "pl_pct": -5.14,
+   "last": 255.28,
+   "pl_pct": -5.11,
    "days_held": 5
   },
   {
@@ -590,8 +590,8 @@
    "day_high": 360.83,
    "dip_pct": 0.65,
    "tier": "rapid",
-   "last": 351.68,
-   "pl_pct": -1.84,
+   "last": 350.98,
+   "pl_pct": -2.03,
    "days_held": 4
   },
   {
@@ -611,8 +611,8 @@
    "day_high": 346.8,
    "dip_pct": 0.52,
    "tier": "rapid",
-   "last": 330.15,
-   "pl_pct": -4.23,
+   "last": 330.3,
+   "pl_pct": -4.19,
    "days_held": 4
   },
   {
@@ -678,8 +678,8 @@
    "day_high": 360.83,
    "dip_pct": 0.79,
    "tier": "rapid",
-   "last": 351.68,
-   "pl_pct": -1.74,
+   "last": 350.98,
+   "pl_pct": -1.94,
    "days_held": 4
   },
   {
@@ -768,8 +768,8 @@
    "day_high": 360.83,
    "dip_pct": 0.78,
    "tier": "rapid",
-   "last": 351.68,
-   "pl_pct": -1.73,
+   "last": 350.98,
+   "pl_pct": -1.93,
    "days_held": 4
   },
   {
@@ -835,8 +835,8 @@
    "day_high": 360.83,
    "dip_pct": 0.79,
    "tier": "rapid",
-   "last": 351.68,
-   "pl_pct": -1.76,
+   "last": 350.98,
+   "pl_pct": -1.96,
    "days_held": 4
   },
   {
@@ -856,8 +856,8 @@
    "day_high": 346.8,
    "dip_pct": 0.65,
    "tier": "rapid",
-   "last": 330.15,
-   "pl_pct": -4.2,
+   "last": 330.3,
+   "pl_pct": -4.16,
    "days_held": 4
   },
   {
@@ -946,8 +946,8 @@
    "day_high": 357.1,
    "dip_pct": 0.62,
    "tier": "rapid",
-   "last": 351.68,
-   "pl_pct": -0.92,
+   "last": 350.98,
+   "pl_pct": -1.12,
    "days_held": 1
   },
   {
@@ -967,8 +967,8 @@
    "day_high": 346.52,
    "dip_pct": 0.96,
    "tier": "rapid",
-   "last": 330.15,
-   "pl_pct": -3.81,
+   "last": 330.3,
+   "pl_pct": -3.76,
    "days_held": 1
   },
   {
@@ -988,8 +988,8 @@
    "day_high": 527.95,
    "dip_pct": 0.37,
    "tier": "rapid",
-   "last": 499.95,
-   "pl_pct": -5.01,
+   "last": 500.78,
+   "pl_pct": -4.85,
    "days_held": 1
   },
   {
@@ -1009,8 +1009,8 @@
    "day_high": 355.36,
    "dip_pct": 0.86,
    "tier": "rapid",
-   "last": 351.68,
-   "pl_pct": -0.15,
+   "last": 350.98,
+   "pl_pct": -0.35,
    "days_held": 0
   },
   {
@@ -1030,8 +1030,8 @@
    "day_high": 259.9,
    "dip_pct": 1.78,
    "tier": "rapid",
-   "last": 255.19,
-   "pl_pct": 0.05,
+   "last": 255.28,
+   "pl_pct": 0.09,
    "days_held": 0
   }
  ],
@@ -1535,12 +1535,12 @@
   }
  },
  "status": "ok",
- "updated": "2026-11-17T12:01:20.475593-05:00",
+ "updated": "2026-11-17T12:05:20.878049-05:00",
  "session": "open",
- "price": 351.68,
+ "price": 350.98,
  "prev_close": 352.78,
- "chg_pct": -0.31,
- "vix": 26.9,
+ "chg_pct": -0.51,
+ "vix": 26.96,
  "regime": {
   "label": "CAUTIOUS",
   "mult": 0.75,
@@ -1549,17 +1549,17 @@
  "events": [],
  "trend": {
   "up": true,
-  "sma50": 340.4,
-  "sma200": 302.13,
+  "sma50": 340.39,
+  "sma200": 302.12,
   "above200": true
  },
  "ind": {
-  "rsi14": 55.9,
-  "atr": 7.83,
+  "rsi14": 55.1,
+  "atr": 7.84,
   "atr_pct": 2.23,
   "hh20": 360.83,
   "ll20": 325.33,
-  "vratio": 0.27,
+  "vratio": 0.28,
   "bar_date": "2026-11-17"
  },
  "watch": [
@@ -1577,8 +1577,8 @@
    "name": "52-week high breakout",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Price $351.68 vs 52-week high $360.83",
-   "progress": 0.6378670647766458,
+   "text": "Price $350.95 vs 52-week high $360.83",
+   "progress": 0.60864120357821,
    "fired": false
   },
   {
@@ -1586,8 +1586,8 @@
    "name": "Oversold bounce",
    "tier": "core",
    "conf": "High",
-   "text": "RSI14 is 56; triggers below 30",
-   "progress": 0.35339012506184664,
+   "text": "RSI14 is 55; triggers below 30",
+   "progress": 0.37186463800845626,
    "fired": false
   },
   {
@@ -1595,8 +1595,8 @@
    "name": "Volume breakout",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Price $351.68 vs 20-day high $360.83; volume 0.3x avg (needs 1.5x)",
-   "progress": 0.49301389068730606,
+   "text": "Price $350.95 vs 20-day high $360.83; volume 0.3x avg (needs 1.5x)",
+   "progress": 0.452097685009496,
    "fired": false
   },
   {
@@ -1604,7 +1604,7 @@
    "name": "VIX falling from spike",
    "tier": "probation",
    "conf": "Low",
-   "text": "VIX 26.9; 5-day high 26.9 (needs 25+ then a 10% fall)",
+   "text": "VIX 27.0; 5-day high 27.0 (needs 25+ then a 10% fall)",
    "progress": 0.5,
    "fired": false
   },
@@ -1613,8 +1613,8 @@
    "name": "RSI under 40 pullback",
    "tier": "probation",
    "conf": "Low",
-   "text": "RSI14 is 56; triggers below 40 in an uptrend",
-   "progress": 0.47118683341579554,
+   "text": "RSI14 is 55; triggers below 40 in an uptrend",
+   "progress": 0.49581951734460833,
    "fired": false
   },
   {
@@ -1622,8 +1622,8 @@
    "name": "Drop over 3% in uptrend",
    "tier": "probation",
    "conf": "Low",
-   "text": "Today -0.31% (needs -3% or worse) in an uptrend",
-   "progress": 0.10363415930680908,
+   "text": "Today -0.52% (needs -3% or worse) in an uptrend",
+   "progress": 0.17338392779519357,
    "fired": false
   },
   {
@@ -1631,8 +1631,8 @@
    "name": "Closed at day low (IBS)",
    "tier": "probation",
    "conf": "Low",
-   "text": "Closed at 26% of today's range (needs under 10%)",
-   "progress": 0.8220008951329872,
+   "text": "Closed at 14% of today's range (needs under 10%)",
+   "progress": 0.9525314476278892,
    "fired": false
   }
  ],
@@ -2219,8 +2219,8 @@
     "day_high": 273.6,
     "dip_pct": 1.4,
     "tier": "rapid",
-    "last": 255.19,
-    "pl_pct": -5.43,
+    "last": 255.28,
+    "pl_pct": -5.4,
     "days_held": 5
    },
    {
@@ -2240,8 +2240,8 @@
     "day_high": 273.6,
     "dip_pct": 1.49,
     "tier": "rapid",
-    "last": 255.19,
-    "pl_pct": -5.29,
+    "last": 255.28,
+    "pl_pct": -5.26,
     "days_held": 5
    },
    {
@@ -2261,8 +2261,8 @@
     "day_high": 273.6,
     "dip_pct": 1.57,
     "tier": "rapid",
-    "last": 255.19,
-    "pl_pct": -5.24,
+    "last": 255.28,
+    "pl_pct": -5.2,
     "days_held": 5
    },
    {
@@ -2282,8 +2282,8 @@
     "day_high": 273.6,
     "dip_pct": 1.65,
     "tier": "rapid",
-    "last": 255.19,
-    "pl_pct": -5.14,
+    "last": 255.28,
+    "pl_pct": -5.11,
     "days_held": 5
    },
    {
@@ -2303,8 +2303,8 @@
     "day_high": 360.83,
     "dip_pct": 0.65,
     "tier": "rapid",
-    "last": 351.68,
-    "pl_pct": -1.84,
+    "last": 350.98,
+    "pl_pct": -2.03,
     "days_held": 4
    },
    {
@@ -2324,8 +2324,8 @@
     "day_high": 346.8,
     "dip_pct": 0.52,
     "tier": "rapid",
-    "last": 330.15,
-    "pl_pct": -4.23,
+    "last": 330.3,
+    "pl_pct": -4.19,
     "days_held": 4
    },
    {
@@ -2345,8 +2345,8 @@
     "day_high": 360.83,
     "dip_pct": 0.79,
     "tier": "rapid",
-    "last": 351.68,
-    "pl_pct": -1.74,
+    "last": 350.98,
+    "pl_pct": -1.94,
     "days_held": 4
    },
    {
@@ -2366,8 +2366,8 @@
     "day_high": 360.83,
     "dip_pct": 0.78,
     "tier": "rapid",
-    "last": 351.68,
-    "pl_pct": -1.73,
+    "last": 350.98,
+    "pl_pct": -1.93,
     "days_held": 4
    },
    {
@@ -2387,8 +2387,8 @@
     "day_high": 360.83,
     "dip_pct": 0.79,
     "tier": "rapid",
-    "last": 351.68,
-    "pl_pct": -1.76,
+    "last": 350.98,
+    "pl_pct": -1.96,
     "days_held": 4
    },
    {
@@ -2408,8 +2408,8 @@
     "day_high": 346.8,
     "dip_pct": 0.65,
     "tier": "rapid",
-    "last": 330.15,
-    "pl_pct": -4.2,
+    "last": 330.3,
+    "pl_pct": -4.16,
     "days_held": 4
    },
    {
@@ -2429,8 +2429,8 @@
     "day_high": 357.1,
     "dip_pct": 0.62,
     "tier": "rapid",
-    "last": 351.68,
-    "pl_pct": -0.92,
+    "last": 350.98,
+    "pl_pct": -1.12,
     "days_held": 1
    },
    {
@@ -2450,8 +2450,8 @@
     "day_high": 346.52,
     "dip_pct": 0.96,
     "tier": "rapid",
-    "last": 330.15,
-    "pl_pct": -3.81,
+    "last": 330.3,
+    "pl_pct": -3.76,
     "days_held": 1
    },
    {
@@ -2471,8 +2471,8 @@
     "day_high": 527.95,
     "dip_pct": 0.37,
     "tier": "rapid",
-    "last": 499.95,
-    "pl_pct": -5.01,
+    "last": 500.78,
+    "pl_pct": -4.85,
     "days_held": 1
    },
    {
@@ -2492,8 +2492,8 @@
     "day_high": 355.36,
     "dip_pct": 0.86,
     "tier": "rapid",
-    "last": 351.68,
-    "pl_pct": -0.15,
+    "last": 350.98,
+    "pl_pct": -0.35,
     "days_held": 0
    },
    {
@@ -2513,8 +2513,8 @@
     "day_high": 259.9,
     "dip_pct": 1.78,
     "tier": "rapid",
-    "last": 255.19,
-    "pl_pct": 0.05,
+    "last": 255.28,
+    "pl_pct": 0.09,
     "days_held": 0
    }
   ],
@@ -3147,7 +3147,7 @@
    "entry": 332.08,
    "status": "open",
    "rsi": 24.9,
-   "worst": -0.71
+   "worst": -0.81
   }
  ],
  "oswing": {
