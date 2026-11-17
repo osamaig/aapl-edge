@@ -190,7 +190,7 @@
    "tier": "rapid",
    "last": 257.75,
    "pl_pct": -4.48,
-   "days_held": 4
+   "days_held": 5
   },
   {
    "id": "rapid-AAPL-2026-11-12-750",
@@ -257,7 +257,7 @@
    "tier": "rapid",
    "last": 257.75,
    "pl_pct": -4.34,
-   "days_held": 4
+   "days_held": 5
   },
   {
    "id": "rapid-AAPL-2026-11-12-810",
@@ -324,7 +324,7 @@
    "tier": "rapid",
    "last": 257.75,
    "pl_pct": -4.29,
-   "days_held": 4
+   "days_held": 5
   },
   {
    "id": "rapid-MSFT-2026-11-12-810",
@@ -414,7 +414,7 @@
    "tier": "rapid",
    "last": 257.75,
    "pl_pct": -4.19,
-   "days_held": 4
+   "days_held": 5
   },
   {
    "id": "rapid-MSFT-2026-11-12-870",
@@ -592,7 +592,7 @@
    "tier": "rapid",
    "last": 352.78,
    "pl_pct": -1.53,
-   "days_held": 3
+   "days_held": 4
   },
   {
    "id": "rapid-JPM-2026-11-13-690",
@@ -613,7 +613,7 @@
    "tier": "rapid",
    "last": 338.21,
    "pl_pct": -1.89,
-   "days_held": 3
+   "days_held": 4
   },
   {
    "id": "rapid-AMZN-2026-11-13-690",
@@ -680,7 +680,7 @@
    "tier": "rapid",
    "last": 352.78,
    "pl_pct": -1.43,
-   "days_held": 3
+   "days_held": 4
   },
   {
    "id": "rapid-JPM-2026-11-13-750",
@@ -770,7 +770,7 @@
    "tier": "rapid",
    "last": 352.78,
    "pl_pct": -1.43,
-   "days_held": 3
+   "days_held": 4
   },
   {
    "id": "rapid-JPM-2026-11-13-810",
@@ -837,7 +837,7 @@
    "tier": "rapid",
    "last": 352.78,
    "pl_pct": -1.46,
-   "days_held": 3
+   "days_held": 4
   },
   {
    "id": "rapid-JPM-2026-11-13-870",
@@ -858,7 +858,7 @@
    "tier": "rapid",
    "last": 338.21,
    "pl_pct": -1.86,
-   "days_held": 3
+   "days_held": 4
   },
   {
    "id": "rapid-AMZN-2026-11-13-870",
@@ -948,7 +948,7 @@
    "tier": "rapid",
    "last": 352.78,
    "pl_pct": -0.61,
-   "days_held": 0
+   "days_held": 1
   },
   {
    "id": "rapid-JPM-2026-11-16-690",
@@ -969,7 +969,7 @@
    "tier": "rapid",
    "last": 338.21,
    "pl_pct": -1.46,
-   "days_held": 0
+   "days_held": 1
   },
   {
    "id": "rapid-MSFT-2026-11-16-690",
@@ -990,7 +990,7 @@
    "tier": "rapid",
    "last": 517.99,
    "pl_pct": -1.58,
-   "days_held": 0
+   "days_held": 1
   }
  ],
  "sent": [
@@ -1481,7 +1481,7 @@
   }
  },
  "status": "ok",
- "updated": "2026-11-16T17:30:20.373200-05:00",
+ "updated": "2026-11-17T09:02:29.398611-05:00",
  "session": "closed",
  "price": 352.78,
  "prev_close": 356.27,
@@ -1501,11 +1501,11 @@
  },
  "ind": {
   "rsi14": 57.0,
-  "atr": 8.04,
+  "atr": 8.05,
   "atr_pct": 2.28,
   "hh20": 360.83,
   "ll20": 325.33,
-  "vratio": 0.94,
+  "vratio": 0.96,
   "bar_date": "2026-11-16"
  },
  "watch": [
@@ -1514,7 +1514,7 @@
    "name": "Gap-down dip buy",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Today's gap +0.23% (needs below -1.5%) in an uptrend",
+   "text": "Today's gap +0.24% (needs below -1.5%) in an uptrend",
    "progress": 0.0,
    "fired": false
   },
@@ -1541,7 +1541,7 @@
    "name": "Volume breakout",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Price $352.78 vs 20-day high $360.83; volume 0.9x avg (needs 1.5x)",
+   "text": "Price $352.78 vs 20-day high $360.83; volume 1.0x avg (needs 1.5x)",
    "progress": 0.553807161680755,
    "fired": false
   },
@@ -1578,7 +1578,7 @@
    "tier": "probation",
    "conf": "Low",
    "text": "Closed at 25% of today's range (needs under 10%)",
-   "progress": 0.8290157261047013,
+   "progress": 0.8304697650300922,
    "fired": false
   }
  ],
@@ -2167,7 +2167,7 @@
     "tier": "rapid",
     "last": 257.75,
     "pl_pct": -4.48,
-    "days_held": 4
+    "days_held": 5
    },
    {
     "id": "rapid-AMZN-2026-11-12-750",
@@ -2188,7 +2188,7 @@
     "tier": "rapid",
     "last": 257.75,
     "pl_pct": -4.34,
-    "days_held": 4
+    "days_held": 5
    },
    {
     "id": "rapid-AMZN-2026-11-12-810",
@@ -2209,7 +2209,7 @@
     "tier": "rapid",
     "last": 257.75,
     "pl_pct": -4.29,
-    "days_held": 4
+    "days_held": 5
    },
    {
     "id": "rapid-AMZN-2026-11-12-870",
@@ -2230,7 +2230,7 @@
     "tier": "rapid",
     "last": 257.75,
     "pl_pct": -4.19,
-    "days_held": 4
+    "days_held": 5
    },
    {
     "id": "rapid-AAPL-2026-11-13-690",
@@ -2251,7 +2251,7 @@
     "tier": "rapid",
     "last": 352.78,
     "pl_pct": -1.53,
-    "days_held": 3
+    "days_held": 4
    },
    {
     "id": "rapid-JPM-2026-11-13-690",
@@ -2272,7 +2272,7 @@
     "tier": "rapid",
     "last": 338.21,
     "pl_pct": -1.89,
-    "days_held": 3
+    "days_held": 4
    },
    {
     "id": "rapid-AAPL-2026-11-13-750",
@@ -2293,7 +2293,7 @@
     "tier": "rapid",
     "last": 352.78,
     "pl_pct": -1.43,
-    "days_held": 3
+    "days_held": 4
    },
    {
     "id": "rapid-AAPL-2026-11-13-810",
@@ -2314,7 +2314,7 @@
     "tier": "rapid",
     "last": 352.78,
     "pl_pct": -1.43,
-    "days_held": 3
+    "days_held": 4
    },
    {
     "id": "rapid-AAPL-2026-11-13-870",
@@ -2335,7 +2335,7 @@
     "tier": "rapid",
     "last": 352.78,
     "pl_pct": -1.46,
-    "days_held": 3
+    "days_held": 4
    },
    {
     "id": "rapid-JPM-2026-11-13-870",
@@ -2356,7 +2356,7 @@
     "tier": "rapid",
     "last": 338.21,
     "pl_pct": -1.86,
-    "days_held": 3
+    "days_held": 4
    },
    {
     "id": "rapid-AAPL-2026-11-16-690",
@@ -2377,7 +2377,7 @@
     "tier": "rapid",
     "last": 352.78,
     "pl_pct": -0.61,
-    "days_held": 0
+    "days_held": 1
    },
    {
     "id": "rapid-JPM-2026-11-16-690",
@@ -2398,7 +2398,7 @@
     "tier": "rapid",
     "last": 338.21,
     "pl_pct": -1.46,
-    "days_held": 0
+    "days_held": 1
    },
    {
     "id": "rapid-MSFT-2026-11-16-690",
@@ -2419,7 +2419,7 @@
     "tier": "rapid",
     "last": 517.99,
     "pl_pct": -1.58,
-    "days_held": 0
+    "days_held": 1
    }
   ],
   "closed": [
