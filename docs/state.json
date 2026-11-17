@@ -1286,7 +1286,8 @@
   "rapid-AMZN-2026-11-17-810:enter",
   "rapid-AAPL-2026-11-17-870:enter",
   "rapid-AMZN-2026-11-17-870:enter",
-  "rapid-AMZN-2026-11-17-870:exit"
+  "rapid-AMZN-2026-11-17-870:exit",
+  "rapid-summary-2026-11-17"
  ],
  "stats": {
   "gap_down": {
@@ -1673,12 +1674,12 @@
   }
  },
  "status": "ok",
- "updated": "2026-11-17T16:00:20.818798-05:00",
+ "updated": "2026-11-17T16:05:21.085610-05:00",
  "session": "closed",
  "price": 351.91,
  "prev_close": 352.78,
  "chg_pct": -0.25,
- "vix": 25.7,
+ "vix": 26.09,
  "regime": {
   "label": "CAUTIOUS",
   "mult": 0.75,
@@ -1742,7 +1743,7 @@
    "name": "VIX falling from spike",
    "tier": "probation",
    "conf": "Low",
-   "text": "VIX 25.7; 5-day high 25.7 (needs 25+ then a 10% fall)",
+   "text": "VIX 26.1; 5-day high 26.1 (needs 25+ then a 10% fall)",
    "progress": 0.5,
    "fired": false
   },
@@ -3325,9 +3326,10 @@
    "bar": "2026-11-17T10:05:00-05:00",
    "day": "2026-11-17",
    "entry": 511.4,
-   "status": "open",
+   "status": "eod",
    "rsi": 19.5,
-   "worst": -2.91
+   "worst": -2.91,
+   "ret": -1.029
   },
   {
    "id": "shadow-GOOGL-2026-11-17T10:10:00-05:00",
@@ -3335,9 +3337,10 @@
    "bar": "2026-11-17T10:10:00-05:00",
    "day": "2026-11-17",
    "entry": 283.14,
-   "status": "open",
+   "status": "eod",
    "rsi": 25.7,
-   "worst": -1.65
+   "worst": -1.65,
+   "ret": -1.058
   },
   {
    "id": "shadow-JPM-2026-11-17T10:55:00-05:00",
@@ -3369,9 +3372,10 @@
    "bar": "2026-11-17T11:05:00-05:00",
    "day": "2026-11-17",
    "entry": 332.08,
-   "status": "open",
+   "status": "eod",
    "rsi": 24.9,
-   "worst": -1.01
+   "worst": -1.01,
+   "ret": -0.655
   }
  ],
  "oswing": {
