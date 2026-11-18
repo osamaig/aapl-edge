@@ -1655,7 +1655,8 @@
   "rapid-AAPL-2026-11-18-930:enter",
   "rapid-AMZN-2026-11-18-930:enter",
   "rapid-MSFT-2026-11-18-930:enter",
-  "rapid-AMZN-2026-11-18-930:exit"
+  "rapid-AMZN-2026-11-18-930:exit",
+  "rapid-summary-2026-11-18"
  ],
  "stats": {
   "gap_down": {
@@ -2042,12 +2043,12 @@
   }
  },
  "status": "ok",
- "updated": "2026-11-18T16:00:21.270653-05:00",
+ "updated": "2026-11-18T16:05:20.310275-05:00",
  "session": "closed",
  "price": 352.45,
  "prev_close": 351.91,
  "chg_pct": 0.15,
- "vix": 24.67,
+ "vix": 24.59,
  "regime": {
   "label": "CAUTIOUS",
   "mult": 0.75,
@@ -2111,8 +2112,8 @@
    "name": "VIX falling from spike",
    "tier": "probation",
    "conf": "Low",
-   "text": "VIX 24.7; 5-day high 25.5 (needs 25+ then a 10% fall)",
-   "progress": 0.6551451368002033,
+   "text": "VIX 24.6; 5-day high 25.5 (needs 25+ then a 10% fall)",
+   "progress": 0.6708560414708249,
    "fired": false
   },
   {
@@ -3847,9 +3848,10 @@
    "bar": "2026-11-18T13:20:00-05:00",
    "day": "2026-11-18",
    "entry": 325.71,
-   "status": "open",
+   "status": "eod",
    "rsi": 28.0,
-   "worst": -0.6
+   "worst": -0.6,
+   "ret": -0.505
   }
  ],
  "oswing": {
