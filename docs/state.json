@@ -2315,7 +2315,7 @@
   }
  },
  "status": "ok",
- "updated": "2026-11-20T16:56:42.831628-05:00",
+ "updated": "2026-11-20T17:11:20.558671-05:00",
  "session": "closed",
  "price": 342.56,
  "prev_close": 349.21,
@@ -2339,7 +2339,7 @@
   "atr_pct": 2.39,
   "hh20": 360.83,
   "ll20": 325.33,
-  "vratio": 1.6,
+  "vratio": 1.61,
   "bar_date": "2026-11-20"
  },
  "watch": [
@@ -2348,7 +2348,7 @@
    "name": "Gap-down dip buy",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Today's gap +1.05% (needs below -1.5%) in an uptrend",
+   "text": "Today's gap +0.98% (needs below -1.5%) in an uptrend",
    "progress": 0.0,
    "fired": false
   },
