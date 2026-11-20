@@ -598,8 +598,8 @@
    "day_high": 360.83,
    "dip_pct": 0.65,
    "tier": "rapid",
-   "last": 349.21,
-   "pl_pct": -2.53,
+   "last": 352.58,
+   "pl_pct": -1.59,
    "days_held": 7
   },
   {
@@ -619,8 +619,8 @@
    "day_high": 346.8,
    "dip_pct": 0.52,
    "tier": "rapid",
-   "last": 320.22,
-   "pl_pct": -7.11,
+   "last": 318.69,
+   "pl_pct": -7.56,
    "days_held": 7
   },
   {
@@ -686,8 +686,8 @@
    "day_high": 360.83,
    "dip_pct": 0.79,
    "tier": "rapid",
-   "last": 349.21,
-   "pl_pct": -2.43,
+   "last": 352.58,
+   "pl_pct": -1.49,
    "days_held": 7
   },
   {
@@ -776,8 +776,8 @@
    "day_high": 360.83,
    "dip_pct": 0.78,
    "tier": "rapid",
-   "last": 349.21,
-   "pl_pct": -2.42,
+   "last": 352.58,
+   "pl_pct": -1.48,
    "days_held": 7
   },
   {
@@ -843,8 +843,8 @@
    "day_high": 360.83,
    "dip_pct": 0.79,
    "tier": "rapid",
-   "last": 349.21,
-   "pl_pct": -2.45,
+   "last": 352.58,
+   "pl_pct": -1.51,
    "days_held": 7
   },
   {
@@ -864,8 +864,8 @@
    "day_high": 346.8,
    "dip_pct": 0.65,
    "tier": "rapid",
-   "last": 320.22,
-   "pl_pct": -7.08,
+   "last": 318.69,
+   "pl_pct": -7.53,
    "days_held": 7
   },
   {
@@ -954,8 +954,8 @@
    "day_high": 357.1,
    "dip_pct": 0.62,
    "tier": "rapid",
-   "last": 349.21,
-   "pl_pct": -1.62,
+   "last": 352.58,
+   "pl_pct": -0.67,
    "days_held": 4
   },
   {
@@ -975,8 +975,8 @@
    "day_high": 346.52,
    "dip_pct": 0.96,
    "tier": "rapid",
-   "last": 320.22,
-   "pl_pct": -6.7,
+   "last": 318.69,
+   "pl_pct": -7.14,
    "days_held": 4
   },
   {
@@ -996,8 +996,8 @@
    "day_high": 527.95,
    "dip_pct": 0.37,
    "tier": "rapid",
-   "last": 498.3,
-   "pl_pct": -5.33,
+   "last": 493.17,
+   "pl_pct": -6.3,
    "days_held": 4
   },
   {
@@ -1293,8 +1293,8 @@
    "day_high": 356.42,
    "dip_pct": 0.82,
    "tier": "rapid",
-   "last": 349.21,
-   "pl_pct": -1.2,
+   "last": 352.58,
+   "pl_pct": -0.25,
    "days_held": 2
   },
   {
@@ -1314,8 +1314,8 @@
    "day_high": 330.09,
    "dip_pct": 0.88,
    "tier": "rapid",
-   "last": 320.22,
-   "pl_pct": -2.14,
+   "last": 318.69,
+   "pl_pct": -2.61,
    "days_held": 2
   },
   {
@@ -1358,8 +1358,8 @@
    "day_high": 356.42,
    "dip_pct": 0.82,
    "tier": "rapid",
-   "last": 349.21,
-   "pl_pct": -1.21,
+   "last": 352.58,
+   "pl_pct": -0.26,
    "days_held": 2
   },
   {
@@ -1535,14 +1535,16 @@
    "target": 351.86,
    "stretch": 352.86,
    "shares": 100,
-   "status": "open",
+   "status": "target",
    "entry_date": "2026-11-19",
    "day_high": 355.28,
    "dip_pct": 1.49,
    "tier": "rapid",
    "last": 349.21,
    "pl_pct": -0.19,
-   "days_held": 1
+   "days_held": 1,
+   "exit": 351.86,
+   "exit_date": "2026-11-20"
   },
   {
    "id": "rapid-AMZN-2026-11-19-690",
@@ -1561,8 +1563,8 @@
    "day_high": 274.0,
    "dip_pct": 1.8,
    "tier": "rapid",
-   "last": 257.37,
-   "pl_pct": -4.38,
+   "last": 253.46,
+   "pl_pct": -5.84,
    "days_held": 1
   },
   {
@@ -1582,8 +1584,8 @@
    "day_high": 526.49,
    "dip_pct": 2.25,
    "tier": "rapid",
-   "last": 498.3,
-   "pl_pct": -3.18,
+   "last": 493.17,
+   "pl_pct": -4.18,
    "days_held": 1
   },
   {
@@ -1598,14 +1600,16 @@
    "target": 352.11,
    "stretch": 353.11,
    "shares": 100,
-   "status": "open",
+   "status": "target",
    "entry_date": "2026-11-19",
    "day_high": 355.28,
    "dip_pct": 1.46,
    "tier": "rapid",
    "last": 349.21,
    "pl_pct": -0.26,
-   "days_held": 1
+   "days_held": 1,
+   "exit": 352.11,
+   "exit_date": "2026-11-20"
   },
   {
    "id": "rapid-AMZN-2026-11-19-750",
@@ -1624,8 +1628,8 @@
    "day_high": 274.0,
    "dip_pct": 3.15,
    "tier": "rapid",
-   "last": 257.37,
-   "pl_pct": -3.06,
+   "last": 253.46,
+   "pl_pct": -4.54,
    "days_held": 1
   },
   {
@@ -1645,8 +1649,8 @@
    "day_high": 526.49,
    "dip_pct": 3.07,
    "tier": "rapid",
-   "last": 498.3,
-   "pl_pct": -2.31,
+   "last": 493.17,
+   "pl_pct": -3.32,
    "days_held": 1
   },
   {
@@ -1661,14 +1665,16 @@
    "target": 351.52,
    "stretch": 352.52,
    "shares": 100,
-   "status": "open",
+   "status": "target",
    "entry_date": "2026-11-19",
    "day_high": 355.28,
    "dip_pct": 1.63,
    "tier": "rapid",
    "last": 349.21,
    "pl_pct": -0.09,
-   "days_held": 1
+   "days_held": 1,
+   "exit": 351.52,
+   "exit_date": "2026-11-20"
   },
   {
    "id": "rapid-MSFT-2026-11-19-810",
@@ -1687,8 +1693,8 @@
    "day_high": 526.49,
    "dip_pct": 4.43,
    "tier": "rapid",
-   "last": 498.3,
-   "pl_pct": -0.95,
+   "last": 493.17,
+   "pl_pct": -1.97,
    "days_held": 1
   }
  ],
@@ -1878,7 +1884,11 @@
   "rapid-AAPL-2026-11-19-810:enter",
   "rapid-MSFT-2026-11-19-810:enter",
   "rapid-summary-2026-11-19",
-  "rules-2026-11-19"
+  "rules-2026-11-19",
+  "rapid-AAPL-2026-11-19-690:exit",
+  "rapid-AMZN-2026-11-19-690:dd5",
+  "rapid-AAPL-2026-11-19-750:exit",
+  "rapid-AAPL-2026-11-19-810:exit"
  ],
  "stats": {
   "gap_down": {
@@ -2265,12 +2275,12 @@
   }
  },
  "status": "ok",
- "updated": "2026-11-20T09:16:20.531504-05:00",
- "session": "closed",
- "price": 349.21,
- "prev_close": 352.45,
- "chg_pct": -0.92,
- "vix": 28.44,
+ "updated": "2026-11-20T09:30:20.433152-05:00",
+ "session": "open",
+ "price": 352.58,
+ "prev_close": 349.21,
+ "chg_pct": 0.97,
+ "vix": 29.7,
  "regime": {
   "label": "CAUTIOUS",
   "mult": 0.75,
@@ -2279,18 +2289,18 @@
  "events": [],
  "trend": {
   "up": true,
-  "sma50": 341.6,
-  "sma200": 302.91,
+  "sma50": 342.01,
+  "sma200": 303.29,
   "above200": true
  },
  "ind": {
-  "rsi14": 53.0,
-  "atr": 7.75,
-  "atr_pct": 2.22,
+  "rsi14": 56.2,
+  "atr": 7.45,
+  "atr_pct": 2.11,
   "hh20": 360.83,
   "ll20": 325.33,
-  "vratio": 0.86,
-  "bar_date": "2026-11-19"
+  "vratio": 0.06,
+  "bar_date": "2026-11-20"
  },
  "watch": [
   {
@@ -2298,7 +2308,7 @@
    "name": "Gap-down dip buy",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Today's gap +0.13% (needs below -1.5%) in an uptrend",
+   "text": "Today's gap +0.98% (needs below -1.5%) in an uptrend",
    "progress": 0.0,
    "fired": false
   },
@@ -2307,8 +2317,8 @@
    "name": "52-week high breakout",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Price $349.21 vs 52-week high $360.83",
-   "progress": 0.5399497369316061,
+   "text": "Price $352.72 vs 52-week high $360.83",
+   "progress": 0.6789154507519093,
    "fired": false
   },
   {
@@ -2316,8 +2326,8 @@
    "name": "Oversold bounce",
    "tier": "core",
    "conf": "High",
-   "text": "RSI14 is 53; triggers below 30",
-   "progress": 0.42587461865383974,
+   "text": "RSI14 is 56; triggers below 30",
+   "progress": 0.34477462941946035,
    "fired": false
   },
   {
@@ -2325,8 +2335,8 @@
    "name": "Volume breakout",
    "tier": "probation",
    "conf": "Medium",
-   "text": "Price $349.21 vs 20-day high $360.83; volume 0.9x avg (needs 1.5x)",
-   "progress": 0.3559296317042504,
+   "text": "Price $352.72 vs 20-day high $360.83; volume 0.1x avg (needs 1.5x)",
+   "progress": 0.550481631052675,
    "fired": false
   },
   {
@@ -2334,7 +2344,7 @@
    "name": "VIX falling from spike",
    "tier": "probation",
    "conf": "Low",
-   "text": "VIX 28.4; 5-day high 28.4 (needs 25+ then a 10% fall)",
+   "text": "VIX 29.7; 5-day high 29.7 (needs 25+ then a 10% fall)",
    "progress": 0.5,
    "fired": false
   },
@@ -2343,8 +2353,8 @@
    "name": "RSI under 40 pullback",
    "tier": "probation",
    "conf": "Low",
-   "text": "RSI14 is 53; triggers below 40 in an uptrend",
-   "progress": 0.5678328248717863,
+   "text": "RSI14 is 56; triggers below 40 in an uptrend",
+   "progress": 0.45969950589261377,
    "fired": false
   },
   {
@@ -2352,8 +2362,8 @@
    "name": "Drop over 3% in uptrend",
    "tier": "probation",
    "conf": "Low",
-   "text": "Today -0.92% (needs -3% or worse) in an uptrend",
-   "progress": 0.30642839549209766,
+   "text": "Today +1.01% (needs -3% or worse) in an uptrend",
+   "progress": 0.0,
    "fired": false
   },
   {
@@ -2361,8 +2371,8 @@
    "name": "Closed at day low (IBS)",
    "tier": "probation",
    "conf": "Low",
-   "text": "Closed at 31% of today's range (needs under 10%)",
-   "progress": 0.7655453406892687,
+   "text": "Closed at 97% of today's range (needs under 10%)",
+   "progress": 0.030057273768613953,
    "fired": false
   }
  ],
@@ -2437,7 +2447,7 @@
    "name": "Pullback to 20-day in uptrend",
    "desc": "Uptrend, low touches the 20-day, closes back above it",
    "tier": "aapl_only",
-   "fired": true
+   "fired": false
   },
   {
    "key": "pull_sma50_up",
@@ -2949,8 +2959,8 @@
     "day_high": 360.83,
     "dip_pct": 0.65,
     "tier": "rapid",
-    "last": 349.21,
-    "pl_pct": -2.53,
+    "last": 352.58,
+    "pl_pct": -1.59,
     "days_held": 7
    },
    {
@@ -2970,8 +2980,8 @@
     "day_high": 346.8,
     "dip_pct": 0.52,
     "tier": "rapid",
-    "last": 320.22,
-    "pl_pct": -7.11,
+    "last": 318.69,
+    "pl_pct": -7.56,
     "days_held": 7
    },
    {
@@ -2991,8 +3001,8 @@
     "day_high": 360.83,
     "dip_pct": 0.79,
     "tier": "rapid",
-    "last": 349.21,
-    "pl_pct": -2.43,
+    "last": 352.58,
+    "pl_pct": -1.49,
     "days_held": 7
    },
    {
@@ -3012,8 +3022,8 @@
     "day_high": 360.83,
     "dip_pct": 0.78,
     "tier": "rapid",
-    "last": 349.21,
-    "pl_pct": -2.42,
+    "last": 352.58,
+    "pl_pct": -1.48,
     "days_held": 7
    },
    {
@@ -3033,8 +3043,8 @@
     "day_high": 360.83,
     "dip_pct": 0.79,
     "tier": "rapid",
-    "last": 349.21,
-    "pl_pct": -2.45,
+    "last": 352.58,
+    "pl_pct": -1.51,
     "days_held": 7
    },
    {
@@ -3054,8 +3064,8 @@
     "day_high": 346.8,
     "dip_pct": 0.65,
     "tier": "rapid",
-    "last": 320.22,
-    "pl_pct": -7.08,
+    "last": 318.69,
+    "pl_pct": -7.53,
     "days_held": 7
    },
    {
@@ -3075,8 +3085,8 @@
     "day_high": 357.1,
     "dip_pct": 0.62,
     "tier": "rapid",
-    "last": 349.21,
-    "pl_pct": -1.62,
+    "last": 352.58,
+    "pl_pct": -0.67,
     "days_held": 4
    },
    {
@@ -3096,8 +3106,8 @@
     "day_high": 346.52,
     "dip_pct": 0.96,
     "tier": "rapid",
-    "last": 320.22,
-    "pl_pct": -6.7,
+    "last": 318.69,
+    "pl_pct": -7.14,
     "days_held": 4
    },
    {
@@ -3117,8 +3127,8 @@
     "day_high": 527.95,
     "dip_pct": 0.37,
     "tier": "rapid",
-    "last": 498.3,
-    "pl_pct": -5.33,
+    "last": 493.17,
+    "pl_pct": -6.3,
     "days_held": 4
    },
    {
@@ -3138,8 +3148,8 @@
     "day_high": 356.42,
     "dip_pct": 0.82,
     "tier": "rapid",
-    "last": 349.21,
-    "pl_pct": -1.2,
+    "last": 352.58,
+    "pl_pct": -0.25,
     "days_held": 2
    },
    {
@@ -3159,8 +3169,8 @@
     "day_high": 330.09,
     "dip_pct": 0.88,
     "tier": "rapid",
-    "last": 320.22,
-    "pl_pct": -2.14,
+    "last": 318.69,
+    "pl_pct": -2.61,
     "days_held": 2
    },
    {
@@ -3180,30 +3190,9 @@
     "day_high": 356.42,
     "dip_pct": 0.82,
     "tier": "rapid",
-    "last": 349.21,
-    "pl_pct": -1.21,
+    "last": 352.58,
+    "pl_pct": -0.26,
     "days_held": 2
-   },
-   {
-    "id": "rapid-AAPL-2026-11-19-690",
-    "kind": "rapid",
-    "setup": "rapid",
-    "sym": "AAPL",
-    "name": "AAPL Rapid dip buy",
-    "created": "2026-11-19T11:30:20.546728-05:00",
-    "plan_date": "2026-11-19",
-    "entry": 349.86,
-    "target": 351.86,
-    "stretch": 352.86,
-    "shares": 100,
-    "status": "open",
-    "entry_date": "2026-11-19",
-    "day_high": 355.28,
-    "dip_pct": 1.49,
-    "tier": "rapid",
-    "last": 349.21,
-    "pl_pct": -0.19,
-    "days_held": 1
    },
    {
     "id": "rapid-AMZN-2026-11-19-690",
@@ -3222,8 +3211,8 @@
     "day_high": 274.0,
     "dip_pct": 1.8,
     "tier": "rapid",
-    "last": 257.37,
-    "pl_pct": -4.38,
+    "last": 253.46,
+    "pl_pct": -5.84,
     "days_held": 1
    },
    {
@@ -3243,29 +3232,8 @@
     "day_high": 526.49,
     "dip_pct": 2.25,
     "tier": "rapid",
-    "last": 498.3,
-    "pl_pct": -3.18,
-    "days_held": 1
-   },
-   {
-    "id": "rapid-AAPL-2026-11-19-750",
-    "kind": "rapid",
-    "setup": "rapid",
-    "sym": "AAPL",
-    "name": "AAPL Rapid dip buy",
-    "created": "2026-11-19T12:30:20.567201-05:00",
-    "plan_date": "2026-11-19",
-    "entry": 350.11,
-    "target": 352.11,
-    "stretch": 353.11,
-    "shares": 100,
-    "status": "open",
-    "entry_date": "2026-11-19",
-    "day_high": 355.28,
-    "dip_pct": 1.46,
-    "tier": "rapid",
-    "last": 349.21,
-    "pl_pct": -0.26,
+    "last": 493.17,
+    "pl_pct": -4.18,
     "days_held": 1
    },
    {
@@ -3285,8 +3253,8 @@
     "day_high": 274.0,
     "dip_pct": 3.15,
     "tier": "rapid",
-    "last": 257.37,
-    "pl_pct": -3.06,
+    "last": 253.46,
+    "pl_pct": -4.54,
     "days_held": 1
    },
    {
@@ -3306,29 +3274,8 @@
     "day_high": 526.49,
     "dip_pct": 3.07,
     "tier": "rapid",
-    "last": 498.3,
-    "pl_pct": -2.31,
-    "days_held": 1
-   },
-   {
-    "id": "rapid-AAPL-2026-11-19-810",
-    "kind": "rapid",
-    "setup": "rapid",
-    "sym": "AAPL",
-    "name": "AAPL Rapid dip buy",
-    "created": "2026-11-19T13:30:20.416620-05:00",
-    "plan_date": "2026-11-19",
-    "entry": 349.52,
-    "target": 351.52,
-    "stretch": 352.52,
-    "shares": 100,
-    "status": "open",
-    "entry_date": "2026-11-19",
-    "day_high": 355.28,
-    "dip_pct": 1.63,
-    "tier": "rapid",
-    "last": 349.21,
-    "pl_pct": -0.09,
+    "last": 493.17,
+    "pl_pct": -3.32,
     "days_held": 1
    },
    {
@@ -3348,81 +3295,12 @@
     "day_high": 526.49,
     "dip_pct": 4.43,
     "tier": "rapid",
-    "last": 498.3,
-    "pl_pct": -0.95,
+    "last": 493.17,
+    "pl_pct": -1.97,
     "days_held": 1
    }
   ],
   "closed": [
-   {
-    "id": "rapid-AMZN-2026-11-18-690",
-    "kind": "rapid",
-    "setup": "rapid",
-    "sym": "AMZN",
-    "name": "AMZN Rapid dip buy",
-    "created": "2026-11-18T11:30:20.347354-05:00",
-    "plan_date": "2026-11-18",
-    "entry": 263.67,
-    "target": 265.17,
-    "stretch": 265.94,
-    "shares": 132,
-    "status": "target",
-    "entry_date": "2026-11-18",
-    "day_high": 264.87,
-    "dip_pct": 0.43,
-    "tier": "rapid",
-    "last": 264.99,
-    "pl_pct": 0.5,
-    "days_held": 0,
-    "exit": 265.17,
-    "exit_date": "2026-11-18"
-   },
-   {
-    "id": "rapid-MSFT-2026-11-18-690",
-    "kind": "rapid",
-    "setup": "rapid",
-    "sym": "MSFT",
-    "name": "MSFT Rapid dip buy",
-    "created": "2026-11-18T11:30:20.347354-05:00",
-    "plan_date": "2026-11-18",
-    "entry": 502.99,
-    "target": 505.86,
-    "stretch": 507.32,
-    "shares": 69,
-    "status": "target",
-    "entry_date": "2026-11-18",
-    "day_high": 508.5,
-    "dip_pct": 1.08,
-    "tier": "rapid",
-    "last": 505.84,
-    "pl_pct": 0.57,
-    "days_held": 0,
-    "exit": 505.86,
-    "exit_date": "2026-11-18"
-   },
-   {
-    "id": "rapid-MSFT-2026-11-18-750",
-    "kind": "rapid",
-    "setup": "rapid",
-    "sym": "MSFT",
-    "name": "MSFT Rapid dip buy",
-    "created": "2026-11-18T12:30:20.608592-05:00",
-    "plan_date": "2026-11-18",
-    "entry": 504.58,
-    "target": 507.46,
-    "stretch": 508.92,
-    "shares": 69,
-    "status": "target",
-    "entry_date": "2026-11-18",
-    "day_high": 508.5,
-    "dip_pct": 0.74,
-    "tier": "rapid",
-    "last": 507.42,
-    "pl_pct": 0.56,
-    "days_held": 0,
-    "exit": 507.46,
-    "exit_date": "2026-11-18"
-   },
    {
     "id": "rapid-JPM-2026-11-18-810",
     "kind": "rapid",
@@ -3583,6 +3461,75 @@
     "days_held": 1,
     "exit": 509.27,
     "exit_date": "2026-11-19"
+   },
+   {
+    "id": "rapid-AAPL-2026-11-19-690",
+    "kind": "rapid",
+    "setup": "rapid",
+    "sym": "AAPL",
+    "name": "AAPL Rapid dip buy",
+    "created": "2026-11-19T11:30:20.546728-05:00",
+    "plan_date": "2026-11-19",
+    "entry": 349.86,
+    "target": 351.86,
+    "stretch": 352.86,
+    "shares": 100,
+    "status": "target",
+    "entry_date": "2026-11-19",
+    "day_high": 355.28,
+    "dip_pct": 1.49,
+    "tier": "rapid",
+    "last": 349.21,
+    "pl_pct": -0.19,
+    "days_held": 1,
+    "exit": 351.86,
+    "exit_date": "2026-11-20"
+   },
+   {
+    "id": "rapid-AAPL-2026-11-19-750",
+    "kind": "rapid",
+    "setup": "rapid",
+    "sym": "AAPL",
+    "name": "AAPL Rapid dip buy",
+    "created": "2026-11-19T12:30:20.567201-05:00",
+    "plan_date": "2026-11-19",
+    "entry": 350.11,
+    "target": 352.11,
+    "stretch": 353.11,
+    "shares": 100,
+    "status": "target",
+    "entry_date": "2026-11-19",
+    "day_high": 355.28,
+    "dip_pct": 1.46,
+    "tier": "rapid",
+    "last": 349.21,
+    "pl_pct": -0.26,
+    "days_held": 1,
+    "exit": 352.11,
+    "exit_date": "2026-11-20"
+   },
+   {
+    "id": "rapid-AAPL-2026-11-19-810",
+    "kind": "rapid",
+    "setup": "rapid",
+    "sym": "AAPL",
+    "name": "AAPL Rapid dip buy",
+    "created": "2026-11-19T13:30:20.416620-05:00",
+    "plan_date": "2026-11-19",
+    "entry": 349.52,
+    "target": 351.52,
+    "stretch": 352.52,
+    "shares": 100,
+    "status": "target",
+    "entry_date": "2026-11-19",
+    "day_high": 355.28,
+    "dip_pct": 1.63,
+    "tier": "rapid",
+    "last": 349.21,
+    "pl_pct": -0.09,
+    "days_held": 1,
+    "exit": 351.52,
+    "exit_date": "2026-11-20"
    }
   ],
   "stats": {
